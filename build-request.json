@@ -1,0 +1,142 @@
+{
+  "kind": "build_request",
+  "title": "Omm Vedic Numerology Promotional & Booking Website",
+  "projectName": "Omm Vedic Numerology",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "text": "Create a visually rich homepage for 'Omm Vedic Numerology' that prominently displays the brand name and showcases the four core services: Tarot Card Reading, Numerology, Vastu, and Pronology. Each service should have a dedicated section with a title, brief description, and a call-to-action button linking to the booking form. The page must include a hero section with a spiritual/mystical theme and a navigation bar.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "promotes my service like tarot card reading, numerology, vastu and pronology with the name of omm vedic numerologgy or omm vedic numerology"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Homepage renders the brand name 'Omm Vedic Numerology' in the header and hero section",
+        "All four services (Tarot Card Reading, Numerology, Vastu, Pronology) are displayed as individual cards or sections",
+        "Each service card shows a title, description, price (₹400), and a 'Book Now' button",
+        "Navigation bar links to the Services section and Booking section",
+        "Hero section has a spiritual/mystical visual theme"
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "text": "Implement a backend data model for service bookings. Each booking must store: service type (Tarot Card Reading, Numerology, Vastu, Pronology), booking category (Appointment, Home Tour, Name Change), customer name, phone number, preferred date, optional message, and a status field (pending/confirmed). Expose backend functions to create a booking and retrieve all bookings.",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "it can used by many people who want to have appointment,or do a home tour or , name change"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Backend stores bookings with all required fields",
+        "createBooking function accepts all required fields and returns the new booking ID",
+        "getBookings function returns all stored bookings",
+        "Booking category supports 'Appointment', 'Home Tour', and 'Name Change' as valid values"
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Build a booking form page/section on the frontend that allows users to submit a request for any of the three categories: Appointment, Home Tour, or Name Change. The form must include fields for: service type selection, booking category selection, full name, phone number, preferred date, and an optional message. Display the price as ₹400 prominently. On successful submission, show a confirmation message.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "it can used by many people who want to have appointment,or do a home tour or , name change make the price of 400rs"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Form includes dropdowns for service type and booking category",
+        "Form includes inputs for full name, phone number, preferred date, and optional message",
+        "Price of ₹400 is shown clearly on or near the form",
+        "On submission, the booking is saved to the backend",
+        "A success confirmation message is shown after a successful booking",
+        "Form validation prevents submission with missing required fields"
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "text": "Add a Services & Pricing section on the homepage that lists all four services with clear descriptions and a unified price of ₹400 per session. Include a brief explanation of each: Tarot Card Reading (intuitive card-based guidance), Numerology (life path and number analysis), Vastu (space energy and home alignment), and Pronology (name and sound vibration analysis).",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ],
+        "quotes": [
+          "tarot card reading, numerology, vastu and pronology",
+          "make the price of 400rs"
+        ]
+      },
+      "acceptanceCriteria": [
+        "All four services are listed with names and short descriptions",
+        "Each service shows the price ₹400",
+        "Section is visually distinct and easy to read",
+        "Each service card links to or scrolls to the booking form"
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "text": "Apply a cohesive mystical/spiritual visual theme across the entire website. Use a deep cosmic color palette (dark navy, gold, and warm amber tones), elegant serif or display typography for headings, and subtle celestial or mandala-inspired decorative elements. The layout should feel premium and trustworthy, consistent across all sections.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Color palette uses deep dark backgrounds with gold/amber accent tones",
+        "Headings use an elegant, distinctive font",
+        "Decorative elements (stars, mandalas, or celestial motifs) are used tastefully",
+        "Theme is applied consistently to the hero, services, and booking sections",
+        "Overall aesthetic feels premium and spiritual"
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "text": "Generate and display a banner/hero background image and service icon illustrations for each of the four services, rendered as static assets in frontend/public/assets/generated.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-2"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero section displays the generated background image",
+        "Each of the four service cards displays its respective icon illustration",
+        "Images load correctly from frontend/public/assets/generated"
+      ]
+    }
+  ],
+  "constraints": [
+    "All services must be priced at exactly ₹400",
+    "The brand name must be displayed as 'Omm Vedic Numerology'",
+    "Do not use blue or purple as primary colors"
+  ],
+  "nonGoals": [
+    "Online payment processing or payment gateway integration",
+    "Admin dashboard for managing bookings",
+    "User authentication or login system",
+    "Email or SMS notifications for bookings",
+    "Blog or content management features"
+  ],
+  "imageRequirements": {
+    "required": [
+      "Mystical cosmic hero banner with deep navy sky, golden stars, glowing mandala geometry, and soft celestial light rays (hero-banner.dim_1440x600.png)",
+      "Tarot card reading service icon — glowing tarot cards with golden cosmic background illustration (tarot-icon.dim_256x256.png)",
+      "Numerology service icon — golden sacred geometry numbers and spiral patterns illustration (numerology-icon.dim_256x256.png)",
+      "Vastu service icon — geometric house outline with golden energy lines and compass rose illustration (vastu-icon.dim_256x256.png)",
+      "Pronology service icon — golden sound wave and sacred syllable Om symbol illustration (pronology-icon.dim_256x256.png)"
+    ],
+    "edits": []
+  }
+}

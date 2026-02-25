@@ -1,0 +1,218 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-25T02:42:21.338Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 6,
+    "implemented": 5,
+    "items": [
+      {
+        "id": "REQ-1",
+        "summary": "Create a visually rich homepage for 'Omm Vedic Numerology' that prominently displays the brand name and showcases the four core services: Tarot Card Reading, Numerology, Vastu, and Pronology. Each service should have a dedicated section with a title, brief description, and a call-to-action button linking to the booking form. The page must include a hero section with a spiritual/mystical theme and a navigation bar.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/layout/Header.tsx",
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/components/home/ServiceCard.tsx",
+          "frontend/src/components/home/ServicesSection.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/layout/Header.tsx",
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/components/home/ServiceCard.tsx",
+          "frontend/src/components/home/ServicesSection.tsx",
+          "frontend/src/pages/HomePage.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-2",
+        "summary": "Implement a backend data model for service bookings. Each booking must store: service type (Tarot Card Reading, Numerology, Vastu, Pronology), booking category (Appointment, Home Tour, Name Change), customer name, phone number, preferred date, optional message, and a status field (pending/confirmed). Expose backend functions to create a booking and retrieve all bookings.",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Build a booking form page/section on the frontend that allows users to submit a request for any of the three categories: Appointment, Home Tour, or Name Change. The form must include fields for: service type selection, booking category selection, full name, phone number, preferred date, and an optional message. Display the price as ₹400 prominently. On successful submission, show a confirmation message.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/booking/BookingForm.tsx",
+          "frontend/src/pages/BookingPage.tsx",
+          "frontend/src/App.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/booking/BookingForm.tsx",
+          "frontend/src/App.tsx"
+        ]
+      },
+      {
+        "id": "REQ-4",
+        "summary": "Add a Services & Pricing section on the homepage that lists all four services with clear descriptions and a unified price of ₹400 per session. Include a brief explanation of each: Tarot Card Reading (intuitive card-based guidance), Numerology (life path and number analysis), Vastu (space energy and home alignment), and Pronology (name and sound vibration analysis).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/data/services.ts",
+          "frontend/src/components/home/ServicesSection.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/data/services.ts",
+          "frontend/src/components/home/ServicesSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-5",
+        "summary": "Apply a cohesive mystical/spiritual visual theme across the entire website. Use a deep cosmic color palette (dark navy, gold, and warm amber tones), elegant serif or display typography for headings, and subtle celestial or mandala-inspired decorative elements. The layout should feel premium and trustworthy, consistent across all sections.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/Header.tsx",
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/components/home/ServiceCard.tsx",
+          "frontend/src/components/booking/BookingForm.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/index.css",
+          "frontend/tailwind.config.js",
+          "frontend/src/components/layout/Header.tsx",
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/components/home/ServiceCard.tsx",
+          "frontend/src/components/booking/BookingForm.tsx"
+        ]
+      },
+      {
+        "id": "REQ-6",
+        "summary": "Generate and display a banner/hero background image and service icon illustrations for each of the four services, rendered as static assets in frontend/public/assets/generated.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/data/services.ts",
+          "frontend/src/components/home/ServiceCard.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/home/HeroSection.tsx",
+          "frontend/src/data/services.ts",
+          "frontend/src/components/home/ServiceCard.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "build-template/Dockerfile",
+    "build-template/LICENSE",
+    "build-template/README.md",
+    "build-template/deploy.sh",
+    "build-template/icp.yaml",
+    "build-template/package.json",
+    "build-template/pnpm-lock.yaml",
+    "build-template/pnpm-workspace.yaml",
+    "build-template/scripts/prune-unused-images.js",
+    "build-template/scripts/resize-images.js",
+    "build-template/src/backend/canister.yaml",
+    "build-template/src/backend/system-idl/aaaaa-aa.did",
+    "build-template/src/frontend/canister.yaml",
+    "build-template/src/frontend/components.json",
+    "build-template/src/frontend/env.json",
+    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
+    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
+    "build-template/src/frontend/eslint.config.js",
+    "build-template/src/frontend/package.json",
+    "build-template/src/frontend/postcss.config.js",
+    "build-template/src/frontend/src/components/ui/accordion.tsx",
+    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
+    "build-template/src/frontend/src/components/ui/alert.tsx",
+    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
+    "build-template/src/frontend/src/components/ui/avatar.tsx",
+    "build-template/src/frontend/src/components/ui/badge.tsx",
+    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
+    "build-template/src/frontend/src/components/ui/button.tsx",
+    "build-template/src/frontend/src/components/ui/calendar.tsx",
+    "build-template/src/frontend/src/components/ui/card.tsx",
+    "build-template/src/frontend/src/components/ui/carousel.tsx",
+    "build-template/src/frontend/src/components/ui/chart.tsx",
+    "build-template/src/frontend/src/components/ui/checkbox.tsx",
+    "build-template/src/frontend/src/components/ui/collapsible.tsx",
+    "build-template/src/frontend/src/components/ui/command.tsx",
+    "build-template/src/frontend/src/components/ui/context-menu.tsx",
+    "build-template/src/frontend/src/components/ui/dialog.tsx",
+    "build-template/src/frontend/src/components/ui/drawer.tsx",
+    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
+    "build-template/src/frontend/src/components/ui/form.tsx",
+    "build-template/src/frontend/src/components/ui/hover-card.tsx",
+    "build-template/src/frontend/src/components/ui/input-otp.tsx",
+    "build-template/src/frontend/src/components/ui/input.tsx",
+    "build-template/src/frontend/src/components/ui/label.tsx",
+    "build-template/src/frontend/src/components/ui/menubar.tsx",
+    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
+    "build-template/src/frontend/src/components/ui/pagination.tsx",
+    "build-template/src/frontend/src/components/ui/popover.tsx",
+    "build-template/src/frontend/src/components/ui/progress.tsx",
+    "build-template/src/frontend/src/components/ui/radio-group.tsx",
+    "build-template/src/frontend/src/components/ui/resizable.tsx",
+    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
+    "build-template/src/frontend/src/components/ui/select.tsx",
+    "build-template/src/frontend/src/components/ui/separator.tsx",
+    "build-template/src/frontend/src/components/ui/sheet.tsx",
+    "build-template/src/frontend/src/components/ui/sidebar.tsx",
+    "build-template/src/frontend/src/components/ui/skeleton.tsx",
+    "build-template/src/frontend/src/components/ui/slider.tsx",
+    "build-template/src/frontend/src/components/ui/sonner.tsx",
+    "build-template/src/frontend/src/components/ui/switch.tsx",
+    "build-template/src/frontend/src/components/ui/table.tsx",
+    "build-template/src/frontend/src/components/ui/tabs.tsx",
+    "build-template/src/frontend/src/components/ui/textarea.tsx",
+    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
+    "build-template/src/frontend/src/components/ui/toggle.tsx",
+    "build-template/src/frontend/src/components/ui/tooltip.tsx",
+    "build-template/src/frontend/src/hooks/use-mobile.tsx",
+    "build-template/src/frontend/src/lib/utils.ts",
+    "build-template/src/frontend/tsconfig.json",
+    "build-template/src/frontend/vite.config.js",
+    "build-template/tsconfig.json",
+    "caffeine.lock.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/public/assets/generated/hero-banner.dim_1440x600.png",
+    "frontend/public/assets/generated/numerology-icon.dim_256x256.png",
+    "frontend/public/assets/generated/pronology-icon.dim_256x256.png",
+    "frontend/public/assets/generated/tarot-icon.dim_256x256.png",
+    "frontend/public/assets/generated/vastu-icon.dim_256x256.png",
+    "frontend/src/App.tsx",
+    "frontend/src/backend.d.ts",
+    "frontend/src/backend.ts",
+    "frontend/src/components/booking/BookingForm.tsx",
+    "frontend/src/components/home/AboutSection.tsx",
+    "frontend/src/components/home/HeroSection.tsx",
+    "frontend/src/components/home/ServiceCard.tsx",
+    "frontend/src/components/home/ServicesSection.tsx",
+    "frontend/src/components/layout/Header.tsx",
+    "frontend/src/config.ts",
+    "frontend/src/data/services.ts",
+    "frontend/src/declarations/backend.did.d.ts",
+    "frontend/src/declarations/backend.did.js",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/hooks/useQueries.ts",
+    "frontend/src/index.css",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/ui-summary.json",
+    "frontend/src/utils/StorageClient.ts",
+    "frontend/tailwind.config.js",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

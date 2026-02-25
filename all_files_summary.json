@@ -1,0 +1,23 @@
+{
+  "backend/main.mo": "Motoko actor defining Booking types (ServiceType, BookingCategory, BookingStatus) with a Map-based store, and exposes `createBooking` (update) and `getAllBookings` (query) methods.",
+  "feature_evidence.json": "Feature evidence report mapping implemented features (homepage, booking form, services/pricing) to their source files, components, test IDs, and confidence levels.",
+  "frontend-file-summaries.txt": "JSON dictionary providing one-line summaries of each frontend source file, serving as a quick reference for the project's frontend structure.",
+  "frontend/index.css": "Base Tailwind CSS entry file defining OKLCH-based CSS custom properties for light and dark themes including colors, borders, and sidebar tokens.",
+  "frontend/index.html": "Minimal HTML shell for the React app, setting the page title to 'Omm Vedic Numerology' and mounting the app at `#root` via `main.tsx`.",
+  "frontend/src/App.tsx": "Root React component that simply renders the `HomePage` as the sole view of the application.",
+  "frontend/src/components/booking/BookingForm.tsx": "Booking form component with service/category dropdowns, name, phone, date, and optional message fields, client-side validation, a ₹400 price banner, loading state, and a success confirmation screen showing the booking ID.",
+  "frontend/src/components/home/AboutSection.tsx": "About section with brand story text and a 2×2 grid of feature cards highlighting Ancient Wisdom, Personalized Guidance, Trusted Practice, and Holistic Approach.",
+  "frontend/src/components/home/HeroSection.tsx": "Full-screen hero section featuring a background banner image, Om symbol, animated star decorations, gold gradient heading, tagline, ₹400 price mention, and Book Now / Explore Services CTA buttons.",
+  "frontend/src/components/home/ServiceCard.tsx": "Renders a single service card with icon, name, descriptions, price, and a 'Book Now' button that triggers the onBookNow callback with the service ID.",
+  "frontend/src/components/home/ServicesSection.tsx": "Renders the full 'Divine Offerings' section with a header, a responsive grid of ServiceCard components, and a pricing note footer.",
+  "frontend/src/components/layout/Header.tsx": "Fixed navigation header with logo, desktop nav links, and a collapsible mobile menu; calls onNavigate with the target section name on link click.",
+  "frontend/src/data/services.ts": "Defines the ServiceData interface and exports an array of four astrology/numerology services (Tarot, Numerology, Vastu, Pronology), each priced at ₹400.",
+  "frontend/src/hooks/useActor.ts": "Custom hook that creates and caches an ICP backend actor (anonymous or authenticated) using React Query, and invalidates dependent queries whenever the actor changes.",
+  "frontend/src/hooks/useInternetIdentity.ts": "Provides an InternetIdentityProvider and useInternetIdentity hook that manage DFINITY AuthClient lifecycle, login/logout, and expose identity state to the component tree.",
+  "frontend/src/hooks/useQueries.ts": "Exports the useCreateBooking mutation hook that calls the backend actor's createBooking method and invalidates the bookings query cache on success.",
+  "frontend/src/index.css": "Global stylesheet that imports Google Fonts, sets up a cosmic dark theme with gold accent CSS custom properties, and defines Tailwind utility classes for colors, gradients, cards, and buttons.",
+  "frontend/src/main.tsx": "Application entry point that mounts the React app wrapped in QueryClientProvider and InternetIdentityProvider.",
+  "frontend/src/pages/HomePage.tsx": "Main homepage component that composes Header, HeroSection, ServicesSection, AboutSection, BookingForm, and Footer with smooth scroll navigation between sections. Manages preselected service state to pre-fill the booking form when a service's 'Book Now' button is clicked.",
+  "frontend/tailwind.config.js": "Tailwind CSS configuration defining custom fonts (Cinzel, Cormorant Garamond, Inter), a cosmic/gold color palette using oklch values, custom shadows, border radii, and keyframe animations (twinkle, float, accordion).",
+  "project_state.json": "Project state metadata for the Omm Vedic Numerology promotional website, documenting existing features, architectural notes (four services at ₹400 each), required images, and versioning information."
+}

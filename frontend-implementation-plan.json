@@ -1,0 +1,170 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Omm Vedic Numerology Promotional & Booking Website - Frontend Implementation",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Create visually rich homepage with hero section, navigation, and four service cards linking to booking form",
+      "acceptanceCriteria": [
+        "Homepage renders the brand name 'Omm Vedic Numerology' in the header and hero section",
+        "All four services (Tarot Card Reading, Numerology, Vastu, Pronology) are displayed as individual cards or sections",
+        "Each service card shows a title, description, price (₹400), and a 'Book Now' button",
+        "Navigation bar links to the Services section and Booking section",
+        "Hero section has a spiritual/mystical visual theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/layout/Header.tsx",
+          "operation": "create",
+          "description": "Create navigation header component displaying 'Omm Vedic Numerology' brand name with links to Services and Booking sections. Apply mystical theme styling with gold/amber accents on dark background."
+        },
+        {
+          "path": "frontend/src/components/home/HeroSection.tsx",
+          "operation": "create",
+          "description": "Create hero section component with brand name, spiritual tagline, and background image. Display the generated hero banner image from frontend/public/assets/generated/hero-banner.dim_1440x600.png as the background. Include call-to-action button linking to booking section."
+        },
+        {
+          "path": "frontend/src/components/home/ServiceCard.tsx",
+          "operation": "create",
+          "description": "Create reusable service card component that displays service icon, title, description, price (₹400), and 'Book Now' button. Accept props for service data and click handler."
+        },
+        {
+          "path": "frontend/src/components/home/ServicesSection.tsx",
+          "operation": "create",
+          "description": "Create services section component that renders four ServiceCard components for Tarot Card Reading, Numerology, Vastu, and Pronology. Each card displays its respective generated icon from frontend/public/assets/generated/ (tarot-icon.dim_256x256.png, numerology-icon.dim_256x256.png, vastu-icon.dim_256x256.png, pronology-icon.dim_256x256.png). Include service descriptions and link cards to booking form."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create main homepage component that composes Header, HeroSection, ServicesSection, and smooth scroll navigation between sections. Wire all components together to form the complete landing page."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Update main App component to render HomePage as the primary route and set up routing structure for the booking page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Build booking form page with service selection, customer details, and submission with confirmation",
+      "acceptanceCriteria": [
+        "Form includes dropdowns for service type and booking category",
+        "Form includes inputs for full name, phone number, preferred date, and optional message",
+        "Price of ₹400 is shown clearly on or near the form",
+        "On submission, the booking is saved to the backend",
+        "A success confirmation message is shown after a successful booking",
+        "Form validation prevents submission with missing required fields"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/booking/BookingForm.tsx",
+          "operation": "create",
+          "description": "Create booking form component with dropdowns for service type (Tarot Card Reading, Numerology, Vastu, Pronology) and booking category (Appointment, Home Tour, Name Change), text inputs for customer name and phone number, date picker for preferred date, and textarea for optional message. Display price ₹400 prominently. Implement form validation for required fields. On submission, call backend createBooking function using the backend interface types (ServiceType, BookingCategory enums). Show success confirmation message after successful booking."
+        },
+        {
+          "path": "frontend/src/pages/BookingPage.tsx",
+          "operation": "create",
+          "description": "Create booking page component that renders the BookingForm component with a header showing the brand name and booking instructions. Apply consistent mystical theme styling."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Add route for BookingPage component and wire navigation so 'Book Now' buttons and navigation links direct users to the booking form."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add Services & Pricing section listing all four services with descriptions and unified ₹400 pricing",
+      "acceptanceCriteria": [
+        "All four services are listed with names and short descriptions",
+        "Each service shows the price ₹400",
+        "Section is visually distinct and easy to read",
+        "Each service card links to or scrolls to the booking form"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/data/services.ts",
+          "operation": "create",
+          "description": "Create services data file exporting an array of service objects with fields: id, name, description, price (₹400), and icon path. Include all four services: Tarot Card Reading (intuitive card-based guidance), Numerology (life path and number analysis), Vastu (space energy and home alignment), and Pronology (name and sound vibration analysis). Reference generated icon files in frontend/public/assets/generated/."
+        },
+        {
+          "path": "frontend/src/components/home/ServicesSection.tsx",
+          "operation": "modify",
+          "description": "Update ServicesSection to import services data from frontend/src/data/services.ts and map over the array to render ServiceCard components. Ensure each card displays service name, description, price ₹400, and links to the booking form."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Apply mystical/spiritual theme with cosmic color palette, elegant typography, and celestial decorative elements",
+      "acceptanceCriteria": [
+        "Color palette uses deep dark backgrounds with gold/amber accent tones",
+        "Headings use an elegant, distinctive font",
+        "Decorative elements (stars, mandalas, or celestial motifs) are used tastefully",
+        "Theme is applied consistently to the hero, services, and booking sections",
+        "Overall aesthetic feels premium and spiritual"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Update global stylesheet to define CSS custom properties for the mystical theme: deep navy/dark backgrounds, gold and warm amber accent colors. Import elegant serif or display font family for headings (e.g., from Google Fonts). Add base styling for celestial decorative elements and establish premium, trustworthy aesthetic across all typography and spacing."
+        },
+        {
+          "path": "frontend/tailwind.config.js",
+          "operation": "modify",
+          "description": "Extend Tailwind configuration to include custom theme colors (cosmic navy, gold, amber), custom font families for headings, and utility classes for mystical decorative elements. Ensure color palette excludes blue and purple as primary colors per constraints."
+        },
+        {
+          "path": "frontend/src/components/layout/Header.tsx",
+          "operation": "modify",
+          "description": "Apply mystical theme styling to header component using theme colors and typography defined in global styles and Tailwind config."
+        },
+        {
+          "path": "frontend/src/components/home/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Apply mystical theme styling to hero section with cosmic color overlays, elegant heading typography, and celestial decorative elements (stars, glowing effects)."
+        },
+        {
+          "path": "frontend/src/components/home/ServiceCard.tsx",
+          "operation": "modify",
+          "description": "Apply mystical theme styling to service cards with dark backgrounds, gold borders, and amber hover effects. Ensure premium, cohesive aesthetic."
+        },
+        {
+          "path": "frontend/src/components/booking/BookingForm.tsx",
+          "operation": "modify",
+          "description": "Apply mystical theme styling to booking form inputs, buttons, and layout. Use dark backgrounds with gold accents and elegant typography for labels and headings."
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Display generated hero banner and service icon images as static frontend assets",
+      "acceptanceCriteria": [
+        "Hero section displays the generated background image",
+        "Each of the four service cards displays its respective icon illustration",
+        "Images load correctly from frontend/public/assets/generated"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/home/HeroSection.tsx",
+          "operation": "modify",
+          "description": "Wire the generated hero banner image frontend/public/assets/generated/hero-banner.dim_1440x600.png as the background image for the hero section. Use CSS background-image or img tag with proper styling to display it prominently."
+        },
+        {
+          "path": "frontend/src/data/services.ts",
+          "operation": "modify",
+          "description": "Update services data to reference the exact generated icon filenames in frontend/public/assets/generated/: tarot-icon.dim_256x256.png, numerology-icon.dim_256x256.png, vastu-icon.dim_256x256.png, pronology-icon.dim_256x256.png for each respective service."
+        },
+        {
+          "path": "frontend/src/components/home/ServiceCard.tsx",
+          "operation": "modify",
+          "description": "Update ServiceCard component to render the service icon image from the provided icon path prop. Display icons using img tag with appropriate sizing and styling to match the mystical theme."
+        }
+      ]
+    }
+  ]
+}
