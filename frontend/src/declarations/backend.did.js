@@ -8,6 +8,11 @@
 
 import { IDL } from '@icp-sdk/core/candid';
 
+export const UserRole = IDL.Variant({
+  'admin' : IDL.Null,
+  'user' : IDL.Null,
+  'guest' : IDL.Null,
+});
 export const ServiceType = IDL.Variant({
   'tarotCardReading' : IDL.Null,
   'vastu' : IDL.Null,
@@ -35,6 +40,8 @@ export const Booking = IDL.Record({
 });
 
 export const idlService = IDL.Service({
+  '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+  'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'createBooking' : IDL.Func(
       [
         ServiceType,
@@ -48,11 +55,18 @@ export const idlService = IDL.Service({
       [],
     ),
   'getAllBookings' : IDL.Func([], [IDL.Vec(Booking)], ['query']),
+  'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
 });
 
 export const idlInitArgs = [];
 
 export const idlFactory = ({ IDL }) => {
+  const UserRole = IDL.Variant({
+    'admin' : IDL.Null,
+    'user' : IDL.Null,
+    'guest' : IDL.Null,
+  });
   const ServiceType = IDL.Variant({
     'tarotCardReading' : IDL.Null,
     'vastu' : IDL.Null,
@@ -80,6 +94,8 @@ export const idlFactory = ({ IDL }) => {
   });
   
   return IDL.Service({
+    '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
+    'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'createBooking' : IDL.Func(
         [
           ServiceType,
@@ -93,6 +109,8 @@ export const idlFactory = ({ IDL }) => {
         [],
       ),
     'getAllBookings' : IDL.Func([], [IDL.Vec(Booking)], ['query']),
+    'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
   });
 };
 

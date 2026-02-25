@@ -2,106 +2,25 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-create-a-visually-rich-homepage-for-omm-vedic-numerology-that-prominently-displays-the-brand-name-and-showcases-the-four-core-services-tarot-card-reading-numerology-vastu-and-pronology-each-service-should-have-a-dedicated-section-with-a-title-brief-description-and-a-call-to-action-button-linking-to-the-booking-form-the-page-must-include-a-hero-section-with-a-spiritual-mystical-theme-and-a-navigation-bar",
-      "featureTitle": "Create a visually rich homepage for 'Omm Vedic Numerology' that prominently displays the brand name and showcases the four core services: Tarot Card Reading, Numerology, Vastu, and Pronology. Each service should have a dedicated section with a title, brief description, and a call-to-action button linking to the booking form. The page must include a hero section with a spiritual/mystical theme and a navigation bar.",
+      "featureId": "feature-add-an-admin-panel-page-to-the-frontend-accessible-only-after-logging-in-with-internet-identity-after-login-check-the-backend-isadmin-function-if-true-show-the-admin-dashboard-the-dashboard-must-display-a-table-of-all-submitted-bookings-with-columns-booking-id-service-type-booking-category-customer-name-phone-number-preferred-date-message-and-status-include-a-login-button-using-internet-identity-for-access-if-the-logged-in-user-is-not-admin-show-an-access-denied-message",
+      "featureTitle": "Add an admin panel page to the frontend accessible only after logging in with Internet Identity. After login, check the backend isAdmin function; if true, show the admin dashboard. The dashboard must display a table of all submitted bookings with columns: booking ID, service type, booking category, customer name, phone number, preferred date, message, and status. Include a login button using Internet Identity for access. If the logged-in user is not admin, show an 'Access Denied' message.",
       "files": [
         "frontend/src/App.tsx",
-        "frontend/src/components/home/HeroSection.tsx",
-        "frontend/src/components/home/ServiceCard.tsx",
-        "frontend/src/components/home/ServicesSection.tsx",
+        "frontend/src/components/admin/BookingsTable.tsx",
         "frontend/src/components/layout/Header.tsx",
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/hooks/useAdminQueries.ts",
+        "frontend/src/pages/AdminPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
         "shadcn-ui@1.0.0",
         "build-template-react@1.0.0",
         "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-a-booking-form-page-section-on-the-frontend-that-allows-users-to-submit-a-request-for-any-of-the-three-categories-appointment-home-tour-or-name-change-the-form-must-include-fields-for-service-type-selection-booking-category-selection-full-name-phone-number-preferred-date-and-an-optional-message-display-the-price-as-400-prominently-on-successful-submission-show-a-confirmation-message",
-      "featureTitle": "Build a booking form page/section on the frontend that allows users to submit a request for any of the three categories: Appointment, Home Tour, or Name Change. The form must include fields for: service type selection, booking category selection, full name, phone number, preferred date, and an optional message. Display the price as ₹400 prominently. On successful submission, show a confirmation message.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/booking/BookingForm.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-services-pricing-section-on-the-homepage-that-lists-all-four-services-with-clear-descriptions-and-a-unified-price-of-400-per-session-include-a-brief-explanation-of-each-tarot-card-reading-intuitive-card-based-guidance-numerology-life-path-and-number-analysis-vastu-space-energy-and-home-alignment-and-pronology-name-and-sound-vibration-analysis",
-      "featureTitle": "Add a Services & Pricing section on the homepage that lists all four services with clear descriptions and a unified price of ₹400 per session. Include a brief explanation of each: Tarot Card Reading (intuitive card-based guidance), Numerology (life path and number analysis), Vastu (space energy and home alignment), and Pronology (name and sound vibration analysis).",
-      "files": [
-        "frontend/src/components/home/ServicesSection.tsx",
-        "frontend/src/data/services.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-a-cohesive-mystical-spiritual-visual-theme-across-the-entire-website-use-a-deep-cosmic-color-palette-dark-navy-gold-and-warm-amber-tones-elegant-serif-or-display-typography-for-headings-and-subtle-celestial-or-mandala-inspired-decorative-elements-the-layout-should-feel-premium-and-trustworthy-consistent-across-all-sections",
-      "featureTitle": "Apply a cohesive mystical/spiritual visual theme across the entire website. Use a deep cosmic color palette (dark navy, gold, and warm amber tones), elegant serif or display typography for headings, and subtle celestial or mandala-inspired decorative elements. The layout should feel premium and trustworthy, consistent across all sections.",
-      "files": [
-        "frontend/src/components/booking/BookingForm.tsx",
-        "frontend/src/components/home/HeroSection.tsx",
-        "frontend/src/components/home/ServiceCard.tsx",
-        "frontend/src/components/layout/Header.tsx",
-        "frontend/src/index.css",
-        "frontend/tailwind.config.js"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-generate-and-display-a-banner-hero-background-image-and-service-icon-illustrations-for-each-of-the-four-services-rendered-as-static-assets-in-frontend-public-assets-generated",
-      "featureTitle": "Generate and display a banner/hero background image and service icon illustrations for each of the four services, rendered as static assets in frontend/public/assets/generated.",
-      "files": [
-        "frontend/src/components/home/HeroSection.tsx",
-        "frontend/src/components/home/ServiceCard.tsx",
-        "frontend/src/data/services.ts"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
+        "REQ-8"
       ],
       "confidence": "high"
     }

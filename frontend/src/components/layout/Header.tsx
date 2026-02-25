@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Menu, X, Star } from 'lucide-react';
+import { Menu, X, Star, ShieldCheck } from 'lucide-react';
+import { Link } from '@tanstack/react-router';
 
 interface HeaderProps {
   onNavigate: (section: string) => void;
@@ -59,6 +60,14 @@ export default function Header({ onNavigate }: HeaderProps) {
                 {link.label}
               </button>
             ))}
+            {/* Subtle Admin Link */}
+            <Link
+              to="/admin"
+              className="ml-2 p-2 text-foreground/20 hover:text-gold/50 transition-colors rounded"
+              title="Admin Panel"
+            >
+              <ShieldCheck className="w-4 h-4" />
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -89,6 +98,14 @@ export default function Header({ onNavigate }: HeaderProps) {
                 {link.label}
               </button>
             ))}
+            <Link
+              to="/admin"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-3 font-cinzel text-xs tracking-wider text-foreground/30 hover:text-gold/50 transition-colors flex items-center gap-2"
+            >
+              <ShieldCheck className="w-3.5 h-3.5" />
+              Admin
+            </Link>
           </nav>
         </div>
       )}

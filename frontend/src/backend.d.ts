@@ -32,7 +32,15 @@ export enum ServiceType {
     numerology = "numerology",
     pronology = "pronology"
 }
+export enum UserRole {
+    admin = "admin",
+    user = "user",
+    guest = "guest"
+}
 export interface backendInterface {
+    assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
     createBooking(serviceType: ServiceType, category: BookingCategory, customerName: string, phoneNumber: string, preferredDate: string, message: string | null): Promise<bigint>;
     getAllBookings(): Promise<Array<Booking>>;
+    getCallerUserRole(): Promise<UserRole>;
+    isCallerAdmin(): Promise<boolean>;
 }

@@ -29,12 +29,19 @@ export type ServiceType = { 'tarotCardReading' : null } |
   { 'vastu' : null } |
   { 'numerology' : null } |
   { 'pronology' : null };
+export type UserRole = { 'admin' : null } |
+  { 'user' : null } |
+  { 'guest' : null };
 export interface _SERVICE {
+  '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
+  'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createBooking' : ActorMethod<
     [ServiceType, BookingCategory, string, string, string, [] | [string]],
     bigint
   >,
   'getAllBookings' : ActorMethod<[], Array<Booking>>,
+  'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'isCallerAdmin' : ActorMethod<[], boolean>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

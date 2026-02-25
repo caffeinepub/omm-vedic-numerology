@@ -1,9 +1,15 @@
-import Set "mo:core/Set";
+import Text "mo:core/Text";
+import Principal "mo:core/Principal";
+import Nat "mo:core/Nat";
 import Array "mo:core/Array";
 import Order "mo:core/Order";
 import Runtime "mo:core/Runtime";
 import Map "mo:core/Map";
-import Text "mo:core/Text";
+import MixinAuthorization "authorization/MixinAuthorization";
+import AccessControl "authorization/access-control";
+
+// This backend uses the prefab authentication system. All calls to
+// admin functions require an admin caller
 
 actor {
   type ServiceType = {
@@ -35,16 +41,21 @@ actor {
     status : BookingStatus;
   };
 
-  module Booking {
-    public func compare(b1 : Booking, b2 : Booking) : Order.Order {
-      Nat.compare(b1.id, b2.id);
-    };
+  type UserProfile = {
+    name : Text;
   };
 
   var nextBookingId = 0;
 
   let bookings = Map.empty<Nat, Booking>();
+  let userProfiles = Map.empty<Principal, UserProfile>();
 
+  // Include admin state and authenticate all calls. Remove include and
+  // access control state if you want to open up some functions.
+  let accessControlState = AccessControl.initState();
+  include MixinAuthorization(accessControlState);
+
+  // Create a new booking - open to all callers
   public shared ({ caller }) func createBooking(
     serviceType : ServiceType,
     category : BookingCategory,
@@ -71,7 +82,14 @@ actor {
     currentId;
   };
 
+  // Admin-only: get all bookings
   public query ({ caller }) func getAllBookings() : async [Booking] {
-    bookings.values().toArray().sort();
+    if (not (AccessControl.hasPermission(accessControlState, caller, #admin))) {
+      Runtime.trap("Unauthorized: Only admins can perform this action");
+    };
+    let arr = bookings.values().toArray();
+    arr.sort(func(b1 : Booking, b2 : Booking) : Order.Order {
+      Nat.compare(b1.id, b2.id);
+    });
   };
 };

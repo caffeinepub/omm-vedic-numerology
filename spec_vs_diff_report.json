@@ -1,69 +1,47 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T02:42:21.335Z",
-  "summary": "The diff implements a comprehensive Omm Vedic Numerology website with frontend and backend components. Most requirements are well-covered: the homepage, services section, booking form, backend model, and visual theme are all present. The main gap is REQ-6 — while the code references the generated image assets (hero-banner.dim_1440x600.png, tarot-icon.dim_256x256.png, etc.) from frontend/public/assets/generated, no actual image files appear in the diff as added files. The diff summary notes one file was omitted due to limits, but there is no evidence the four service icons and hero banner were generated and placed in the assets directory.",
+  "generatedAt": "2026-02-25T02:54:09.519Z",
+  "summary": "The diff implements most of REQ-7 and REQ-8. The frontend admin panel, bookings table, admin route, login/logout flow, isAdmin check, and Access Denied message are all present. The backend has a protected getAllBookings and an authorization mixin. However, REQ-7 specifically requires a hardcoded admin principal and an explicit isAdmin(caller) query method; the diff instead uses a prefab AccessControl/MixinAuthorization system with no hardcoded principal visible, and the frontend calls isCallerAdmin() rather than isAdmin(). The explicit isAdmin query returning true only for a hardcoded principal is not clearly implemented in the shown backend code.",
   "missing_requirements": [
     {
-      "id": "REQ-6",
-      "requirement": "Generate and display a banner/hero background image and service icon illustrations for each of the four services, rendered as static assets in frontend/public/assets/generated.",
-      "reason": "The code references image paths for hero-banner.dim_1440x600.png and four service icons but none of these actual image files appear in the 21 added files. At most one omitted file could account for a single asset, leaving at least four image files unaccounted for.",
+      "id": "REQ-7",
+      "requirement": "A single admin principal is hardcoded in the backend actor; an isAdmin query returns true only for the admin principal.",
+      "reason": "The backend diff uses a prefab MixinAuthorization/AccessControl system without showing any hardcoded admin principal. There is no explicit isAdmin query method visible in backend/main.mo. The frontend calls actor.isCallerAdmin(), not actor.isAdmin(). The requirement to hardcode a specific website owner principal and expose it via an isAdmin query is not evidenced.",
       "evidence": [
-        "frontend/src/components/home/HeroSection.tsx",
-        "frontend/src/data/services.ts",
-        "frontend/src/components/home/ServiceCard.tsx"
+        "backend/main.mo",
+        "frontend/src/hooks/useAdminQueries.ts"
       ]
     }
   ],
   "hallucinated_features": [
     {
-      "description": "Social media links (Instagram, Facebook, YouTube) in the footer",
-      "reason": "The build request does not mention social media links or footer social icons. The HomePage imports SiInstagram, SiFacebook, SiYoutube from react-icons/si, indicating social media links were added without being requested.",
+      "description": "A URL parameter utility module (urlParams.ts) with sessionStorage persistence, caffeineAdminToken extraction, and hash parameter clearing, unrelated to admin panel or Internet Identity authentication.",
+      "reason": "The build request only requires Internet Identity-based admin authentication. The urlParams.ts file introduces a token-based URL parameter system (caffeineAdminToken) that was not requested and is unrelated to the specified requirements.",
       "evidence": [
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/utils/urlParams.ts",
+        "frontend/src/hooks/useActor.ts"
       ]
     },
     {
-      "description": "About section with brand story and feature cards",
-      "reason": "The build request does not include an About section as a requirement. The AboutSection component was created and added to the page with its own nav link, which was not requested.",
+      "description": "useActor.ts calls actor._initializeAccessControlWithSecret(adminToken) using a caffeineAdminToken from URL/session storage.",
+      "reason": "This token-based access control initialization was not requested. The spec requires only Internet Identity-based admin verification. Additionally, useActor.ts is listed as an immutable file in the constraints.",
       "evidence": [
-        "frontend/src/components/home/AboutSection.tsx",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/src/components/layout/Header.tsx"
-      ]
-    },
-    {
-      "description": "Internet Identity authentication integration",
-      "reason": "The build request explicitly lists user authentication or login system as a non-goal, yet the implementation includes InternetIdentityProvider, useInternetIdentity hook, and AuthClient integration.",
-      "evidence": [
-        "frontend/src/hooks/useInternetIdentity.ts",
-        "frontend/src/hooks/useActor.ts",
-        "frontend/src/main.tsx"
+        "frontend/src/hooks/useActor.ts"
       ]
     }
   ],
-  "confidence": 0.82,
+  "confidence": 0.72,
   "changed_files": [
-    "all_files_summary.json",
     "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/index.css",
-    "frontend/index.html",
     "frontend/src/App.tsx",
-    "frontend/src/components/booking/BookingForm.tsx",
-    "frontend/src/components/home/AboutSection.tsx",
-    "frontend/src/components/home/HeroSection.tsx",
-    "frontend/src/components/home/ServiceCard.tsx",
-    "frontend/src/components/home/ServicesSection.tsx",
+    "frontend/src/components/admin/BookingsTable.tsx",
     "frontend/src/components/layout/Header.tsx",
-    "frontend/src/data/services.ts",
     "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
-    "frontend/src/hooks/useQueries.ts",
-    "frontend/src/index.css",
-    "frontend/src/main.tsx",
-    "frontend/src/pages/HomePage.tsx",
-    "frontend/tailwind.config.js",
+    "frontend/src/hooks/useAdminQueries.ts",
+    "frontend/src/pages/AdminPage.tsx",
+    "frontend/src/utils/urlParams.ts",
     "project_state.json"
   ]
 }
