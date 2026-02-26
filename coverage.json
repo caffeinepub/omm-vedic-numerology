@@ -1,65 +1,49 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T02:54:09.522Z",
+  "generatedAt": "2026-02-26T12:53:44.337Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
     "total": 2,
-    "implemented": 1,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-7",
-        "summary": "Add a hardcoded admin principal to the backend. The website owner's Internet Identity principal should be stored as the designated admin. Expose a backend query `isAdmin(caller)` that returns true if the caller's principal matches the admin principal. Expose a protected `getAllBookings` query that only returns data to the admin principal and rejects all other callers.",
-        "status": "unknown",
-        "plannedFiles": [],
-        "matchedFiles": []
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Add an admin panel page to the frontend accessible only after logging in with Internet Identity. After login, check the backend isAdmin function; if true, show the admin dashboard. The dashboard must display a table of all submitted bookings with columns: booking ID, service type, booking category, customer name, phone number, preferred date, message, and status. Include a login button using Internet Identity for access. If the logged-in user is not admin, show an 'Access Denied' message.",
+        "id": "REQ-10",
+        "summary": "Add SEO meta tags to the HTML shell (frontend/index.html) to improve public discoverability on Google and other search engines. Include: a descriptive page title ('Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'), a meta description summarising the services and ₹400 booking price, Open Graph tags (og:title, og:description, og:type set to 'website'), and a robots meta tag set to 'index, follow' so search engines can crawl and index the site.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/AdminPage.tsx",
-          "frontend/src/components/admin/AdminDashboard.tsx",
-          "frontend/src/components/admin/BookingsTable.tsx",
-          "frontend/src/hooks/useAdminQueries.ts",
-          "frontend/src/App.tsx",
+          "frontend/index.html"
+        ],
+        "matchedFiles": [
+          "frontend/index.html"
+        ]
+      },
+      {
+        "id": "REQ-9",
+        "summary": "Add a clickable Instagram icon/link pointing to https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in the website footer (and optionally in the header/navigation). The link must open in a new tab. Ensure it is visible on all pages.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/HomePage.tsx",
           "frontend/src/components/layout/Header.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/AdminPage.tsx",
-          "frontend/src/components/admin/BookingsTable.tsx",
-          "frontend/src/hooks/useAdminQueries.ts",
-          "frontend/src/App.tsx",
-          "frontend/src/components/layout/Header.tsx"
+          "frontend/src/pages/HomePage.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/authorization/MixinAuthorization.mo",
-    "backend/authorization/access-control.mo",
-    "backend/main.mo",
     "build-request.json",
     "build-template/README.md",
     "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/components/admin/BookingsTable.tsx",
-    "frontend/src/components/layout/Header.tsx",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useAdminQueries.ts",
-    "frontend/src/pages/AdminPage.tsx",
-    "frontend/src/utils/urlParams.ts",
+    "frontend/index.html",
+    "frontend/src/pages/HomePage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

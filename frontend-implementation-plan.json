@@ -1,49 +1,44 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add admin user and admin panel for managing bookings",
+  "title": "Add Instagram link and improve public discoverability",
   "requirements": [
     {
-      "id": "REQ-8",
-      "summary": "Add an admin panel page accessible via Internet Identity that displays all submitted bookings in a table for authorized admin users",
+      "id": "REQ-9",
+      "summary": "Add clickable Instagram icon/link in the footer (and optionally header) that opens https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in a new tab, visible on all pages and styled consistently with the mystical/cosmic theme",
       "acceptanceCriteria": [
-        "An /admin route or admin section is accessible from the site (e.g., via a hidden nav link or direct URL).",
-        "The page shows a 'Login with Internet Identity' button when the user is not authenticated.",
-        "After successful Internet Identity login, the frontend calls isAdmin and shows the bookings table if true.",
-        "The bookings table displays all fields: ID, service type, category, name, phone, date, message, status.",
-        "Non-admin authenticated users see an 'Access Denied' message.",
-        "The admin panel matches the existing cosmic/mystical visual theme."
+        "An Instagram icon/button is visible in the footer on all pages",
+        "Clicking the Instagram icon opens https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in a new browser tab",
+        "The link is styled consistently with the existing mystical/cosmic theme"
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/AdminPage.tsx",
-          "operation": "create",
-          "description": "Create the main admin page component that checks authentication status using useInternetIdentity hook. When not authenticated, display a login button. When authenticated, call the backend isCallerAdmin query using the actor from useActor hook. If admin, render the AdminDashboard component. If authenticated but not admin, display an 'Access Denied' message styled to match the cosmic theme with gold accents and dark background."
-        },
-        {
-          "path": "frontend/src/components/admin/AdminDashboard.tsx",
-          "operation": "create",
-          "description": "Create the admin dashboard component that fetches all bookings using getAllBookings backend query via useActor hook. Display bookings in a responsive table with columns: booking ID, service type, booking category, customer name, phone number, preferred date, message, and status. Apply the cosmic theme styling with dark background, gold borders, and hover effects. Include loading state while fetching data and error handling for failed queries. Use React Query for data fetching with proper cache invalidation."
-        },
-        {
-          "path": "frontend/src/components/admin/BookingsTable.tsx",
-          "operation": "create",
-          "description": "Create a reusable bookings table component that accepts an array of Booking objects as props. Render a styled table matching the cosmic theme with columns for ID, service type, category, name, phone, preferred date, message, and status. Format service type and category enums to display human-readable labels. Handle empty states gracefully. Apply responsive design that collapses to cards on mobile devices. Use gold accent colors for headers and borders."
-        },
-        {
-          "path": "frontend/src/hooks/useAdminQueries.ts",
-          "operation": "create",
-          "description": "Create custom React Query hooks for admin functionality. Export useIsCallerAdmin hook that queries isCallerAdmin from the backend actor, enabled only when actor is available and user is authenticated. Export useGetAllBookings hook that queries getAllBookings from the backend actor, enabled only when user is confirmed admin. Include proper error handling for authorization errors and loading states. Both hooks should depend on the actor from useActor hook."
-        },
-        {
-          "path": "frontend/src/App.tsx",
+          "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "Replace the current single HomePage render with a router setup. Import BrowserRouter, Routes, and Route from react-router-dom. Add routes for '/' (HomePage) and '/admin' (AdminPage). Wrap the routes in BrowserRouter. This enables navigation to the admin panel while keeping the homepage as the default view."
+          "description": "Update the footer section to include an Instagram icon/link using an SVG Instagram icon. Add the link with href='https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==' and target='_blank' rel='noopener noreferrer'. Style it to match the existing cosmic gold theme using hover effects consistent with other interactive elements. Ensure the Instagram icon appears alongside any existing social links in the footer and is visible on all viewport sizes."
         },
         {
           "path": "frontend/src/components/layout/Header.tsx",
           "operation": "modify",
-          "description": "Add a hidden admin link that navigates to /admin route. The link should be subtle (e.g., small icon or text in the corner) to avoid cluttering the public navigation. Use React Router's Link or navigate function. Position it discreetly in the header, styled to match the cosmic theme. The link should be visible to all users but the admin page itself will handle authorization."
+          "description": "Optionally add an Instagram icon/link to the header navigation area (desktop and mobile menu). Use the same Instagram URL (https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==) with target='_blank' and rel='noopener noreferrer'. Style it consistently with existing header elements using the gold accent color on hover. Position it appropriately within the navigation layout so it doesn't interfere with existing nav links and CTAs."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Add comprehensive SEO meta tags to frontend/index.html including descriptive title, meta description with services and ₹400 pricing, Open Graph tags, and robots meta tag to improve public discoverability on search engines",
+      "acceptanceCriteria": [
+        "frontend/index.html includes a <title> tag with a descriptive name",
+        "A <meta name='description'> tag is present with a relevant summary of services",
+        "Open Graph meta tags (og:title, og:description, og:type) are present",
+        "A <meta name='robots' content='index, follow'> tag is present",
+        "No existing functionality is broken by these additions"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the <head> section to include comprehensive SEO meta tags. Change the <title> to 'Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'. Add a <meta name='description'> tag with content summarizing the services (Tarot, Numerology, Vastu, Pronology) and the ₹400 booking price. Add Open Graph meta tags: <meta property='og:title'>, <meta property='og:description'> (matching the description), and <meta property='og:type' content='website'>. Add <meta name='robots' content='index, follow'> to ensure search engines can crawl and index the site. Preserve all existing meta tags and ensure the viewport and charset tags remain intact."
         }
       ]
     }

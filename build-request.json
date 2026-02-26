@@ -1,61 +1,57 @@
 {
   "kind": "build_request",
-  "title": "Add admin user and admin panel for managing bookings",
+  "title": "Add Instagram link and improve public discoverability",
   "projectName": "Omm Vedic Numerology",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-7",
-      "text": "Add a hardcoded admin principal to the backend. The website owner's Internet Identity principal should be stored as the designated admin. Expose a backend query `isAdmin(caller)` that returns true if the caller's principal matches the admin principal. Expose a protected `getAllBookings` query that only returns data to the admin principal and rejects all other callers.",
-      "target": "backend",
-      "source": {
-        "messageIds": [
-          "msg-5"
-        ],
-        "quotes": [
-          "No add me as admin"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A single admin principal is hardcoded in the backend actor.",
-        "getAllBookings returns booking data only when called by the admin principal.",
-        "Non-admin callers receive an authorization error from getAllBookings.",
-        "An isAdmin query returns true only for the admin principal."
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Add an admin panel page to the frontend accessible only after logging in with Internet Identity. After login, check the backend isAdmin function; if true, show the admin dashboard. The dashboard must display a table of all submitted bookings with columns: booking ID, service type, booking category, customer name, phone number, preferred date, message, and status. Include a login button using Internet Identity for access. If the logged-in user is not admin, show an 'Access Denied' message.",
+      "id": "REQ-9",
+      "text": "Add a clickable Instagram icon/link pointing to https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in the website footer (and optionally in the header/navigation). The link must open in a new tab. Ensure it is visible on all pages.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-5"
+          "msg-recent"
         ],
         "quotes": [
-          "No add me as admin"
+          "add https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==this in Instagram when a costumer click"
         ]
       },
       "acceptanceCriteria": [
-        "An /admin route or admin section is accessible from the site (e.g., via a hidden nav link or direct URL).",
-        "The page shows a 'Login with Internet Identity' button when the user is not authenticated.",
-        "After successful Internet Identity login, the frontend calls isAdmin and shows the bookings table if true.",
-        "The bookings table displays all fields: ID, service type, category, name, phone, date, message, status.",
-        "Non-admin authenticated users see an 'Access Denied' message.",
-        "The admin panel matches the existing cosmic/mystical visual theme."
+        "An Instagram icon/button is visible in the footer on all pages",
+        "Clicking the Instagram icon opens https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in a new browser tab",
+        "The link is styled consistently with the existing mystical/cosmic theme"
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "text": "Add SEO meta tags to the HTML shell (frontend/index.html) to improve public discoverability on Google and other search engines. Include: a descriptive page title ('Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'), a meta description summarising the services and ₹400 booking price, Open Graph tags (og:title, og:description, og:type set to 'website'), and a robots meta tag set to 'index, follow' so search engines can crawl and index the site.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-recent"
+        ],
+        "quotes": [
+          "make it public in Google to everyone one can open it and book the consultation in app"
+        ]
+      },
+      "acceptanceCriteria": [
+        "frontend/index.html includes a <title> tag with a descriptive name",
+        "A <meta name='description'> tag is present with a relevant summary of services",
+        "Open Graph meta tags (og:title, og:description, og:type) are present",
+        "A <meta name='robots' content='index, follow'> tag is present",
+        "No existing functionality is broken by these additions"
       ]
     }
   ],
   "constraints": [
-    "Admin identity must be verified using Internet Identity (no username/password).",
-    "Do not expose getAllBookings to unauthenticated or non-admin callers.",
-    "Do not modify frontend/src/hooks/useInternetIdentity.ts or frontend/src/hooks/useActor.ts.",
-    "Do not modify any paths listed in frontend.immutablePaths."
+    "Do not modify any file listed under frontend.immutablePaths",
+    "The Instagram URL must be used exactly as provided: https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw=="
   ],
   "nonGoals": [
-    "Multi-admin support or role management.",
-    "Admin ability to edit or delete bookings (view only).",
-    "Email or push notification on new booking.",
-    "Any external authentication provider other than Internet Identity."
+    "Google Ads or paid search campaigns",
+    "Google Search Console integration",
+    "Sitemap.xml generation",
+    "Any backend changes"
   ],
   "imageRequirements": {
     "required": [],

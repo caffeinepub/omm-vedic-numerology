@@ -1,15 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Add a hardcoded admin user and a protected admin panel for viewing all submitted bookings.
+**Goal:** Add an Instagram link to the footer and improve the site's public discoverability via SEO meta tags.
 
 **Planned changes:**
-- Add a hardcoded admin principal to the backend actor.
-- Expose a backend `isAdmin(caller)` query that returns true only for the admin principal.
-- Expose a protected `getAllBookings` query that returns booking data only to the admin principal, rejecting all other callers with an authorization error.
-- Add an `/admin` route to the frontend with a "Login with Internet Identity" button.
-- After login, call `isAdmin`; if true, display a bookings dashboard table with columns: booking ID, service type, booking category, customer name, phone number, preferred date, message, and status.
-- If the authenticated user is not admin, show an "Access Denied" message.
-- Style the admin panel to match the existing cosmic/mystical visual theme.
+- Add a clickable Instagram icon in the website footer (visible on all pages) linking to `https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==`, opening in a new tab, styled to match the existing mystical/cosmic theme
+- Update `frontend/index.html` with a descriptive `<title>` tag, `<meta name="description">` summarising services and ₹400 booking price, Open Graph tags (`og:title`, `og:description`, `og:type`), and `<meta name="robots" content="index, follow">`
 
-**User-visible outcome:** The website owner can navigate to `/admin`, log in with their Internet Identity, and view a table of all submitted bookings. Any other visitor sees an access denied message or is prompted to log in.
+**User-visible outcome:** Visitors will see an Instagram icon in the footer to follow the business profile, and the site will be indexable by Google and other search engines with meaningful titles and descriptions.

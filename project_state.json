@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 5,
+  "projectStateVersion": 7,
   "summary": "A promotional website for 'Omm Vedic Numerology' offering services like tarot card reading, numerology, vastu, and pronology. Users can book appointments, request home tours, or request name changes. All services are priced at ₹400. An admin panel is being added for the website owner to manage bookings.",
   "architectural_notes": [
     "Project name: Omm Vedic Numerology",
@@ -57,6 +57,22 @@
         "REQ-8"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-a-clickable-instagram-icon-link-pointing-to-https-www-instagram-com-ptripathy1989-igsh-mtj5bhl5yjj5y3vvmw-in-the-website-footer-and-optionally-in-the-header-navigation-the-link-must-open-in-a-new-tab-ensure-it-is-visible-on-all-pages",
+      "title": "Add a clickable Instagram icon/link pointing to https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in the website footer (and optionally in the header/navigation). The link must open in a new tab. Ensure it is visible on all pages.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-seo-meta-tags-to-the-html-shell-frontend-index-html-to-improve-public-discoverability-on-google-and-other-search-engines-include-a-descriptive-page-title-omm-vedic-numerology-tarot-numerology-vastu-pronology-consultations-a-meta-description-summarising-the-services-and-400-booking-price-open-graph-tags-og-title-og-description-og-type-set-to-website-and-a-robots-meta-tag-set-to-index-follow-so-search-engines-can-crawl-and-index-the-site",
+      "title": "Add SEO meta tags to the HTML shell (frontend/index.html) to improve public discoverability on Google and other search engines. Include: a descriptive page title ('Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'), a meta description summarising the services and ₹400 booking price, Open Graph tags (og:title, og:description, og:type set to 'website'), and a robots meta tag set to 'index, follow' so search engines can crawl and index the site.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -110,6 +126,12 @@
       "reqIds": [
         "REQ-7"
       ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add Instagram profile link (https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==) to the website so customers can click to visit the Instagram page",
+      "reqIds": [],
       "status": "pending"
     }
   ],

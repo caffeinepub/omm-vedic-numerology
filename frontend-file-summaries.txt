@@ -9,9 +9,10 @@
   "frontend/src/components/home/ServicesSection.tsx": "Services grid section rendering all four ServiceCard components with a decorative header, gold divider, and a pricing note banner.",
   "frontend/src/components/home/AboutSection.tsx": "About section with a two-column layout featuring brand story text and a 2×2 grid of feature cards highlighting ancient wisdom, personalized guidance, trusted practice, and holistic approach.",
   "frontend/src/components/booking/BookingForm.tsx": "Booking form with service type and category dropdowns, name/phone inputs, date picker, optional message textarea, ₹400 price banner, form validation, inline error messages, loading state, and a success confirmation screen.",
-  "frontend/src/pages/HomePage.tsx": "Main single-page layout composing Header, HeroSection, ServicesSection, AboutSection, BookingForm, and Footer with smooth scroll navigation and service pre-selection state.",
+  "frontend/src/pages/HomePage.tsx": "Main single-page layout composing Header, HeroSection, ServicesSection, AboutSection, BookingForm, and Footer — now with a live clickable Instagram link (https://www.instagram.com/ptripathy1989) and @ptripathy1989 handle label in the footer's Connect section.",
   "frontend/src/App.tsx": "Root app component that sets up TanStack Router with two routes: `/` for HomePage and `/admin` for AdminPage.",
   "frontend/src/hooks/useAdminQueries.ts": "React Query hooks for admin functionality — `useIsCallerAdmin` checks if the current identity is an admin, and `useGetAllBookings` fetches all bookings (only enabled when confirmed admin).",
   "frontend/src/pages/AdminPage.tsx": "Admin panel page with Internet Identity login, admin verification, and a bookings dashboard; shows appropriate states for unauthenticated, non-admin, loading, and authorized users.",
-  "frontend/src/components/admin/BookingsTable.tsx": "Responsive bookings table (desktop table + mobile cards) displaying all booking fields with human-readable labels and styled status badges matching the cosmic theme."
+  "frontend/src/components/admin/BookingsTable.tsx": "Responsive bookings table (desktop table + mobile cards) displaying all booking fields with human-readable labels and styled status badges matching the cosmic theme.",
+  "frontend/index.html": "HTML entry point updated with comprehensive SEO meta tags including a descriptive title, meta description with services and ₹400 pricing, Open Graph tags, Twitter Card tags, keywords, and a robots index/follow directive for public search engine discoverability."
 }

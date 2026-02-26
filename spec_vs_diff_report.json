@@ -1,47 +1,44 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-25T02:54:09.519Z",
-  "summary": "The diff implements most of REQ-7 and REQ-8. The frontend admin panel, bookings table, admin route, login/logout flow, isAdmin check, and Access Denied message are all present. The backend has a protected getAllBookings and an authorization mixin. However, REQ-7 specifically requires a hardcoded admin principal and an explicit isAdmin(caller) query method; the diff instead uses a prefab AccessControl/MixinAuthorization system with no hardcoded principal visible, and the frontend calls isCallerAdmin() rather than isAdmin(). The explicit isAdmin query returning true only for a hardcoded principal is not clearly implemented in the shown backend code.",
-  "missing_requirements": [
-    {
-      "id": "REQ-7",
-      "requirement": "A single admin principal is hardcoded in the backend actor; an isAdmin query returns true only for the admin principal.",
-      "reason": "The backend diff uses a prefab MixinAuthorization/AccessControl system without showing any hardcoded admin principal. There is no explicit isAdmin query method visible in backend/main.mo. The frontend calls actor.isCallerAdmin(), not actor.isAdmin(). The requirement to hardcode a specific website owner principal and expose it via an isAdmin query is not evidenced.",
-      "evidence": [
-        "backend/main.mo",
-        "frontend/src/hooks/useAdminQueries.ts"
-      ]
-    }
-  ],
+  "generatedAt": "2026-02-26T12:53:44.333Z",
+  "summary": "Both REQ-9 and REQ-10 are substantially implemented. REQ-10 (SEO meta tags) is fully implemented in frontend/index.html with title, description, Open Graph tags, robots meta tag, and bonus Twitter Card tags. REQ-9 (Instagram link in footer) is implemented in frontend/src/pages/HomePage.tsx with the correct URL and new-tab behavior. All core acceptance criteria appear to be met.",
+  "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "A URL parameter utility module (urlParams.ts) with sessionStorage persistence, caffeineAdminToken extraction, and hash parameter clearing, unrelated to admin panel or Internet Identity authentication.",
-      "reason": "The build request only requires Internet Identity-based admin authentication. The urlParams.ts file introduces a token-based URL parameter system (caffeineAdminToken) that was not requested and is unrelated to the specified requirements.",
+      "description": "Twitter Card meta tags added to frontend/index.html (twitter:card, twitter:title, twitter:description, twitter:image)",
+      "reason": "The build request only specified Open Graph tags (og:title, og:description, og:type) and did not request Twitter Card meta tags.",
       "evidence": [
-        "frontend/src/utils/urlParams.ts",
-        "frontend/src/hooks/useActor.ts"
+        "frontend/index.html"
       ]
     },
     {
-      "description": "useActor.ts calls actor._initializeAccessControlWithSecret(adminToken) using a caffeineAdminToken from URL/session storage.",
-      "reason": "This token-based access control initialization was not requested. The spec requires only Internet Identity-based admin verification. Additionally, useActor.ts is listed as an immutable file in the constraints.",
+      "description": "Open Graph og:image and og:site_name meta tags added to frontend/index.html",
+      "reason": "The build request only specified og:title, og:description, and og:type. og:image and og:site_name were not requested.",
       "evidence": [
-        "frontend/src/hooks/useActor.ts"
+        "frontend/index.html"
+      ]
+    },
+    {
+      "description": "Meta keywords and meta author tags added to frontend/index.html",
+      "reason": "The build request did not request keywords or author meta tags.",
+      "evidence": [
+        "frontend/index.html"
+      ]
+    },
+    {
+      "description": "Facebook and YouTube social icon links appear to be added to the footer alongside Instagram",
+      "reason": "The build request only requested an Instagram link/icon. The diff imports SiFacebook and SiYoutube from react-icons/si in HomePage.tsx, suggesting additional social icons were added beyond what was requested.",
+      "evidence": [
+        "frontend/src/pages/HomePage.tsx"
       ]
     }
   ],
-  "confidence": 0.72,
+  "confidence": 0.82,
   "changed_files": [
-    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/App.tsx",
-    "frontend/src/components/admin/BookingsTable.tsx",
-    "frontend/src/components/layout/Header.tsx",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useAdminQueries.ts",
-    "frontend/src/pages/AdminPage.tsx",
-    "frontend/src/utils/urlParams.ts",
+    "frontend/index.html",
+    "frontend/src/pages/HomePage.tsx",
     "project_state.json"
   ]
 }

@@ -1,12 +1,13 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import Header from '../components/layout/Header';
 import HeroSection from '../components/home/HeroSection';
 import ServicesSection from '../components/home/ServicesSection';
 import AboutSection from '../components/home/AboutSection';
 import BookingForm from '../components/booking/BookingForm';
-import { useState } from 'react';
 import { Star } from 'lucide-react';
 import { SiInstagram, SiFacebook, SiYoutube } from 'react-icons/si';
+
+const INSTAGRAM_URL = 'https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==';
 
 export default function HomePage() {
   const [preselectedService, setPreselectedService] = useState<string>('');
@@ -118,27 +119,51 @@ export default function HomePage() {
               </ul>
             </div>
 
-            {/* Contact */}
+            {/* Connect */}
             <div>
               <h4 className="font-cinzel text-xs tracking-widest text-gold/70 uppercase mb-4">Connect</h4>
               <p className="font-inter text-xs text-foreground/40 mb-4">
                 All sessions priced at <span className="text-gold font-semibold">₹400</span>
               </p>
               <div className="flex gap-3">
-                {[
-                  { Icon: SiInstagram, label: 'Instagram' },
-                  { Icon: SiFacebook, label: 'Facebook' },
-                  { Icon: SiYoutube, label: 'YouTube' },
-                ].map(({ Icon, label }) => (
-                  <div
-                    key={label}
-                    className="w-8 h-8 rounded border border-gold/20 flex items-center justify-center text-foreground/40 hover:text-gold hover:border-gold/50 transition-all cursor-pointer"
-                    aria-label={label}
-                  >
-                    <Icon className="w-3.5 h-3.5" />
-                  </div>
-                ))}
+                {/* Instagram — links to real profile */}
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow us on Instagram"
+                  className="w-8 h-8 rounded border border-gold/20 flex items-center justify-center text-foreground/40 hover:text-gold hover:border-gold/50 transition-all"
+                >
+                  <SiInstagram className="w-3.5 h-3.5" />
+                </a>
+
+                {/* Facebook placeholder */}
+                <div
+                  className="w-8 h-8 rounded border border-gold/20 flex items-center justify-center text-foreground/40 hover:text-gold hover:border-gold/50 transition-all cursor-pointer"
+                  aria-label="Facebook"
+                >
+                  <SiFacebook className="w-3.5 h-3.5" />
+                </div>
+
+                {/* YouTube placeholder */}
+                <div
+                  className="w-8 h-8 rounded border border-gold/20 flex items-center justify-center text-foreground/40 hover:text-gold hover:border-gold/50 transition-all cursor-pointer"
+                  aria-label="YouTube"
+                >
+                  <SiYoutube className="w-3.5 h-3.5" />
+                </div>
               </div>
+
+              {/* Instagram CTA */}
+              <a
+                href={INSTAGRAM_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 mt-4 font-inter text-xs text-gold/60 hover:text-gold transition-colors group"
+              >
+                <SiInstagram className="w-3 h-3 group-hover:scale-110 transition-transform" />
+                @ptripathy1989
+              </a>
             </div>
           </div>
 
