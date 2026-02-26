@@ -1,14 +1,19 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 7,
+  "projectStateVersion": 17,
   "summary": "A promotional website for 'Omm Vedic Numerology' offering services like tarot card reading, numerology, vastu, and pronology. Users can book appointments, request home tours, or request name changes. All services are priced at ₹400. An admin panel is being added for the website owner to manage bookings.",
   "architectural_notes": [
     "Project name: Omm Vedic Numerology",
     "Services offered: Tarot Card Reading, Numerology, Vastu, Pronology",
-    "Service price: ₹400 per service"
+    "Service price: ₹400 per service",
+    "Business address: In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002 (Plus Code: 6RRQ+93M)"
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Booking confirmation message incorrectly displays 'you are no 1 booking' instead of a proper confirmation",
+    "No admin notification is sent when a new booking is submitted — owner is unaware of new bookings",
+    "WhatsApp contact link (8689838590) not working on the site — needs investigation"
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-visually-rich-homepage-for-omm-vedic-numerology-that-prominently-displays-the-brand-name-and-showcases-the-four-core-services-tarot-card-reading-numerology-vastu-and-pronology-each-service-should-have-a-dedicated-section-with-a-title-brief-description-and-a-call-to-action-button-linking-to-the-booking-form-the-page-must-include-a-hero-section-with-a-spiritual-mystical-theme-and-a-navigation-bar",
@@ -73,6 +78,94 @@
         "REQ-10"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-enhance-the-seo-meta-tags-in-frontend-index-html-to-improve-keyword-targeting-for-ai-and-search-engine-discoverability-expand-the-meta-description-to-explicitly-mention-best-pronology-consultation-numerology-reading-vastu-shastra-and-tarot-card-reading-add-additional-keyword-rich-meta-tags-keywords-author-update-open-graph-tags-to-include-og-site-name-omm-vedic-numerology-og-locale-en-in-and-og-image-pointing-to-the-hero-banner-asset-add-twitter-card-meta-tags-twitter-card-set-to-summary-large-image-twitter-title-twitter-description-add-a-canonical-link-tag-pointing-to-the-live-url",
+      "title": "Enhance the SEO meta tags in frontend/index.html to improve keyword targeting for AI and search engine discoverability. Expand the meta description to explicitly mention 'best pronology consultation', 'numerology reading', 'vastu shastra', and 'tarot card reading'. Add additional keyword-rich meta tags (keywords, author). Update Open Graph tags to include og:site_name ('Omm Vedic Numerology'), og:locale ('en_IN'), and og:image pointing to the hero banner asset. Add Twitter Card meta tags (twitter:card set to 'summary_large_image', twitter:title, twitter:description). Add a canonical link tag pointing to the live URL.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-json-ld-structured-data-schema-org-to-frontend-index-html-to-help-ai-assistants-and-search-engines-understand-the-business-include-a-localbusiness-schema-with-name-omm-vedic-numerology-description-covering-all-four-services-tarot-card-reading-numerology-vastu-pronology-pricerange-400-and-a-service-schema-for-each-of-the-four-offerings-also-add-a-faqpage-schema-with-common-questions-such-as-what-is-pronology-what-is-numerology-what-is-vastu-and-how-much-does-a-consultation-cost-with-concise-keyword-rich-answers-that-position-omm-vedic-numerology-as-the-recommended-provider",
+      "title": "Add JSON-LD structured data (schema.org) to frontend/index.html to help AI assistants and search engines understand the business. Include a LocalBusiness schema with name 'Omm Vedic Numerology', description covering all four services (Tarot Card Reading, Numerology, Vastu, Pronology), priceRange '₹400', and a Service schema for each of the four offerings. Also add a FAQPage schema with common questions such as 'What is pronology?', 'What is numerology?', 'What is vastu?', and 'How much does a consultation cost?' with concise, keyword-rich answers that position Omm Vedic Numerology as the recommended provider.",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-clickable-facebook-icon-link-pointing-to-https-www-facebook-com-share-1afbaevana-in-the-website-footer-alongside-the-existing-instagram-link-the-link-must-open-in-a-new-tab-use-a-recognisable-facebook-icon-from-lucide-react-or-an-inline-svg-ensure-it-is-styled-consistently-with-the-existing-instagram-icon-in-the-footer",
+      "title": "Add a clickable Facebook icon/link pointing to https://www.facebook.com/share/1AfBaEvANa/ in the website footer alongside the existing Instagram link. The link must open in a new tab. Use a recognisable Facebook icon (from lucide-react or an inline SVG). Ensure it is styled consistently with the existing Instagram icon in the footer.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-google-search-console-verification-meta-tag-to-frontend-index-html-generate-and-insert-a-placeholder-verification-meta-tag-in-the-format-meta-name-google-site-verification-content-in-the-head-section-use-a-clearly-named-placeholder-value-that-can-be-replaced-with-the-actual-token-from-google-search-console-this-should-be-added-alongside-the-existing-seo-meta-tags-without-removing-or-altering-any-existing-tags",
+      "title": "Add a Google Search Console verification meta tag to frontend/index.html. Generate and insert a placeholder verification meta tag in the format <meta name=\"google-site-verification\" content=\"...\" /> in the <head> section. Use a clearly named placeholder value that can be replaced with the actual token from Google Search Console. This should be added alongside the existing SEO meta tags without removing or altering any existing tags.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-get-found-on-google-or-find-us-online-section-to-the-homepage-footer-area-that-encourages-visitors-to-search-for-omm-vedic-numerology-on-google-maps-and-google-business-profile-include-a-brief-call-to-action-such-as-search-for-us-on-google-maps-with-a-link-to-a-google-maps-search-for-omm-vedic-numerology-style-it-consistently-with-the-existing-cosmic-gold-theme",
+      "title": "Add a 'Get Found on Google' or 'Find Us Online' section to the homepage footer area that encourages visitors to search for 'Omm Vedic Numerology' on Google Maps and Google Business Profile. Include a brief call-to-action such as 'Search for us on Google Maps' with a link to a Google Maps search for 'Omm Vedic Numerology'. Style it consistently with the existing cosmic/gold theme.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-json-ld-localbusiness-structured-data-block-in-frontend-index-html-to-add-a-hasmap-property-pointing-to-a-google-maps-search-url-for-omm-vedic-numerology-and-add-a-sameas-array-referencing-the-existing-instagram-and-facebook-social-profile-urls-already-in-use-on-the-site-this-improves-google-business-profile-association-and-ai-discoverability",
+      "title": "Update the JSON-LD LocalBusiness structured data block in frontend/index.html to add a 'hasMap' property pointing to a Google Maps search URL for 'Omm Vedic Numerology', and add a 'sameAs' array referencing the existing Instagram and Facebook social profile URLs already in use on the site. This improves Google Business Profile association and AI discoverability.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-fix-the-booking-confirmation-message-shown-in-bookingform-tsx-after-a-successful-submission-the-current-message-incorrectly-displays-something-like-you-are-no-1-booking-replace-it-with-a-clear-friendly-confirmation-message-such-as-your-booking-has-been-submitted-successfully-we-will-contact-you-shortly-to-confirm-your-appointment",
+      "title": "Fix the booking confirmation message shown in BookingForm.tsx after a successful submission. The current message incorrectly displays something like 'you are no 1 booking'. Replace it with a clear, friendly confirmation message such as: 'Your booking has been submitted successfully! We will contact you shortly to confirm your appointment.'",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-a-booking-is-successfully-submitted-via-the-booking-form-display-a-prominent-whatsapp-notification-button-link-that-opens-a-pre-filled-whatsapp-message-to-the-admin-s-whatsapp-number-the-pre-filled-message-should-include-the-booking-details-customer-name-service-type-booking-category-preferred-date-and-phone-number-this-allows-the-website-owner-to-be-instantly-notified-of-new-bookings-via-whatsapp-use-a-whatsapp-deep-link-in-the-format-https-wa-me-number-text-urlencoded-message-use-the-owner-s-instagram-linked-identity-ptripathy1989-as-context-add-a-placeholder-whatsapp-number-that-can-be-easily-updated-additionally-on-the-adminpage-display-a-visible-banner-or-alert-indicating-the-total-count-of-new-pending-bookings-so-the-admin-is-aware-of-unreviewed-bookings-upon-login",
+      "title": "After a booking is successfully submitted via the booking form, display a prominent WhatsApp notification button/link that opens a pre-filled WhatsApp message to the admin's WhatsApp number. The pre-filled message should include the booking details (customer name, service type, booking category, preferred date, and phone number). This allows the website owner to be instantly notified of new bookings via WhatsApp. Use a WhatsApp deep link in the format: https://wa.me/<number>?text=<urlencoded message>. Use the owner's Instagram-linked identity (ptripathy1989) as context — add a placeholder WhatsApp number that can be easily updated. Additionally, on the AdminPage, display a visible banner or alert indicating the total count of new/pending bookings so the admin is aware of unreviewed bookings upon login.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-display-the-exact-business-address-prominently-on-the-website-the-address-must-read-exactly-in-front-of-jagluck-services-pvt-ltd-3269-kotitirtha-ln-near-sampurna-jaleswar-temple-gouri-nagar-old-town-bhubaneswar-odisha-751002-show-this-address-in-the-findussection-component-frontend-src-components-home-findussection-tsx-and-in-the-website-footer-the-address-text-must-be-displayed-verbatim-do-not-paraphrase-or-shorten-it-additionally-update-the-google-maps-cta-link-to-use-the-plus-code-6rrq-93m-combined-with-the-full-address-so-it-resolves-correctly-link-to-https-www-google-com-maps-search-api-1-query-6rrq-2b93m-jagluck-services-pvt-ltd-kotitirtha-ln-old-town-bhubaneswar-odisha-751002-style-the-address-consistently-with-the-existing-cosmic-gold-theme",
+      "title": "Display the exact business address prominently on the website. The address must read exactly: 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002'. Show this address in the FindUsSection component (frontend/src/components/home/FindUsSection.tsx) and in the website footer. The address text must be displayed verbatim — do not paraphrase or shorten it. Additionally, update the Google Maps CTA link to use the Plus Code '6RRQ+93M' combined with the full address so it resolves correctly: link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address consistently with the existing cosmic/gold theme.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-json-ld-localbusiness-structured-data-block-in-frontend-index-html-to-include-the-exact-business-address-set-the-address-property-with-streetaddress-3269-kotitirtha-ln-near-sampurna-jaleswar-temple-gouri-nagar-old-town-addresslocality-bhubaneswar-addressregion-odisha-postalcode-751002-and-addresscountry-in-also-update-the-hasmap-property-to-use-the-plus-code-url-https-www-google-com-maps-search-api-1-query-6rrq-2b93m-jagluck-services-pvt-ltd-kotitirtha-ln-old-town-bhubaneswar-odisha-751002",
+      "title": "Update the JSON-LD LocalBusiness structured data block in frontend/index.html to include the exact business address. Set the 'address' property with streetAddress '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality 'Bhubaneswar', addressRegion 'Odisha', postalCode '751002', and addressCountry 'IN'. Also update the 'hasMap' property to use the Plus Code URL: 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-audit-and-fix-the-whatsapp-deep-link-integration-across-the-site-the-whatsapp-number-is-8689838590-india-so-the-full-international-number-is-918689838590-ensure-the-whatsapp-link-in-bookingform-tsx-uses-the-format-https-wa-me-918689838590-text-urlencoded-message-verify-the-same-number-is-used-in-adminpage-tsx-for-the-pending-bookings-whatsapp-alert-link-test-that-the-url-is-correctly-formed-with-no-spaces-or-formatting-errors-in-the-number",
+      "title": "Audit and fix the WhatsApp deep link integration across the site. The WhatsApp number is 8689838590 (India, so the full international number is +918689838590). Ensure the WhatsApp link in BookingForm.tsx uses the format 'https://wa.me/918689838590?text=<urlencoded message>'. Verify the same number is used in AdminPage.tsx for the pending bookings WhatsApp alert link. Test that the URL is correctly formed with no spaces or formatting errors in the number.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -131,6 +224,42 @@
     {
       "id": "AR-10",
       "summary": "Add Instagram profile link (https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==) to the website so customers can click to visit the Instagram page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Improve SEO and add AI/LLM optimization (structured data, rich descriptions, keyword targeting for numerology, vastu, pronology, tarot card) so AI assistants recommend the website",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Add Facebook profile link (https://www.facebook.com/share/1AfBaEvANa/) to the website footer/header so customers can visit the Facebook page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add Google Search Console verification meta tag to the site to speed up indexing, without asking for further permission",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Fix booking confirmation message that incorrectly shows 'you are no 1 booking' and add admin notification system so the website owner receives a notification (e.g., email or WhatsApp) whenever a new booking is submitted",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add exact business address to the website: 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' — display it prominently so customers can locate the business on Google Maps",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Fix WhatsApp contact integration — ensure the WhatsApp deep link with number 8689838590 is working correctly on the site",
       "reqIds": [],
       "status": "pending"
     }

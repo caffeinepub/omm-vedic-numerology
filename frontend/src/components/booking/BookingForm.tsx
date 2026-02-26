@@ -2,7 +2,10 @@ import { useState } from 'react';
 import { ServiceType, BookingCategory } from '../../backend';
 import { useCreateBooking } from '../../hooks/useQueries';
 import { services } from '../../data/services';
-import { CheckCircle, Loader2, AlertCircle } from 'lucide-react';
+import { CheckCircle, Loader2, AlertCircle, MessageCircle } from 'lucide-react';
+
+// Admin WhatsApp number in international format (country code + number, no + or spaces)
+const ADMIN_WHATSAPP_NUMBER = '918689838590';
 
 interface BookingFormProps {
   preselectedService?: string;
@@ -15,11 +18,49 @@ const serviceTypeMap: Record<string, ServiceType> = {
   pronology: ServiceType.pronology,
 };
 
+const serviceLabels: Record<string, string> = {
+  tarotCardReading: 'Tarot Card Reading',
+  numerology: 'Numerology',
+  vastu: 'Vastu',
+  pronology: 'Pronology',
+};
+
+const categoryLabels: Record<string, string> = {
+  appointment: 'Appointment (In-Person / Online)',
+  homeTour: 'Home Tour (Vastu Visit)',
+  nameChange: 'Name Change Consultation',
+};
+
 const categoryOptions = [
   { value: BookingCategory.appointment, label: 'Appointment (In-Person / Online)' },
   { value: BookingCategory.homeTour, label: 'Home Tour (Vastu Visit)' },
   { value: BookingCategory.nameChange, label: 'Name Change Consultation' },
 ];
+
+function buildWhatsAppLink(params: {
+  bookingId: string;
+  customerName: string;
+  serviceType: string;
+  category: string;
+  preferredDate: string;
+  phoneNumber: string;
+}) {
+  const { bookingId, customerName, serviceType, category, preferredDate, phoneNumber } = params;
+  const text = [
+    `🌟 *New Booking Received — Omm Vedic Numerology*`,
+    ``,
+    `📋 *Booking ID:* #${bookingId}`,
+    `👤 *Name:* ${customerName}`,
+    `🔮 *Service:* ${serviceLabels[serviceType] ?? serviceType}`,
+    `📌 *Type:* ${categoryLabels[category] ?? category}`,
+    `📅 *Preferred Date:* ${preferredDate}`,
+    `📞 *Phone:* ${phoneNumber}`,
+    ``,
+    `Please confirm this booking at your earliest convenience.`,
+  ].join('\n');
+
+  return `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
 
 export default function BookingForm({ preselectedService }: BookingFormProps) {
   const [serviceType, setServiceType] = useState(preselectedService || '');
@@ -30,6 +71,15 @@ export default function BookingForm({ preselectedService }: BookingFormProps) {
   const [message, setMessage] = useState('');
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [bookingId, setBookingId] = useState<bigint | null>(null);
+
+  // Capture form values at submission time for the WhatsApp link
+  const [submittedData, setSubmittedData] = useState<{
+    customerName: string;
+    serviceType: string;
+    category: string;
+    preferredDate: string;
+    phoneNumber: string;
+  } | null>(null);
 
   const createBooking = useCreateBooking();
 
@@ -64,6 +114,13 @@ export default function BookingForm({ preselectedService }: BookingFormProps) {
         preferredDate,
         message: message.trim() || null,
       });
+      setSubmittedData({
+        customerName: customerName.trim(),
+        serviceType,
+        category,
+        preferredDate,
+        phoneNumber: phoneNumber.trim(),
+      });
       setBookingId(id);
     } catch (err) {
       console.error('Booking failed:', err);
@@ -79,11 +136,17 @@ export default function BookingForm({ preselectedService }: BookingFormProps) {
     setMessage('');
     setErrors({});
     setBookingId(null);
+    setSubmittedData(null);
     createBooking.reset();
   };
 
   // Success State
-  if (bookingId !== null) {
+  if (bookingId !== null && submittedData) {
+    const whatsappLink = buildWhatsAppLink({
+      bookingId: bookingId.toString(),
+      ...submittedData,
+    });
+
     return (
       <div className="text-center py-12 px-6">
         <div className="flex justify-center mb-6">
@@ -92,7 +155,7 @@ export default function BookingForm({ preselectedService }: BookingFormProps) {
           </div>
         </div>
         <h3 className="font-cinzel font-bold text-2xl text-gold-light mb-3 tracking-wide">
-          Booking Confirmed!
+          Booking Received!
         </h3>
         <p className="font-cormorant text-lg text-foreground/70 italic mb-2">
           Your cosmic journey begins here
@@ -100,9 +163,30 @@ export default function BookingForm({ preselectedService }: BookingFormProps) {
         <p className="font-inter text-sm text-foreground/50 mb-2">
           Booking ID: <span className="text-gold font-semibold">#{bookingId.toString()}</span>
         </p>
-        <p className="font-inter text-sm text-foreground/50 mb-8 max-w-sm mx-auto">
-          We will contact you on your provided phone number to confirm your session details.
+        <p className="font-inter text-sm text-foreground/60 mb-6 max-w-sm mx-auto leading-relaxed">
+          Your booking has been submitted successfully! We will contact you on{' '}
+          <span className="text-gold font-semibold">{submittedData.phoneNumber}</span> to confirm your session details.
         </p>
+
+        {/* WhatsApp Notification Button */}
+        <div className="bg-gold/5 border border-gold/20 rounded-lg px-5 py-4 mb-6 max-w-sm mx-auto">
+          <p className="font-cinzel text-xs tracking-wider text-gold/70 uppercase mb-3">
+            Send Booking Details via WhatsApp
+          </p>
+          <p className="font-inter text-xs text-foreground/50 mb-4">
+            Tap below to instantly notify the consultant with your booking details.
+          </p>
+          <a
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 w-full btn-gold py-3 rounded text-sm font-cinzel tracking-wider"
+          >
+            <MessageCircle className="w-4 h-4" />
+            Notify via WhatsApp
+          </a>
+        </div>
+
         <div className="divider-gold w-32 mx-auto mb-8" />
         <button onClick={handleReset} className="btn-gold px-8 py-3 rounded text-sm">
           Book Another Session

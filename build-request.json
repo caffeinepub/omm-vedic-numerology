@@ -1,57 +1,78 @@
 {
   "kind": "build_request",
-  "title": "Add Instagram link and improve public discoverability",
+  "title": "Add exact business address and fix WhatsApp integration",
   "projectName": "Omm Vedic Numerology",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-9",
-      "text": "Add a clickable Instagram icon/link pointing to https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in the website footer (and optionally in the header/navigation). The link must open in a new tab. Ensure it is visible on all pages.",
+      "id": "REQ-19",
+      "text": "Display the exact business address prominently on the website. The address must read exactly: 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002'. Show this address in the FindUsSection component (frontend/src/components/home/FindUsSection.tsx) and in the website footer. The address text must be displayed verbatim — do not paraphrase or shorten it. Additionally, update the Google Maps CTA link to use the Plus Code '6RRQ+93M' combined with the full address so it resolves correctly: link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address consistently with the existing cosmic/gold theme.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent"
+          "msg-4"
         ],
         "quotes": [
-          "add https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==this in Instagram when a costumer click"
+          "the adress is 6RRQ+93M Jagluck services pvt ltd, 3269, Kotitirtha Ln, near sampurna jaleswar temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002 this write exactly infront of this"
         ]
       },
       "acceptanceCriteria": [
-        "An Instagram icon/button is visible in the footer on all pages",
-        "Clicking the Instagram icon opens https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in a new browser tab",
-        "The link is styled consistently with the existing mystical/cosmic theme"
+        "The full address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' is displayed verbatim on the page.",
+        "The address is visible in the FindUsSection and/or footer on the homepage.",
+        "The Google Maps link uses the Plus Code 6RRQ+93M and the full address to ensure correct map resolution.",
+        "The address text is styled consistently with the cosmic/gold theme (no plain unstyled text).",
+        "The address is not paraphrased, truncated, or reworded in any way."
       ]
     },
     {
-      "id": "REQ-10",
-      "text": "Add SEO meta tags to the HTML shell (frontend/index.html) to improve public discoverability on Google and other search engines. Include: a descriptive page title ('Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'), a meta description summarising the services and ₹400 booking price, Open Graph tags (og:title, og:description, og:type set to 'website'), and a robots meta tag set to 'index, follow' so search engines can crawl and index the site.",
+      "id": "REQ-20",
+      "text": "Update the JSON-LD LocalBusiness structured data block in frontend/index.html to include the exact business address. Set the 'address' property with streetAddress '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality 'Bhubaneswar', addressRegion 'Odisha', postalCode '751002', and addressCountry 'IN'. Also update the 'hasMap' property to use the Plus Code URL: 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent"
+          "msg-4"
         ],
         "quotes": [
-          "make it public in Google to everyone one can open it and book the consultation in app"
+          "6RRQ+93M Jagluck services pvt ltd, 3269, Kotitirtha Ln, near sampurna jaleswar temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002"
         ]
       },
       "acceptanceCriteria": [
-        "frontend/index.html includes a <title> tag with a descriptive name",
-        "A <meta name='description'> tag is present with a relevant summary of services",
-        "Open Graph meta tags (og:title, og:description, og:type) are present",
-        "A <meta name='robots' content='index, follow'> tag is present",
-        "No existing functionality is broken by these additions"
+        "The JSON-LD LocalBusiness block in index.html contains an 'address' object with the correct streetAddress, addressLocality ('Bhubaneswar'), addressRegion ('Odisha'), postalCode ('751002'), and addressCountry ('IN').",
+        "The 'hasMap' URL uses the Plus Code 6RRQ+93M for accurate map resolution.",
+        "No existing JSON-LD fields are removed or broken."
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "text": "Audit and fix the WhatsApp deep link integration across the site. The WhatsApp number is 8689838590 (India, so the full international number is +918689838590). Ensure the WhatsApp link in BookingForm.tsx uses the format 'https://wa.me/918689838590?text=<urlencoded message>'. Verify the same number is used in AdminPage.tsx for the pending bookings WhatsApp alert link. Test that the URL is correctly formed with no spaces or formatting errors in the number.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "there is no whatsapp so pls see it"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The WhatsApp deep link in BookingForm.tsx uses 'https://wa.me/918689838590?text=...' with the correct international format.",
+        "The WhatsApp deep link in AdminPage.tsx (pending bookings alert) also uses the same corrected number 918689838590.",
+        "The pre-filled message includes booking details (customer name, service type, booking category, preferred date, phone number).",
+        "Clicking the WhatsApp button on a mobile device opens WhatsApp with the correct number and pre-filled message.",
+        "No spaces, dashes, or extra characters appear in the phone number portion of the URL."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any file listed under frontend.immutablePaths",
-    "The Instagram URL must be used exactly as provided: https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw=="
+    "The business address must be displayed exactly as provided — no paraphrasing, shortening, or reordering of the address components.",
+    "Do not modify files listed in frontend.immutablePaths.",
+    "Do not remove or alter any existing SEO meta tags, JSON-LD blocks, or social links in index.html."
   ],
   "nonGoals": [
-    "Google Ads or paid search campaigns",
-    "Google Search Console integration",
-    "Sitemap.xml generation",
-    "Any backend changes"
+    "Adding a new map embed or iframe.",
+    "Changing the overall site layout or visual theme.",
+    "Modifying the backend booking data model.",
+    "Adding any new booking-related features."
   ],
   "imageRequirements": {
     "required": [],

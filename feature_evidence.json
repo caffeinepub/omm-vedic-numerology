@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-add-a-clickable-instagram-icon-link-pointing-to-https-www-instagram-com-ptripathy1989-igsh-mtj5bhl5yjj5y3vvmw-in-the-website-footer-and-optionally-in-the-header-navigation-the-link-must-open-in-a-new-tab-ensure-it-is-visible-on-all-pages",
-      "featureTitle": "Add a clickable Instagram icon/link pointing to https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in the website footer (and optionally in the header/navigation). The link must open in a new tab. Ensure it is visible on all pages.",
+      "featureId": "feature-display-the-exact-business-address-prominently-on-the-website-the-address-must-read-exactly-in-front-of-jagluck-services-pvt-ltd-3269-kotitirtha-ln-near-sampurna-jaleswar-temple-gouri-nagar-old-town-bhubaneswar-odisha-751002-show-this-address-in-the-findussection-component-frontend-src-components-home-findussection-tsx-and-in-the-website-footer-the-address-text-must-be-displayed-verbatim-do-not-paraphrase-or-shorten-it-additionally-update-the-google-maps-cta-link-to-use-the-plus-code-6rrq-93m-combined-with-the-full-address-so-it-resolves-correctly-link-to-https-www-google-com-maps-search-api-1-query-6rrq-2b93m-jagluck-services-pvt-ltd-kotitirtha-ln-old-town-bhubaneswar-odisha-751002-style-the-address-consistently-with-the-existing-cosmic-gold-theme",
+      "featureTitle": "Display the exact business address prominently on the website. The address must read exactly: 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002'. Show this address in the FindUsSection component (frontend/src/components/home/FindUsSection.tsx) and in the website footer. The address text must be displayed verbatim — do not paraphrase or shorten it. Additionally, update the Google Maps CTA link to use the Plus Code '6RRQ+93M' combined with the full address so it resolves correctly: link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address consistently with the existing cosmic/gold theme.",
       "files": [
-        "frontend/src/pages/HomePage.tsx"
+        "frontend/src/components/home/FindUsSection.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,13 +16,13 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-9"
+        "REQ-19"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-seo-meta-tags-to-the-html-shell-frontend-index-html-to-improve-public-discoverability-on-google-and-other-search-engines-include-a-descriptive-page-title-omm-vedic-numerology-tarot-numerology-vastu-pronology-consultations-a-meta-description-summarising-the-services-and-400-booking-price-open-graph-tags-og-title-og-description-og-type-set-to-website-and-a-robots-meta-tag-set-to-index-follow-so-search-engines-can-crawl-and-index-the-site",
-      "featureTitle": "Add SEO meta tags to the HTML shell (frontend/index.html) to improve public discoverability on Google and other search engines. Include: a descriptive page title ('Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'), a meta description summarising the services and ₹400 booking price, Open Graph tags (og:title, og:description, og:type set to 'website'), and a robots meta tag set to 'index, follow' so search engines can crawl and index the site.",
+      "featureId": "feature-update-the-json-ld-localbusiness-structured-data-block-in-frontend-index-html-to-include-the-exact-business-address-set-the-address-property-with-streetaddress-3269-kotitirtha-ln-near-sampurna-jaleswar-temple-gouri-nagar-old-town-addresslocality-bhubaneswar-addressregion-odisha-postalcode-751002-and-addresscountry-in-also-update-the-hasmap-property-to-use-the-plus-code-url-https-www-google-com-maps-search-api-1-query-6rrq-2b93m-jagluck-services-pvt-ltd-kotitirtha-ln-old-town-bhubaneswar-odisha-751002",
+      "featureTitle": "Update the JSON-LD LocalBusiness structured data block in frontend/index.html to include the exact business address. Set the 'address' property with streetAddress '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality 'Bhubaneswar', addressRegion 'Odisha', postalCode '751002', and addressCountry 'IN'. Also update the 'hasMap' property to use the Plus Code URL: 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'.",
       "files": [
         "frontend/index.html"
       ],
@@ -35,7 +35,27 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-10"
+        "REQ-20"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-audit-and-fix-the-whatsapp-deep-link-integration-across-the-site-the-whatsapp-number-is-8689838590-india-so-the-full-international-number-is-918689838590-ensure-the-whatsapp-link-in-bookingform-tsx-uses-the-format-https-wa-me-918689838590-text-urlencoded-message-verify-the-same-number-is-used-in-adminpage-tsx-for-the-pending-bookings-whatsapp-alert-link-test-that-the-url-is-correctly-formed-with-no-spaces-or-formatting-errors-in-the-number",
+      "featureTitle": "Audit and fix the WhatsApp deep link integration across the site. The WhatsApp number is 8689838590 (India, so the full international number is +918689838590). Ensure the WhatsApp link in BookingForm.tsx uses the format 'https://wa.me/918689838590?text=<urlencoded message>'. Verify the same number is used in AdminPage.tsx for the pending bookings WhatsApp alert link. Test that the URL is correctly formed with no spaces or formatting errors in the number.",
+      "files": [
+        "frontend/src/components/booking/BookingForm.tsx",
+        "frontend/src/pages/AdminPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-21"
       ],
       "confidence": "high"
     }

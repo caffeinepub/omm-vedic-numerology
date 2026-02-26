@@ -1,18 +1,31 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T12:53:44.337Z",
+  "generatedAt": "2026-02-26T16:23:28.050Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
-    "implemented": 2,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-10",
-        "summary": "Add SEO meta tags to the HTML shell (frontend/index.html) to improve public discoverability on Google and other search engines. Include: a descriptive page title ('Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'), a meta description summarising the services and ₹400 booking price, Open Graph tags (og:title, og:description, og:type set to 'website'), and a robots meta tag set to 'index, follow' so search engines can crawl and index the site.",
+        "id": "REQ-19",
+        "summary": "Display the exact business address prominently on the website. The address must read exactly: 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002'. Show this address in the FindUsSection component (frontend/src/components/home/FindUsSection.tsx) and in the website footer. The address text must be displayed verbatim — do not paraphrase or shorten it. Additionally, update the Google Maps CTA link to use the Plus Code '6RRQ+93M' combined with the full address so it resolves correctly: link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address consistently with the existing cosmic/gold theme.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/home/FindUsSection.tsx",
+          "frontend/src/components/layout/Footer.tsx",
+          "frontend/src/pages/HomePage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/home/FindUsSection.tsx"
+        ]
+      },
+      {
+        "id": "REQ-20",
+        "summary": "Update the JSON-LD LocalBusiness structured data block in frontend/index.html to include the exact business address. Set the 'address' property with streetAddress '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality 'Bhubaneswar', addressRegion 'Odisha', postalCode '751002', and addressCountry 'IN'. Also update the 'hasMap' property to use the Plus Code URL: 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/index.html"
@@ -22,28 +35,29 @@
         ]
       },
       {
-        "id": "REQ-9",
-        "summary": "Add a clickable Instagram icon/link pointing to https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in the website footer (and optionally in the header/navigation). The link must open in a new tab. Ensure it is visible on all pages.",
+        "id": "REQ-21",
+        "summary": "Audit and fix the WhatsApp deep link integration across the site. The WhatsApp number is 8689838590 (India, so the full international number is +918689838590). Ensure the WhatsApp link in BookingForm.tsx uses the format 'https://wa.me/918689838590?text=<urlencoded message>'. Verify the same number is used in AdminPage.tsx for the pending bookings WhatsApp alert link. Test that the URL is correctly formed with no spaces or formatting errors in the number.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/layout/Header.tsx"
+          "frontend/src/components/booking/BookingForm.tsx",
+          "frontend/src/pages/AdminPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/HomePage.tsx"
+          "frontend/src/components/booking/BookingForm.tsx",
+          "frontend/src/pages/AdminPage.tsx"
         ]
       }
     ]
   },
   "changedFiles": [
     "build-request.json",
-    "build-template/README.md",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
     "frontend/index.html",
-    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/components/booking/BookingForm.tsx",
+    "frontend/src/components/home/FindUsSection.tsx",
+    "frontend/src/pages/AdminPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

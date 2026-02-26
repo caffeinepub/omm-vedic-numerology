@@ -1,44 +1,72 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add Instagram link and improve public discoverability",
+  "title": "Add exact business address and fix WhatsApp integration",
   "requirements": [
     {
-      "id": "REQ-9",
-      "summary": "Add clickable Instagram icon/link in the footer (and optionally header) that opens https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in a new tab, visible on all pages and styled consistently with the mystical/cosmic theme",
+      "id": "REQ-19",
+      "summary": "Display the exact business address prominently on the website in FindUsSection and footer with Google Maps link using Plus Code",
       "acceptanceCriteria": [
-        "An Instagram icon/button is visible in the footer on all pages",
-        "Clicking the Instagram icon opens https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw== in a new browser tab",
-        "The link is styled consistently with the existing mystical/cosmic theme"
+        "The full address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' is displayed verbatim on the page.",
+        "The address is visible in the FindUsSection and/or footer on the homepage.",
+        "The Google Maps link uses the Plus Code 6RRQ+93M and the full address to ensure correct map resolution.",
+        "The address text is styled consistently with the cosmic/gold theme (no plain unstyled text).",
+        "The address is not paraphrased, truncated, or reworded in any way."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/HomePage.tsx",
+          "path": "frontend/src/components/home/FindUsSection.tsx",
           "operation": "modify",
-          "description": "Update the footer section to include an Instagram icon/link using an SVG Instagram icon. Add the link with href='https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==' and target='_blank' rel='noopener noreferrer'. Style it to match the existing cosmic gold theme using hover effects consistent with other interactive elements. Ensure the Instagram icon appears alongside any existing social links in the footer and is visible on all viewport sizes."
+          "description": "Update the section to display the exact business address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' verbatim above the CTA button. Update the Google Maps CTA link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address text with consistent cosmic/gold theme styling using existing Tailwind classes (e.g., text-gold-300, cosmic theme utilities)."
         },
         {
-          "path": "frontend/src/components/layout/Header.tsx",
+          "path": "frontend/src/components/layout/Footer.tsx",
+          "operation": "create",
+          "description": "Create a new Footer component that displays the exact business address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' verbatim. Include contact information section with the address prominently styled using cosmic/gold theme colors. Use semantic HTML (footer, address tags) and ensure text is readable against the dark cosmic background."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
           "operation": "modify",
-          "description": "Optionally add an Instagram icon/link to the header navigation area (desktop and mobile menu). Use the same Instagram URL (https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==) with target='_blank' and rel='noopener noreferrer'. Style it consistently with existing header elements using the gold accent color on hover. Position it appropriately within the navigation layout so it doesn't interfere with existing nav links and CTAs."
+          "description": "Import and render the new Footer component at the bottom of the HomePage after the BookingForm section to wire the footer into the main page layout."
         }
       ]
     },
     {
-      "id": "REQ-10",
-      "summary": "Add comprehensive SEO meta tags to frontend/index.html including descriptive title, meta description with services and ₹400 pricing, Open Graph tags, and robots meta tag to improve public discoverability on search engines",
+      "id": "REQ-20",
+      "summary": "Update the JSON-LD LocalBusiness structured data block in index.html to include the exact business address and Plus Code map URL",
       "acceptanceCriteria": [
-        "frontend/index.html includes a <title> tag with a descriptive name",
-        "A <meta name='description'> tag is present with a relevant summary of services",
-        "Open Graph meta tags (og:title, og:description, og:type) are present",
-        "A <meta name='robots' content='index, follow'> tag is present",
-        "No existing functionality is broken by these additions"
+        "The JSON-LD LocalBusiness block in index.html contains an 'address' object with the correct streetAddress, addressLocality ('Bhubaneswar'), addressRegion ('Odisha'), postalCode ('751002'), and addressCountry ('IN').",
+        "The 'hasMap' URL uses the Plus Code 6RRQ+93M for accurate map resolution.",
+        "No existing JSON-LD fields are removed or broken."
       ],
       "file_operations": [
         {
           "path": "frontend/index.html",
           "operation": "modify",
-          "description": "Update the <head> section to include comprehensive SEO meta tags. Change the <title> to 'Omm Vedic Numerology – Tarot, Numerology, Vastu & Pronology Consultations'. Add a <meta name='description'> tag with content summarizing the services (Tarot, Numerology, Vastu, Pronology) and the ₹400 booking price. Add Open Graph meta tags: <meta property='og:title'>, <meta property='og:description'> (matching the description), and <meta property='og:type' content='website'>. Add <meta name='robots' content='index, follow'> to ensure search engines can crawl and index the site. Preserve all existing meta tags and ensure the viewport and charset tags remain intact."
+          "description": "Update the existing JSON-LD LocalBusiness structured data block to add an 'address' property with PostalAddress schema type. Set streetAddress to '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality to 'Bhubaneswar', addressRegion to 'Odisha', postalCode to '751002', and addressCountry to 'IN'. Update the 'hasMap' property to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Preserve all existing JSON-LD fields and ensure valid JSON syntax."
+        }
+      ]
+    },
+    {
+      "id": "REQ-21",
+      "summary": "Audit and fix WhatsApp deep link integration to use correct international format +918689838590 in BookingForm and AdminPage",
+      "acceptanceCriteria": [
+        "The WhatsApp deep link in BookingForm.tsx uses 'https://wa.me/918689838590?text=...' with the correct international format.",
+        "The WhatsApp deep link in AdminPage.tsx (pending bookings alert) also uses the same corrected number 918689838590.",
+        "The pre-filled message includes booking details (customer name, service type, booking category, preferred date, phone number).",
+        "Clicking the WhatsApp button on a mobile device opens WhatsApp with the correct number and pre-filled message.",
+        "No spaces, dashes, or extra characters appear in the phone number portion of the URL."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/booking/BookingForm.tsx",
+          "operation": "modify",
+          "description": "Update the WhatsApp deep-link generation to use the format 'https://wa.me/918689838590?text=<urlencoded message>' with the correct international phone number 918689838590 (no spaces, dashes, or formatting). Ensure the pre-filled message includes all booking details: customer name, service type, booking category, preferred date, and customer phone number. URL-encode the message text properly."
+        },
+        {
+          "path": "frontend/src/pages/AdminPage.tsx",
+          "operation": "modify",
+          "description": "Update the WhatsApp alert link for pending bookings to use the corrected phone number 918689838590 in the format 'https://wa.me/918689838590?text=<urlencoded message>'. Ensure no spaces, dashes, or extra characters are present in the phone number portion of the URL. Verify the message parameter is properly URL-encoded."
         }
       ]
     }

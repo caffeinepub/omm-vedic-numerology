@@ -1,10 +1,13 @@
 # Specification
 
 ## Summary
-**Goal:** Add an Instagram link to the footer and improve the site's public discoverability via SEO meta tags.
+**Goal:** Display the exact business address on the website and fix the WhatsApp deep link integration.
 
 **Planned changes:**
-- Add a clickable Instagram icon in the website footer (visible on all pages) linking to `https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==`, opening in a new tab, styled to match the existing mystical/cosmic theme
-- Update `frontend/index.html` with a descriptive `<title>` tag, `<meta name="description">` summarising services and ₹400 booking price, Open Graph tags (`og:title`, `og:description`, `og:type`), and `<meta name="robots" content="index, follow">`
+- Display the full verbatim address "In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002" in the FindUsSection component and the footer, styled with the cosmic/gold theme
+- Update the Google Maps CTA link to use the Plus Code URL: `https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002`
+- Update the JSON-LD LocalBusiness structured data in `index.html` with the correct address fields (streetAddress, addressLocality, addressRegion, postalCode, addressCountry) and update the `hasMap` URL to use the Plus Code
+- Fix the WhatsApp deep link in `BookingForm.tsx` to use `https://wa.me/918689838590?text=...` with a pre-filled message containing booking details
+- Fix the WhatsApp deep link in `AdminPage.tsx` to use the same corrected number `918689838590`
 
-**User-visible outcome:** Visitors will see an Instagram icon in the footer to follow the business profile, and the site will be indexable by Google and other search engines with meaningful titles and descriptions.
+**User-visible outcome:** Visitors can see the exact business address on the homepage and footer, click a correctly resolving Google Maps link, and successfully open WhatsApp with the correct number and pre-filled booking details.

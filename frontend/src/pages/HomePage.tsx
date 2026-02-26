@@ -3,11 +3,13 @@ import Header from '../components/layout/Header';
 import HeroSection from '../components/home/HeroSection';
 import ServicesSection from '../components/home/ServicesSection';
 import AboutSection from '../components/home/AboutSection';
+import FindUsSection from '../components/home/FindUsSection';
 import BookingForm from '../components/booking/BookingForm';
 import { Star } from 'lucide-react';
 import { SiInstagram, SiFacebook, SiYoutube } from 'react-icons/si';
 
 const INSTAGRAM_URL = 'https://www.instagram.com/ptripathy1989?igsh=MTJ5bHl5YjJ5Y3VvMw==';
+const FACEBOOK_URL = 'https://www.facebook.com/share/1AfBaEvANa/';
 
 export default function HomePage() {
   const [preselectedService, setPreselectedService] = useState<string>('');
@@ -56,6 +58,9 @@ export default function HomePage() {
       <div ref={aboutRef}>
         <AboutSection />
       </div>
+
+      {/* Find Us on Google Maps */}
+      <FindUsSection />
 
       {/* Booking Section */}
       <section id="booking" ref={bookingRef} className="py-20 md:py-28 bg-cosmic-deep relative overflow-hidden">
@@ -126,7 +131,7 @@ export default function HomePage() {
                 All sessions priced at <span className="text-gold font-semibold">₹400</span>
               </p>
               <div className="flex gap-3">
-                {/* Instagram — links to real profile */}
+                {/* Instagram */}
                 <a
                   href={INSTAGRAM_URL}
                   target="_blank"
@@ -137,13 +142,16 @@ export default function HomePage() {
                   <SiInstagram className="w-3.5 h-3.5" />
                 </a>
 
-                {/* Facebook placeholder */}
-                <div
-                  className="w-8 h-8 rounded border border-gold/20 flex items-center justify-center text-foreground/40 hover:text-gold hover:border-gold/50 transition-all cursor-pointer"
-                  aria-label="Facebook"
+                {/* Facebook */}
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Follow us on Facebook"
+                  className="w-8 h-8 rounded border border-gold/20 flex items-center justify-center text-foreground/40 hover:text-gold hover:border-gold/50 transition-all"
                 >
                   <SiFacebook className="w-3.5 h-3.5" />
-                </div>
+                </a>
 
                 {/* YouTube placeholder */}
                 <div
@@ -154,16 +162,27 @@ export default function HomePage() {
                 </div>
               </div>
 
-              {/* Instagram CTA */}
-              <a
-                href={INSTAGRAM_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 mt-4 font-inter text-xs text-gold/60 hover:text-gold transition-colors group"
-              >
-                <SiInstagram className="w-3 h-3 group-hover:scale-110 transition-transform" />
-                @ptripathy1989
-              </a>
+              {/* Social CTAs */}
+              <div className="flex flex-col gap-1.5 mt-4">
+                <a
+                  href={INSTAGRAM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-inter text-xs text-gold/60 hover:text-gold transition-colors group"
+                >
+                  <SiInstagram className="w-3 h-3 group-hover:scale-110 transition-transform" />
+                  @ptripathy1989
+                </a>
+                <a
+                  href={FACEBOOK_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 font-inter text-xs text-gold/60 hover:text-gold transition-colors group"
+                >
+                  <SiFacebook className="w-3 h-3 group-hover:scale-110 transition-transform" />
+                  Omm Vedic Numerology
+                </a>
+              </div>
             </div>
           </div>
 

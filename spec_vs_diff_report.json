@@ -1,36 +1,23 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-26T12:53:44.333Z",
-  "summary": "Both REQ-9 and REQ-10 are substantially implemented. REQ-10 (SEO meta tags) is fully implemented in frontend/index.html with title, description, Open Graph tags, robots meta tag, and bonus Twitter Card tags. REQ-9 (Instagram link in footer) is implemented in frontend/src/pages/HomePage.tsx with the correct URL and new-tab behavior. All core acceptance criteria appear to be met.",
+  "generatedAt": "2026-02-26T16:23:28.046Z",
+  "summary": "All three requirements (REQ-19, REQ-20, REQ-21) appear to be implemented in the diff. FindUsSection.tsx displays the exact verbatim address with gold/cosmic styling and the correct Plus Code Maps URL. index.html JSON-LD contains the full PostalAddress object and hasMap with Plus Code. BookingForm.tsx and AdminPage.tsx both use ADMIN_WHATSAPP_NUMBER = '918689838590' with the correct wa.me format. The pre-filled WhatsApp message includes customer name, service type, booking category, preferred date, and phone number.",
   "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Twitter Card meta tags added to frontend/index.html (twitter:card, twitter:title, twitter:description, twitter:image)",
-      "reason": "The build request only specified Open Graph tags (og:title, og:description, og:type) and did not request Twitter Card meta tags.",
+      "description": "A new FAQ entry about the business location was added to the JSON-LD structured data in index.html",
+      "reason": "The file summary mentions 'A new FAQ entry for the business location has also been added' in index.html. This was not requested in any of the three requirements.",
       "evidence": [
-        "frontend/index.html"
+        "frontend/index.html",
+        "frontend-file-summaries.txt"
       ]
     },
     {
-      "description": "Open Graph og:image and og:site_name meta tags added to frontend/index.html",
-      "reason": "The build request only specified og:title, og:description, and og:type. og:image and og:site_name were not requested.",
+      "description": "The JSON-LD streetAddress includes the prefix 'In front of Jagluck Services Pvt Ltd,' whereas REQ-20 specifies streetAddress as '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town' without that prefix",
+      "reason": "REQ-20 explicitly defines streetAddress as '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town'. The diff shows streetAddress set to 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', which adds extra content not specified for that field.",
       "evidence": [
         "frontend/index.html"
-      ]
-    },
-    {
-      "description": "Meta keywords and meta author tags added to frontend/index.html",
-      "reason": "The build request did not request keywords or author meta tags.",
-      "evidence": [
-        "frontend/index.html"
-      ]
-    },
-    {
-      "description": "Facebook and YouTube social icon links appear to be added to the footer alongside Instagram",
-      "reason": "The build request only requested an Instagram link/icon. The diff imports SiFacebook and SiYoutube from react-icons/si in HomePage.tsx, suggesting additional social icons were added beyond what was requested.",
-      "evidence": [
-        "frontend/src/pages/HomePage.tsx"
       ]
     }
   ],
@@ -38,7 +25,9 @@
   "changed_files": [
     "frontend-file-summaries.txt",
     "frontend/index.html",
-    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/components/booking/BookingForm.tsx",
+    "frontend/src/components/home/FindUsSection.tsx",
+    "frontend/src/pages/AdminPage.tsx",
     "project_state.json"
   ]
 }
