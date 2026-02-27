@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-display-the-exact-business-address-prominently-on-the-website-the-address-must-read-exactly-in-front-of-jagluck-services-pvt-ltd-3269-kotitirtha-ln-near-sampurna-jaleswar-temple-gouri-nagar-old-town-bhubaneswar-odisha-751002-show-this-address-in-the-findussection-component-frontend-src-components-home-findussection-tsx-and-in-the-website-footer-the-address-text-must-be-displayed-verbatim-do-not-paraphrase-or-shorten-it-additionally-update-the-google-maps-cta-link-to-use-the-plus-code-6rrq-93m-combined-with-the-full-address-so-it-resolves-correctly-link-to-https-www-google-com-maps-search-api-1-query-6rrq-2b93m-jagluck-services-pvt-ltd-kotitirtha-ln-old-town-bhubaneswar-odisha-751002-style-the-address-consistently-with-the-existing-cosmic-gold-theme",
-      "featureTitle": "Display the exact business address prominently on the website. The address must read exactly: 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002'. Show this address in the FindUsSection component (frontend/src/components/home/FindUsSection.tsx) and in the website footer. The address text must be displayed verbatim — do not paraphrase or shorten it. Additionally, update the Google Maps CTA link to use the Plus Code '6RRQ+93M' combined with the full address so it resolves correctly: link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address consistently with the existing cosmic/gold theme.",
+      "featureId": "feature-perform-a-full-end-to-end-audit-and-fix-of-the-booking-form-submission-pipeline-in-bookingform-tsx-and-the-backend-createbooking-function-in-backend-main-mo-verify-that-the-motoko-createbooking-function-accepts-all-required-fields-servicetype-bookingcategory-name-phone-preferreddate-preferredtime-optional-message-as-the-correct-motoko-variant-text-types-and-that-the-frontend-serialises-each-field-into-exactly-the-shape-the-backend-expects-before-calling-the-actor-if-any-field-type-mismatch-or-missing-argument-is-found-fix-both-the-backend-function-signature-and-the-frontend-call-site-on-success-the-mutation-must-return-the-new-booking-record-including-the-assigned-booking-id-on-failure-display-booking-failed-please-check-your-details-and-try-again",
+      "featureTitle": "Perform a full end-to-end audit and fix of the booking form submission pipeline in BookingForm.tsx and the backend createBooking function in backend/main.mo. Verify that the Motoko createBooking function accepts all required fields (serviceType, bookingCategory, name, phone, preferredDate, preferredTime, optional message) as the correct Motoko variant/text types, and that the frontend serialises each field into exactly the shape the backend expects before calling the actor. If any field type mismatch or missing argument is found, fix both the backend function signature and the frontend call site. On success, the mutation must return the new booking record (including the assigned booking ID). On failure, display 'Booking failed. Please check your details and try again.'",
       "files": [
-        "frontend/src/components/home/FindUsSection.tsx"
+        "frontend/src/components/booking/BookingForm.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,15 +16,15 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-19"
+        "REQ-32"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-json-ld-localbusiness-structured-data-block-in-frontend-index-html-to-include-the-exact-business-address-set-the-address-property-with-streetaddress-3269-kotitirtha-ln-near-sampurna-jaleswar-temple-gouri-nagar-old-town-addresslocality-bhubaneswar-addressregion-odisha-postalcode-751002-and-addresscountry-in-also-update-the-hasmap-property-to-use-the-plus-code-url-https-www-google-com-maps-search-api-1-query-6rrq-2b93m-jagluck-services-pvt-ltd-kotitirtha-ln-old-town-bhubaneswar-odisha-751002",
-      "featureTitle": "Update the JSON-LD LocalBusiness structured data block in frontend/index.html to include the exact business address. Set the 'address' property with streetAddress '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality 'Bhubaneswar', addressRegion 'Odisha', postalCode '751002', and addressCountry 'IN'. Also update the 'hasMap' property to use the Plus Code URL: 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'.",
+      "featureId": "feature-after-a-successful-booking-submission-ensure-the-post-submission-confirmation-screen-in-bookingform-tsx-reliably-displays-1-a-prominent-notify-admin-via-whatsapp-button-linking-to-https-wa-me-918689838590-text-urlencoded-message-where-the-message-includes-the-booking-id-customer-name-phone-service-type-booking-category-preferred-date-preferred-time-and-optional-message-prefixed-with-new-booking-from-website-and-2-a-notify-admin-via-email-button-opening-a-mailto-link-to-ptripathy1989-gmail-com-with-subject-new-booking-omm-vedic-numerloggy-and-body-containing-all-booking-details-both-buttons-must-only-appear-after-a-confirmed-successful-submission-i-e-after-the-mutation-returns-success-and-a-valid-booking-id-verify-that-the-booking-id-from-the-backend-response-is-correctly-interpolated-into-both-links",
+      "featureTitle": "After a successful booking submission, ensure the post-submission confirmation screen in BookingForm.tsx reliably displays: (1) a prominent 'Notify Admin via WhatsApp' button linking to 'https://wa.me/918689838590?text=<urlencoded message>' where the message includes the booking ID, customer name, phone, service type, booking category, preferred date, preferred time, and optional message, prefixed with 'New Booking from Website'; and (2) a 'Notify Admin via Email' button opening a mailto link to ptripathy1989@gmail.com with subject 'New Booking – Omm Vedic Numerloggy' and body containing all booking details. Both buttons must only appear after a confirmed successful submission (i.e., after the mutation returns success and a valid booking ID). Verify that the booking ID from the backend response is correctly interpolated into both links.",
       "files": [
-        "frontend/index.html"
+        "frontend/src/components/booking/BookingForm.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -35,16 +35,15 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-20"
+        "REQ-33"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-audit-and-fix-the-whatsapp-deep-link-integration-across-the-site-the-whatsapp-number-is-8689838590-india-so-the-full-international-number-is-918689838590-ensure-the-whatsapp-link-in-bookingform-tsx-uses-the-format-https-wa-me-918689838590-text-urlencoded-message-verify-the-same-number-is-used-in-adminpage-tsx-for-the-pending-bookings-whatsapp-alert-link-test-that-the-url-is-correctly-formed-with-no-spaces-or-formatting-errors-in-the-number",
-      "featureTitle": "Audit and fix the WhatsApp deep link integration across the site. The WhatsApp number is 8689838590 (India, so the full international number is +918689838590). Ensure the WhatsApp link in BookingForm.tsx uses the format 'https://wa.me/918689838590?text=<urlencoded message>'. Verify the same number is used in AdminPage.tsx for the pending bookings WhatsApp alert link. Test that the URL is correctly formed with no spaces or formatting errors in the number.",
+      "featureId": "feature-audit-the-usecreatebooking-hook-in-frontend-src-hooks-usequeries-ts-to-confirm-it-correctly-calls-the-backend-actor-s-createbooking-method-awaits-the-result-and-surfaces-both-the-returned-booking-record-and-any-error-variant-to-the-calling-component-if-the-backend-returns-a-variant-result-type-e-g-ok-booking-err-message-ensure-the-hook-unwraps-the-variant-and-throws-an-error-for-the-err-case-so-react-query-s-onerror-iserror-state-is-triggered-correctly-in-bookingform-tsx",
+      "featureTitle": "Audit the useCreateBooking hook in frontend/src/hooks/useQueries.ts to confirm it correctly calls the backend actor's createBooking method, awaits the result, and surfaces both the returned booking record and any error variant to the calling component. If the backend returns a variant result type (e.g., #ok(booking) / #err(message)), ensure the hook unwraps the variant and throws an error for the #err case so React Query's onError/isError state is triggered correctly in BookingForm.tsx.",
       "files": [
-        "frontend/src/components/booking/BookingForm.tsx",
-        "frontend/src/pages/AdminPage.tsx"
+        "frontend/src/hooks/useQueries.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -55,7 +54,7 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-21"
+        "REQ-34"
       ],
       "confidence": "high"
     }

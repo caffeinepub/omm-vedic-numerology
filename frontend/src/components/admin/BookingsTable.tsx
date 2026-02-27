@@ -8,9 +8,8 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import { Badge } from '@/components/ui/badge';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { CalendarDays, Phone, User, MessageSquare } from 'lucide-react';
+import { CalendarDays, Clock, Phone, User, MessageSquare } from 'lucide-react';
 
 interface BookingsTableProps {
   bookings: Booking[];
@@ -55,12 +54,13 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
           <Table>
             <TableHeader>
               <TableRow className="border-gold/20 hover:bg-transparent">
-                <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase w-16">ID</TableHead>
-                <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Service</TableHead>
-                <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Category</TableHead>
+                <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase w-20">Booking ID</TableHead>
                 <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Name</TableHead>
                 <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Phone</TableHead>
+                <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Service</TableHead>
+                <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Category</TableHead>
                 <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Date</TableHead>
+                <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Time</TableHead>
                 <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Message</TableHead>
                 <TableHead className="font-cinzel text-xs tracking-widest text-gold/70 uppercase">Status</TableHead>
               </TableRow>
@@ -71,14 +71,8 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
                   key={String(booking.id)}
                   className="border-gold/10 hover:bg-gold/5 transition-colors"
                 >
-                  <TableCell className="font-cinzel text-xs text-gold/60 font-bold">
+                  <TableCell className="font-cinzel text-xs text-gold font-bold">
                     #{String(booking.id)}
-                  </TableCell>
-                  <TableCell className="font-inter text-sm text-foreground/80">
-                    {formatServiceType(booking.serviceType)}
-                  </TableCell>
-                  <TableCell className="font-inter text-sm text-foreground/70">
-                    {formatCategory(booking.category)}
                   </TableCell>
                   <TableCell className="font-inter text-sm text-foreground/80 font-medium">
                     {booking.customerName}
@@ -86,8 +80,17 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
                   <TableCell className="font-inter text-sm text-foreground/70">
                     {booking.phoneNumber}
                   </TableCell>
+                  <TableCell className="font-inter text-sm text-foreground/80">
+                    {formatServiceType(booking.serviceType)}
+                  </TableCell>
+                  <TableCell className="font-inter text-sm text-foreground/70">
+                    {formatCategory(booking.category)}
+                  </TableCell>
                   <TableCell className="font-inter text-sm text-foreground/70">
                     {booking.preferredDate}
+                  </TableCell>
+                  <TableCell className="font-inter text-sm text-foreground/70">
+                    {booking.preferredTime || <span className="text-foreground/30 italic">Not specified</span>}
                   </TableCell>
                   <TableCell className="font-inter text-sm text-foreground/60 max-w-[180px] truncate">
                     {booking.message ?? <span className="text-foreground/30 italic">—</span>}
@@ -107,9 +110,12 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
         {bookings.map((booking) => (
           <div key={String(booking.id)} className="card-cosmic rounded-xl p-5 space-y-3">
             <div className="flex items-center justify-between">
-              <span className="font-cinzel text-xs text-gold/60 font-bold tracking-wider">
-                Booking #{String(booking.id)}
-              </span>
+              <div>
+                <span className="font-cinzel text-sm text-gold font-bold tracking-wider">
+                  Booking #{String(booking.id)}
+                </span>
+                <p className="font-inter text-xs text-foreground/40 mt-0.5">via Website</p>
+              </div>
               <StatusBadge status={booking.status} />
             </div>
             <div className="divider-gold" />
@@ -130,6 +136,12 @@ export default function BookingsTable({ bookings }: BookingsTableProps) {
               <div className="flex items-center gap-2">
                 <CalendarDays className="w-3.5 h-3.5 text-gold/50 shrink-0" />
                 <p className="font-inter text-sm text-foreground/70">{booking.preferredDate}</p>
+              </div>
+              <div className="flex items-center gap-2">
+                <Clock className="w-3.5 h-3.5 text-gold/50 shrink-0" />
+                <p className="font-inter text-sm text-foreground/70">
+                  {booking.preferredTime || <span className="text-foreground/30 italic">Time not specified</span>}
+                </p>
               </div>
               {booking.message && (
                 <div className="flex items-start gap-2">

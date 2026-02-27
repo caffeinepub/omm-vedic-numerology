@@ -24,6 +24,15 @@ export const BookingCategory = IDL.Variant({
   'homeTour' : IDL.Null,
   'nameChange' : IDL.Null,
 });
+export const BookingRequest = IDL.Record({
+  'customerName' : IDL.Text,
+  'serviceType' : ServiceType,
+  'message' : IDL.Opt(IDL.Text),
+  'preferredDate' : IDL.Text,
+  'preferredTime' : IDL.Text,
+  'category' : BookingCategory,
+  'phoneNumber' : IDL.Text,
+});
 export const BookingStatus = IDL.Variant({
   'pending' : IDL.Null,
   'confirmed' : IDL.Null,
@@ -35,28 +44,35 @@ export const Booking = IDL.Record({
   'serviceType' : ServiceType,
   'message' : IDL.Opt(IDL.Text),
   'preferredDate' : IDL.Text,
+  'preferredTime' : IDL.Text,
   'category' : BookingCategory,
   'phoneNumber' : IDL.Text,
 });
+export const BookingError = IDL.Variant({
+  'invalidInput' : IDL.Null,
+  'internalError' : IDL.Null,
+});
+export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
   'createBooking' : IDL.Func(
-      [
-        ServiceType,
-        BookingCategory,
-        IDL.Text,
-        IDL.Text,
-        IDL.Text,
-        IDL.Opt(IDL.Text),
-      ],
-      [IDL.Nat],
+      [BookingRequest],
+      [IDL.Variant({ 'ok' : Booking, 'err' : BookingError })],
       [],
     ),
+  'deleteAllBookings' : IDL.Func([], [], []),
   'getAllBookings' : IDL.Func([], [IDL.Vec(Booking)], ['query']),
+  'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getUserProfile' : IDL.Func(
+      [IDL.Principal],
+      [IDL.Opt(UserProfile)],
+      ['query'],
+    ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
 });
 
 export const idlInitArgs = [];
@@ -78,6 +94,15 @@ export const idlFactory = ({ IDL }) => {
     'homeTour' : IDL.Null,
     'nameChange' : IDL.Null,
   });
+  const BookingRequest = IDL.Record({
+    'customerName' : IDL.Text,
+    'serviceType' : ServiceType,
+    'message' : IDL.Opt(IDL.Text),
+    'preferredDate' : IDL.Text,
+    'preferredTime' : IDL.Text,
+    'category' : BookingCategory,
+    'phoneNumber' : IDL.Text,
+  });
   const BookingStatus = IDL.Variant({
     'pending' : IDL.Null,
     'confirmed' : IDL.Null,
@@ -89,28 +114,35 @@ export const idlFactory = ({ IDL }) => {
     'serviceType' : ServiceType,
     'message' : IDL.Opt(IDL.Text),
     'preferredDate' : IDL.Text,
+    'preferredTime' : IDL.Text,
     'category' : BookingCategory,
     'phoneNumber' : IDL.Text,
   });
+  const BookingError = IDL.Variant({
+    'invalidInput' : IDL.Null,
+    'internalError' : IDL.Null,
+  });
+  const UserProfile = IDL.Record({ 'name' : IDL.Text });
   
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
     'createBooking' : IDL.Func(
-        [
-          ServiceType,
-          BookingCategory,
-          IDL.Text,
-          IDL.Text,
-          IDL.Text,
-          IDL.Opt(IDL.Text),
-        ],
-        [IDL.Nat],
+        [BookingRequest],
+        [IDL.Variant({ 'ok' : Booking, 'err' : BookingError })],
         [],
       ),
+    'deleteAllBookings' : IDL.Func([], [], []),
     'getAllBookings' : IDL.Func([], [IDL.Vec(Booking)], ['query']),
+    'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getUserProfile' : IDL.Func(
+        [IDL.Principal],
+        [IDL.Opt(UserProfile)],
+        ['query'],
+      ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   });
 };
 

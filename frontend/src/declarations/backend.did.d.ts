@@ -17,18 +17,31 @@ export interface Booking {
   'serviceType' : ServiceType,
   'message' : [] | [string],
   'preferredDate' : string,
+  'preferredTime' : string,
   'category' : BookingCategory,
   'phoneNumber' : string,
 }
 export type BookingCategory = { 'appointment' : null } |
   { 'homeTour' : null } |
   { 'nameChange' : null };
+export type BookingError = { 'invalidInput' : null } |
+  { 'internalError' : null };
+export interface BookingRequest {
+  'customerName' : string,
+  'serviceType' : ServiceType,
+  'message' : [] | [string],
+  'preferredDate' : string,
+  'preferredTime' : string,
+  'category' : BookingCategory,
+  'phoneNumber' : string,
+}
 export type BookingStatus = { 'pending' : null } |
   { 'confirmed' : null };
 export type ServiceType = { 'tarotCardReading' : null } |
   { 'vastu' : null } |
   { 'numerology' : null } |
   { 'pronology' : null };
+export interface UserProfile { 'name' : string }
 export type UserRole = { 'admin' : null } |
   { 'user' : null } |
   { 'guest' : null };
@@ -36,12 +49,17 @@ export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
   'createBooking' : ActorMethod<
-    [ServiceType, BookingCategory, string, string, string, [] | [string]],
-    bigint
+    [BookingRequest],
+    { 'ok' : Booking } |
+      { 'err' : BookingError }
   >,
+  'deleteAllBookings' : ActorMethod<[], undefined>,
   'getAllBookings' : ActorMethod<[], Array<Booking>>,
+  'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
+  'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
 }
 export declare const idlService: IDL.ServiceClass;
 export declare const idlInitArgs: IDL.Type[];

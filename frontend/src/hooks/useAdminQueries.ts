@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { useActor } from './useActor';
 import { useInternetIdentity } from './useInternetIdentity';
 import type { Booking } from '../backend';
@@ -30,5 +30,20 @@ export function useGetAllBookings(isAdmin: boolean) {
     },
     enabled: !!actor && !actorFetching && !!identity && isAdmin,
     retry: false,
+  });
+}
+
+export function useDeleteAllBookings() {
+  const { actor } = useActor();
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (): Promise<void> => {
+      if (!actor) throw new Error('Actor not initialized. Please try again.');
+      await actor.deleteAllBookings();
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['allBookings'] });
+    },
   });
 }

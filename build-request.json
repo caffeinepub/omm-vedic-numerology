@@ -1,78 +1,80 @@
 {
   "kind": "build_request",
-  "title": "Add exact business address and fix WhatsApp integration",
-  "projectName": "Omm Vedic Numerology",
-  "priority": "normal",
+  "title": "Fix booking submission and admin notification flow end-to-end",
+  "projectName": "Omm Vedic Numerloggy",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-19",
-      "text": "Display the exact business address prominently on the website. The address must read exactly: 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002'. Show this address in the FindUsSection component (frontend/src/components/home/FindUsSection.tsx) and in the website footer. The address text must be displayed verbatim — do not paraphrase or shorten it. Additionally, update the Google Maps CTA link to use the Plus Code '6RRQ+93M' combined with the full address so it resolves correctly: link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address consistently with the existing cosmic/gold theme.",
-      "target": "frontend",
+      "id": "REQ-32",
+      "text": "Perform a full end-to-end audit and fix of the booking form submission pipeline in BookingForm.tsx and the backend createBooking function in backend/main.mo. Verify that the Motoko createBooking function accepts all required fields (serviceType, bookingCategory, name, phone, preferredDate, preferredTime, optional message) as the correct Motoko variant/text types, and that the frontend serialises each field into exactly the shape the backend expects before calling the actor. If any field type mismatch or missing argument is found, fix both the backend function signature and the frontend call site. On success, the mutation must return the new booking record (including the assigned booking ID). On failure, display 'Booking failed. Please check your details and try again.'",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-recent-user-1"
         ],
         "quotes": [
-          "the adress is 6RRQ+93M Jagluck services pvt ltd, 3269, Kotitirtha Ln, near sampurna jaleswar temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002 this write exactly infront of this"
+          "No booking available or notification coming fix it"
         ]
       },
       "acceptanceCriteria": [
-        "The full address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' is displayed verbatim on the page.",
-        "The address is visible in the FindUsSection and/or footer on the homepage.",
-        "The Google Maps link uses the Plus Code 6RRQ+93M and the full address to ensure correct map resolution.",
-        "The address text is styled consistently with the cosmic/gold theme (no plain unstyled text).",
-        "The address is not paraphrased, truncated, or reworded in any way."
+        "Filling out all booking form fields and clicking Submit successfully stores a new booking in the backend without throwing an error.",
+        "The backend createBooking function accepts all current fields including preferredTime.",
+        "The frontend useCreateBooking mutation correctly maps form state to the backend call arguments.",
+        "A successful submission returns a booking ID and displays the confirmation message with the booking ID.",
+        "A failed submission displays the user-friendly error message."
       ]
     },
     {
-      "id": "REQ-20",
-      "text": "Update the JSON-LD LocalBusiness structured data block in frontend/index.html to include the exact business address. Set the 'address' property with streetAddress '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality 'Bhubaneswar', addressRegion 'Odisha', postalCode '751002', and addressCountry 'IN'. Also update the 'hasMap' property to use the Plus Code URL: 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'.",
+      "id": "REQ-33",
+      "text": "After a successful booking submission, ensure the post-submission confirmation screen in BookingForm.tsx reliably displays: (1) a prominent 'Notify Admin via WhatsApp' button linking to 'https://wa.me/918689838590?text=<urlencoded message>' where the message includes the booking ID, customer name, phone, service type, booking category, preferred date, preferred time, and optional message, prefixed with 'New Booking from Website'; and (2) a 'Notify Admin via Email' button opening a mailto link to ptripathy1989@gmail.com with subject 'New Booking – Omm Vedic Numerloggy' and body containing all booking details. Both buttons must only appear after a confirmed successful submission (i.e., after the mutation returns success and a valid booking ID). Verify that the booking ID from the backend response is correctly interpolated into both links.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-recent-user-1"
         ],
         "quotes": [
-          "6RRQ+93M Jagluck services pvt ltd, 3269, Kotitirtha Ln, near sampurna jaleswar temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002"
+          "No booking available or notification coming fix it"
         ]
       },
       "acceptanceCriteria": [
-        "The JSON-LD LocalBusiness block in index.html contains an 'address' object with the correct streetAddress, addressLocality ('Bhubaneswar'), addressRegion ('Odisha'), postalCode ('751002'), and addressCountry ('IN').",
-        "The 'hasMap' URL uses the Plus Code 6RRQ+93M for accurate map resolution.",
-        "No existing JSON-LD fields are removed or broken."
+        "After a successful form submission, the WhatsApp notification button is visible and links to 'https://wa.me/918689838590?text=...' with all booking details URL-encoded.",
+        "After a successful form submission, the email notification button is visible and opens a pre-filled mailto link to ptripathy1989@gmail.com with correct subject and body.",
+        "Both buttons are hidden or absent before submission or on submission failure.",
+        "The booking ID returned from the backend is present in both the WhatsApp message text and the email body.",
+        "The WhatsApp message text starts with 'New Booking from Website'."
       ]
     },
     {
-      "id": "REQ-21",
-      "text": "Audit and fix the WhatsApp deep link integration across the site. The WhatsApp number is 8689838590 (India, so the full international number is +918689838590). Ensure the WhatsApp link in BookingForm.tsx uses the format 'https://wa.me/918689838590?text=<urlencoded message>'. Verify the same number is used in AdminPage.tsx for the pending bookings WhatsApp alert link. Test that the URL is correctly formed with no spaces or formatting errors in the number.",
+      "id": "REQ-34",
+      "text": "Audit the useCreateBooking hook in frontend/src/hooks/useQueries.ts to confirm it correctly calls the backend actor's createBooking method, awaits the result, and surfaces both the returned booking record and any error variant to the calling component. If the backend returns a variant result type (e.g., #ok(booking) / #err(message)), ensure the hook unwraps the variant and throws an error for the #err case so React Query's onError/isError state is triggered correctly in BookingForm.tsx.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-recent-user-1"
         ],
         "quotes": [
-          "there is no whatsapp so pls see it"
+          "No booking available or notification coming fix it"
         ]
       },
       "acceptanceCriteria": [
-        "The WhatsApp deep link in BookingForm.tsx uses 'https://wa.me/918689838590?text=...' with the correct international format.",
-        "The WhatsApp deep link in AdminPage.tsx (pending bookings alert) also uses the same corrected number 918689838590.",
-        "The pre-filled message includes booking details (customer name, service type, booking category, preferred date, phone number).",
-        "Clicking the WhatsApp button on a mobile device opens WhatsApp with the correct number and pre-filled message.",
-        "No spaces, dashes, or extra characters appear in the phone number portion of the URL."
+        "The useCreateBooking hook returns the created booking record (with ID) in the mutation's data on success.",
+        "The useCreateBooking hook throws or rejects with an error message when the backend returns an #err variant.",
+        "BookingForm.tsx correctly reads the booking ID from the mutation result to display in the confirmation screen.",
+        "BookingForm.tsx correctly detects mutation failure and shows the error message."
       ]
     }
   ],
   "constraints": [
-    "The business address must be displayed exactly as provided — no paraphrasing, shortening, or reordering of the address components.",
-    "Do not modify files listed in frontend.immutablePaths.",
-    "Do not remove or alter any existing SEO meta tags, JSON-LD blocks, or social links in index.html."
+    "Do not remove or alter any existing SEO meta tags, JSON-LD structured data, or visual styling.",
+    "Do not change any frontend routes or navigation structure.",
+    "The admin principal and access control logic in backend/main.mo must remain unchanged.",
+    "WhatsApp number must remain exactly 918689838590 with no spaces."
   ],
   "nonGoals": [
-    "Adding a new map embed or iframe.",
-    "Changing the overall site layout or visual theme.",
-    "Modifying the backend booking data model.",
-    "Adding any new booking-related features."
+    "Adding new form fields beyond what already exists.",
+    "Changing the visual design, color theme, or layout of any page.",
+    "Auto-sending WhatsApp or email messages without user click action.",
+    "Adding real-time push notifications or server-side email sending."
   ],
   "imageRequirements": {
     "required": [],

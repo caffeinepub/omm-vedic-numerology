@@ -40,7 +40,7 @@ export default function Header({ onNavigate }: HeaderProps) {
                 Omm Vedic
               </span>
               <span className="font-cinzel text-xs md:text-sm font-medium text-gold/80 tracking-[0.2em] uppercase leading-none block">
-                Numerology
+                Numerloggy
               </span>
             </div>
           </button>

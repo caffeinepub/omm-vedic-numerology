@@ -1,13 +1,16 @@
 # Specification
 
 ## Summary
-**Goal:** Display the exact business address on the website and fix the WhatsApp deep link integration.
+**Goal:** Fix the end-to-end booking submission pipeline so that bookings are stored correctly in the backend and admin notification buttons appear after a successful submission.
 
 **Planned changes:**
-- Display the full verbatim address "In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002" in the FindUsSection component and the footer, styled with the cosmic/gold theme
-- Update the Google Maps CTA link to use the Plus Code URL: `https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002`
-- Update the JSON-LD LocalBusiness structured data in `index.html` with the correct address fields (streetAddress, addressLocality, addressRegion, postalCode, addressCountry) and update the `hasMap` URL to use the Plus Code
-- Fix the WhatsApp deep link in `BookingForm.tsx` to use `https://wa.me/918689838590?text=...` with a pre-filled message containing booking details
-- Fix the WhatsApp deep link in `AdminPage.tsx` to use the same corrected number `918689838590`
+- Audit and fix the Motoko `createBooking` function signature to accept all required fields (`serviceType`, `bookingCategory`, `name`, `phone`, `preferredDate`, `preferredTime`, optional `message`) with correct variant/text types
+- Fix the frontend `BookingForm.tsx` to serialize form fields into exactly the shape the backend expects before calling the actor
+- Update the `useCreateBooking` hook in `useQueries.ts` to correctly call `createBooking`, await the result, unwrap `#ok`/`#err` variants, and surface errors to React Query's error state
+- Ensure the mutation returns the new booking record (including the assigned booking ID) on success
+- Display a user-friendly error message on submission failure
+- After a confirmed successful submission, show a "Notify Admin via WhatsApp" button linking to `https://wa.me/918689838590?text=<urlencoded message>` containing all booking details prefixed with "New Booking from Website"
+- After a confirmed successful submission, show a "Notify Admin via Email" button opening a `mailto:ptripathy1989@gmail.com` link with subject "New Booking – Omm Vedic Numerloggy" and body containing all booking details
+- Ensure both notification buttons include the booking ID from the backend response and are hidden before submission or on failure
 
-**User-visible outcome:** Visitors can see the exact business address on the homepage and footer, click a correctly resolving Google Maps link, and successfully open WhatsApp with the correct number and pre-filled booking details.
+**User-visible outcome:** Users can successfully submit the booking form without errors, see a confirmation with their booking ID, and use the WhatsApp and email buttons to notify the admin with full booking details.

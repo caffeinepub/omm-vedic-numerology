@@ -1,72 +1,58 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add exact business address and fix WhatsApp integration",
+  "title": "Fix booking submission and admin notification flow end-to-end",
   "requirements": [
     {
-      "id": "REQ-19",
-      "summary": "Display the exact business address prominently on the website in FindUsSection and footer with Google Maps link using Plus Code",
+      "id": "REQ-32",
+      "summary": "Audit and fix the booking form submission pipeline end-to-end, ensuring field type alignment between frontend and backend, proper error handling, and booking ID return on success",
       "acceptanceCriteria": [
-        "The full address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' is displayed verbatim on the page.",
-        "The address is visible in the FindUsSection and/or footer on the homepage.",
-        "The Google Maps link uses the Plus Code 6RRQ+93M and the full address to ensure correct map resolution.",
-        "The address text is styled consistently with the cosmic/gold theme (no plain unstyled text).",
-        "The address is not paraphrased, truncated, or reworded in any way."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/home/FindUsSection.tsx",
-          "operation": "modify",
-          "description": "Update the section to display the exact business address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' verbatim above the CTA button. Update the Google Maps CTA link to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Style the address text with consistent cosmic/gold theme styling using existing Tailwind classes (e.g., text-gold-300, cosmic theme utilities)."
-        },
-        {
-          "path": "frontend/src/components/layout/Footer.tsx",
-          "operation": "create",
-          "description": "Create a new Footer component that displays the exact business address 'In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002' verbatim. Include contact information section with the address prominently styled using cosmic/gold theme colors. Use semantic HTML (footer, address tags) and ensure text is readable against the dark cosmic background."
-        },
-        {
-          "path": "frontend/src/pages/HomePage.tsx",
-          "operation": "modify",
-          "description": "Import and render the new Footer component at the bottom of the HomePage after the BookingForm section to wire the footer into the main page layout."
-        }
-      ]
-    },
-    {
-      "id": "REQ-20",
-      "summary": "Update the JSON-LD LocalBusiness structured data block in index.html to include the exact business address and Plus Code map URL",
-      "acceptanceCriteria": [
-        "The JSON-LD LocalBusiness block in index.html contains an 'address' object with the correct streetAddress, addressLocality ('Bhubaneswar'), addressRegion ('Odisha'), postalCode ('751002'), and addressCountry ('IN').",
-        "The 'hasMap' URL uses the Plus Code 6RRQ+93M for accurate map resolution.",
-        "No existing JSON-LD fields are removed or broken."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/index.html",
-          "operation": "modify",
-          "description": "Update the existing JSON-LD LocalBusiness structured data block to add an 'address' property with PostalAddress schema type. Set streetAddress to '3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town', addressLocality to 'Bhubaneswar', addressRegion to 'Odisha', postalCode to '751002', and addressCountry to 'IN'. Update the 'hasMap' property to 'https://www.google.com/maps/search/?api=1&query=6RRQ%2B93M+Jagluck+services+pvt+ltd,+Kotitirtha+Ln,+Old+Town,+Bhubaneswar,+Odisha+751002'. Preserve all existing JSON-LD fields and ensure valid JSON syntax."
-        }
-      ]
-    },
-    {
-      "id": "REQ-21",
-      "summary": "Audit and fix WhatsApp deep link integration to use correct international format +918689838590 in BookingForm and AdminPage",
-      "acceptanceCriteria": [
-        "The WhatsApp deep link in BookingForm.tsx uses 'https://wa.me/918689838590?text=...' with the correct international format.",
-        "The WhatsApp deep link in AdminPage.tsx (pending bookings alert) also uses the same corrected number 918689838590.",
-        "The pre-filled message includes booking details (customer name, service type, booking category, preferred date, phone number).",
-        "Clicking the WhatsApp button on a mobile device opens WhatsApp with the correct number and pre-filled message.",
-        "No spaces, dashes, or extra characters appear in the phone number portion of the URL."
+        "Filling out all booking form fields and clicking Submit successfully stores a new booking in the backend without throwing an error.",
+        "The backend createBooking function accepts all current fields including preferredTime.",
+        "The frontend useCreateBooking mutation correctly maps form state to the backend call arguments.",
+        "A successful submission returns a booking ID and displays the confirmation message with the booking ID.",
+        "A failed submission displays the user-friendly error message."
       ],
       "file_operations": [
         {
           "path": "frontend/src/components/booking/BookingForm.tsx",
           "operation": "modify",
-          "description": "Update the WhatsApp deep-link generation to use the format 'https://wa.me/918689838590?text=<urlencoded message>' with the correct international phone number 918689838590 (no spaces, dashes, or formatting). Ensure the pre-filled message includes all booking details: customer name, service type, booking category, preferred date, and customer phone number. URL-encode the message text properly."
-        },
+          "description": "Review and fix the booking form submission logic to ensure all fields (serviceType, category as bookingCategory, name as customerName, phone as phoneNumber, preferredDate, preferredTime, optional message) are correctly serialized and passed to the useCreateBooking mutation. Ensure the form maps serviceType and category enums correctly to match the backend BookingRequest interface. Verify that on mutation success, the booking ID from the returned Booking object is extracted and displayed in the confirmation screen. On mutation failure, display 'Booking failed. Please check your details and try again.' Ensure the confirmation screen only appears after a successful mutation with a valid booking ID."
+        }
+      ]
+    },
+    {
+      "id": "REQ-33",
+      "summary": "Ensure the post-submission confirmation screen displays prominent WhatsApp and Email notification buttons with all booking details, visible only after successful submission",
+      "acceptanceCriteria": [
+        "After a successful form submission, the WhatsApp notification button is visible and links to 'https://wa.me/918689838590?text=...' with all booking details URL-encoded.",
+        "After a successful form submission, the email notification button is visible and opens a pre-filled mailto link to ptripathy1989@gmail.com with correct subject and body.",
+        "Both buttons are hidden or absent before submission or on submission failure.",
+        "The booking ID returned from the backend is present in both the WhatsApp message text and the email body.",
+        "The WhatsApp message text starts with 'New Booking from Website'."
+      ],
+      "file_operations": [
         {
-          "path": "frontend/src/pages/AdminPage.tsx",
+          "path": "frontend/src/components/booking/BookingForm.tsx",
           "operation": "modify",
-          "description": "Update the WhatsApp alert link for pending bookings to use the corrected phone number 918689838590 in the format 'https://wa.me/918689838590?text=<urlencoded message>'. Ensure no spaces, dashes, or extra characters are present in the phone number portion of the URL. Verify the message parameter is properly URL-encoded."
+          "description": "Audit and fix the confirmation screen that appears after successful booking submission. Ensure that both the WhatsApp and Email notification buttons are prominently displayed only when the mutation succeeds and a valid booking ID is returned. The WhatsApp button must link to 'https://wa.me/918689838590?text=<urlencoded message>' where the message starts with 'New Booking from Website' and includes: booking ID, customer name (customerName), phone (phoneNumber), service type (serviceType enum label), booking category (category enum label), preferred date, preferred time, and optional message. The Email button must open a mailto link to ptripathy1989@gmail.com with subject 'New Booking – Omm Vedic Numerloggy' and body containing all the same booking details in a readable format. Verify both links correctly interpolate the booking ID and all form fields. Ensure these buttons do not appear before submission or on failure."
+        }
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "summary": "Audit the useCreateBooking hook to ensure it correctly calls the backend actor's createBooking method, unwraps the Result variant, and surfaces errors to React Query state",
+      "acceptanceCriteria": [
+        "The useCreateBooking hook returns the created booking record (with ID) in the mutation's data on success.",
+        "The useCreateBooking hook throws or rejects with an error message when the backend returns an #err variant.",
+        "BookingForm.tsx correctly reads the booking ID from the mutation result to display in the confirmation screen.",
+        "BookingForm.tsx correctly detects mutation failure and shows the error message."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/hooks/useQueries.ts",
+          "operation": "modify",
+          "description": "Audit the useCreateBooking mutation hook to confirm it correctly calls actor.createBooking with a BookingRequest object matching the backend interface (customerName, phoneNumber, serviceType enum, category as bookingCategory enum, preferredDate, preferredTime, optional message). Ensure the hook checks the returned Result variant: if the result is { __kind__: 'ok', ok: Booking }, return the Booking object; if { __kind__: 'err', err: BookingError }, throw a user-friendly error (e.g., 'Booking failed. Please check your details and try again.') so React Query's onError and isError states are triggered correctly. Verify the mutation invalidates the ['bookings'] query key on success to refresh the bookings list."
         }
       ]
     }

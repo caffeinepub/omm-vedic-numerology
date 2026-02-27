@@ -7,6 +7,15 @@ export interface None {
     __kind__: "None";
 }
 export type Option<T> = Some<T> | None;
+export interface BookingRequest {
+    customerName: string;
+    serviceType: ServiceType;
+    message?: string;
+    preferredDate: string;
+    preferredTime: string;
+    category: BookingCategory;
+    phoneNumber: string;
+}
 export interface Booking {
     id: bigint;
     customerName: string;
@@ -14,13 +23,21 @@ export interface Booking {
     serviceType: ServiceType;
     message?: string;
     preferredDate: string;
+    preferredTime: string;
     category: BookingCategory;
     phoneNumber: string;
+}
+export interface UserProfile {
+    name: string;
 }
 export enum BookingCategory {
     appointment = "appointment",
     homeTour = "homeTour",
     nameChange = "nameChange"
+}
+export enum BookingError {
+    invalidInput = "invalidInput",
+    internalError = "internalError"
 }
 export enum BookingStatus {
     pending = "pending",
@@ -39,8 +56,18 @@ export enum UserRole {
 }
 export interface backendInterface {
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
-    createBooking(serviceType: ServiceType, category: BookingCategory, customerName: string, phoneNumber: string, preferredDate: string, message: string | null): Promise<bigint>;
+    createBooking(request: BookingRequest): Promise<{
+        __kind__: "ok";
+        ok: Booking;
+    } | {
+        __kind__: "err";
+        err: BookingError;
+    }>;
+    deleteAllBookings(): Promise<void>;
     getAllBookings(): Promise<Array<Booking>>;
+    getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
+    getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
+    saveCallerUserProfile(profile: UserProfile): Promise<void>;
 }

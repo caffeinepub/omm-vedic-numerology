@@ -1,17 +1,21 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
+  "projectStateVersion": 25,
   "summary": "A promotional website for 'Omm Vedic Numerology' offering services like tarot card reading, numerology, vastu, and pronology. Users can book appointments, request home tours, or request name changes. All services are priced at ₹400. An admin panel is being added for the website owner to manage bookings.",
   "architectural_notes": [
     "Project name: Omm Vedic Numerology",
     "Services offered: Tarot Card Reading, Numerology, Vastu, Pronology",
     "Service price: ₹400 per service",
-    "Business address: In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002 (Plus Code: 6RRQ+93M)"
+    "Business address: In front of Jagluck Services Pvt Ltd, 3269, Kotitirtha Ln, near Sampurna Jaleswar Temple, Gouri Nagar, Old Town, Bhubaneswar, Odisha 751002 (Plus Code: 6RRQ+93M)",
+    "Admin Gmail for notifications: ptripathy1989@gmail.com"
   ],
   "known_issues": [
     "Booking confirmation message incorrectly displays 'you are no 1 booking' instead of a proper confirmation",
-    "No admin notification is sent when a new booking is submitted — owner is unaware of new bookings",
-    "WhatsApp contact link (8689838590) not working on the site — needs investigation"
+    "Booking/consultation form is showing an error when users try to submit — needs investigation and fix",
+    "WhatsApp contact button is not visible to users — needs to be made more prominent and eye-catching",
+    "Booking notification is not being sent to the admin when a new consultation is booked — admin is not aware of new bookings",
+    "Booking form does not capture the preferred time — only date is collected, time selection is missing",
+    "Booking form is not submitting successfully and no WhatsApp/email notification is being triggered after booking submission — needs end-to-end fix"
   ],
   "isFixRequest": true,
   "existing_features": [
@@ -166,6 +170,110 @@
         "REQ-21"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-investigate-and-fix-the-booking-form-submission-error-in-bookingform-tsx-audit-the-usecreatebooking-mutation-hook-and-the-backend-createbooking-function-end-to-end-ensure-the-form-correctly-serialises-all-fields-service-type-booking-category-name-phone-preferred-date-optional-message-before-sending-to-the-backend-if-the-backend-returns-a-variant-error-display-a-user-friendly-error-message-such-as-booking-failed-please-check-your-details-and-try-again-if-submission-succeeds-show-the-success-confirmation-message",
+      "title": "Investigate and fix the booking form submission error in BookingForm.tsx. Audit the `useCreateBooking` mutation hook and the backend `createBooking` function end-to-end. Ensure the form correctly serialises all fields (service type, booking category, name, phone, preferred date, optional message) before sending to the backend. If the backend returns a variant error, display a user-friendly error message such as 'Booking failed. Please check your details and try again.' If submission succeeds, show the success confirmation message.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-whatsapp-contact-button-highly-visible-and-eye-catching-across-the-entire-website-add-a-prominent-always-visible-floating-whatsapp-button-fixed-to-the-bottom-right-corner-of-every-page-in-homepage-tsx-and-adminpage-tsx-layout-style-it-with-a-bold-green-background-25d366-a-large-whatsapp-icon-inline-svg-or-lucide-equivalent-a-pulsing-animation-to-draw-attention-and-the-label-chat-on-whatsapp-the-button-must-link-to-https-wa-me-918689838590-and-open-in-a-new-tab-additionally-ensure-the-post-booking-whatsapp-notification-button-in-bookingform-tsx-after-successful-submission-is-also-prominent-use-a-large-green-button-with-the-whatsapp-icon-and-text-notify-admin-via-whatsapp-all-links-must-use-the-exact-number-918689838590-with-no-spaces",
+      "title": "Make the WhatsApp contact button highly visible and eye-catching across the entire website. Add a prominent, always-visible floating WhatsApp button fixed to the bottom-right corner of every page (in HomePage.tsx and AdminPage.tsx layout). Style it with a bold green background (#25D366), a large WhatsApp icon (inline SVG or lucide equivalent), a pulsing animation to draw attention, and the label 'Chat on WhatsApp'. The button must link to 'https://wa.me/918689838590' and open in a new tab. Additionally, ensure the post-booking WhatsApp notification button in BookingForm.tsx after successful submission is also prominent — use a large green button with the WhatsApp icon and text 'Notify Admin via WhatsApp'. All links must use the exact number 918689838590 with no spaces.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dedicated-contact-us-section-to-the-homepage-in-homepage-tsx-that-prominently-displays-the-whatsapp-number-91-8689838590-as-a-clickable-link-styled-with-the-cosmic-gold-theme-include-a-large-whatsapp-icon-the-text-contact-us-on-whatsapp-and-the-number-displayed-visibly-this-section-should-appear-between-the-findus-section-and-the-booking-form-so-users-can-easily-find-the-contact-information",
+      "title": "Add a dedicated 'Contact Us' section to the homepage (in HomePage.tsx) that prominently displays the WhatsApp number +91 8689838590 as a clickable link, styled with the cosmic/gold theme. Include a large WhatsApp icon, the text 'Contact Us on WhatsApp', and the number displayed visibly. This section should appear between the FindUs section and the booking form so users can easily find the contact information.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-improve-search-engine-and-ai-discoverability-for-the-website-by-adding-a-why-choose-us-or-testimonial-style-section-on-the-homepage-that-includes-keyword-rich-content-mentioning-best-numerology-consultant-in-bhubaneswar-vastu-shastra-expert-tarot-card-reading-online-and-pronology-name-correction-specialist-also-add-an-our-services-summary-paragraph-in-the-footer-with-these-keywords-additionally-ensure-the-existing-json-ld-faqpage-schema-in-index-html-includes-a-question-how-can-i-contact-omm-vedic-numerology-with-the-answer-mentioning-the-whatsapp-number-8689838590-and-the-physical-address-in-bhubaneswar",
+      "title": "Improve search engine and AI discoverability for the website by adding a 'Why Choose Us' or testimonial-style section on the homepage that includes keyword-rich content mentioning 'best numerology consultant in Bhubaneswar', 'vastu shastra expert', 'tarot card reading online', and 'pronology name correction specialist'. Also add an 'Our Services' summary paragraph in the footer with these keywords. Additionally, ensure the existing JSON-LD FAQPage schema in index.html includes a question 'How can I contact Omm Vedic Numerology?' with the answer mentioning the WhatsApp number 8689838590 and the physical address in Bhubaneswar.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-every-visible-display-occurrence-of-the-website-name-to-omm-vedic-numerloggy-exactly-as-specified-by-the-user-including-the-intentional-spelling-this-includes-the-logo-brand-text-in-the-header-component-frontend-src-components-layout-header-tsx-the-hero-section-heading-in-herosection-tsx-the-footer-brand-name-in-homepage-tsx-the-title-tag-and-all-og-title-twitter-title-meta-tags-in-frontend-index-html-the-og-site-name-meta-tag-the-json-ld-localbusiness-name-field-and-any-other-place-the-site-name-appears-as-visible-text-or-metadata-do-not-change-any-styling-layout-functionality-images-colors-or-any-other-content-only-the-name-string-itself",
+      "title": "Update every visible display occurrence of the website name to 'Omm Vedic Numerloggy' (exactly as specified by the user, including the intentional spelling). This includes: the logo/brand text in the Header component (frontend/src/components/layout/Header.tsx), the hero section heading in HeroSection.tsx, the footer brand name in HomePage.tsx, the <title> tag and all og:title / twitter:title meta tags in frontend/index.html, the og:site_name meta tag, the JSON-LD LocalBusiness 'name' field, and any other place the site name appears as visible text or metadata. Do NOT change any styling, layout, functionality, images, colors, or any other content — only the name string itself.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-preferred-time-field-to-the-booking-form-in-bookingform-tsx-the-field-should-allow-the-user-to-select-a-time-using-a-time-input-or-a-dropdown-with-common-time-slots-this-value-must-be-stored-alongside-the-booking-in-the-backend-update-the-backend-motoko-data-model-in-backend-main-mo-to-include-a-preferredtime-field-text-in-the-booking-record-update-the-createbooking-function-signature-and-implementation-to-accept-and-store-this-field-update-bookingstable-tsx-in-the-admin-panel-to-display-the-preferred-time-as-a-new-column",
+      "title": "Add a 'Preferred Time' field to the booking form in BookingForm.tsx. The field should allow the user to select a time (using a time input or a dropdown with common time slots). This value must be stored alongside the booking in the backend. Update the backend Motoko data model in backend/main.mo to include a `preferredTime` field (Text) in the Booking record. Update the `createBooking` function signature and implementation to accept and store this field. Update BookingsTable.tsx in the admin panel to display the preferred time as a new column.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-a-successful-booking-submission-the-whatsapp-pre-filled-notification-message-sent-to-the-admin-https-wa-me-918689838590-must-include-all-booking-details-customer-name-phone-number-service-type-booking-category-preferred-date-preferred-time-optional-message-and-the-booking-id-number-update-bookingform-tsx-so-the-whatsapp-deep-link-text-includes-the-booking-id-returned-from-the-backend-and-the-newly-added-preferred-time-the-message-should-clearly-state-new-booking-from-website-at-the-top-so-the-admin-knows-the-source",
+      "title": "After a successful booking submission, the WhatsApp pre-filled notification message sent to the admin (https://wa.me/918689838590) must include ALL booking details: customer name, phone number, service type, booking category, preferred date, preferred time, optional message, and the booking ID/number. Update BookingForm.tsx so the WhatsApp deep link text includes the booking ID returned from the backend and the newly added preferred time. The message should clearly state 'New Booking from Website' at the top so the admin knows the source.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-a-successful-booking-submission-in-bookingform-tsx-in-addition-to-the-whatsapp-button-display-a-prominently-styled-notify-admin-via-email-button-link-that-opens-a-pre-filled-mailto-link-to-ptripathy1989-gmail-com-the-mailto-subject-should-be-new-booking-omm-vedic-numerloggy-and-the-body-should-include-all-booking-details-booking-id-customer-name-phone-number-service-type-booking-category-preferred-date-preferred-time-and-optional-message-the-link-must-use-the-mailto-protocol-and-open-in-a-new-tab",
+      "title": "After a successful booking submission in BookingForm.tsx, in addition to the WhatsApp button, display a prominently styled 'Notify Admin via Email' button/link that opens a pre-filled mailto link to ptripathy1989@gmail.com. The mailto subject should be 'New Booking – Omm Vedic Numerloggy' and the body should include all booking details: booking ID, customer name, phone number, service type, booking category, preferred date, preferred time, and optional message. The link must use the mailto: protocol and open in a new tab.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-delete-all-bookings-function-to-the-backend-in-backend-main-mo-this-function-must-be-callable-only-by-the-admin-principal-same-authorization-as-getallbookings-add-a-corresponding-delete-all-bookings-button-to-the-adminpage-tsx-admin-dashboard-the-button-should-show-a-confirmation-prompt-before-proceeding-on-success-the-bookings-table-should-refresh-and-show-an-empty-state-display-a-success-message-all-bookings-have-been-deleted-after-the-operation-completes",
+      "title": "Add a 'Delete All Bookings' function to the backend in backend/main.mo. This function must be callable only by the admin principal (same authorization as getAllBookings). Add a corresponding 'Delete All Bookings' button to the AdminPage.tsx admin dashboard. The button should show a confirmation prompt before proceeding. On success, the bookings table should refresh and show an empty state. Display a success message 'All bookings have been deleted.' after the operation completes.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-in-the-adminpage-tsx-booking-table-and-in-the-post-booking-confirmation-screen-in-bookingform-tsx-ensure-the-booking-id-booking-number-is-clearly-displayed-in-bookingform-tsx-after-a-successful-submission-show-the-booking-id-prominently-in-the-confirmation-message-so-the-user-can-reference-it-in-adminpage-tsx-bookingstable-tsx-ensure-the-booking-id-column-is-the-first-column-and-clearly-labeled-this-helps-the-admin-know-if-booking-2-came-from-the-website",
+      "title": "In the AdminPage.tsx booking table and in the post-booking confirmation screen in BookingForm.tsx, ensure the booking ID (booking number) is clearly displayed. In BookingForm.tsx, after a successful submission, show the booking ID prominently in the confirmation message so the user can reference it. In AdminPage.tsx / BookingsTable.tsx, ensure the Booking ID column is the first column and clearly labeled. This helps the admin know if booking #2 came from the website.",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-perform-a-full-end-to-end-audit-and-fix-of-the-booking-form-submission-pipeline-in-bookingform-tsx-and-the-backend-createbooking-function-in-backend-main-mo-verify-that-the-motoko-createbooking-function-accepts-all-required-fields-servicetype-bookingcategory-name-phone-preferreddate-preferredtime-optional-message-as-the-correct-motoko-variant-text-types-and-that-the-frontend-serialises-each-field-into-exactly-the-shape-the-backend-expects-before-calling-the-actor-if-any-field-type-mismatch-or-missing-argument-is-found-fix-both-the-backend-function-signature-and-the-frontend-call-site-on-success-the-mutation-must-return-the-new-booking-record-including-the-assigned-booking-id-on-failure-display-booking-failed-please-check-your-details-and-try-again",
+      "title": "Perform a full end-to-end audit and fix of the booking form submission pipeline in BookingForm.tsx and the backend createBooking function in backend/main.mo. Verify that the Motoko createBooking function accepts all required fields (serviceType, bookingCategory, name, phone, preferredDate, preferredTime, optional message) as the correct Motoko variant/text types, and that the frontend serialises each field into exactly the shape the backend expects before calling the actor. If any field type mismatch or missing argument is found, fix both the backend function signature and the frontend call site. On success, the mutation must return the new booking record (including the assigned booking ID). On failure, display 'Booking failed. Please check your details and try again.'",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-after-a-successful-booking-submission-ensure-the-post-submission-confirmation-screen-in-bookingform-tsx-reliably-displays-1-a-prominent-notify-admin-via-whatsapp-button-linking-to-https-wa-me-918689838590-text-urlencoded-message-where-the-message-includes-the-booking-id-customer-name-phone-service-type-booking-category-preferred-date-preferred-time-and-optional-message-prefixed-with-new-booking-from-website-and-2-a-notify-admin-via-email-button-opening-a-mailto-link-to-ptripathy1989-gmail-com-with-subject-new-booking-omm-vedic-numerloggy-and-body-containing-all-booking-details-both-buttons-must-only-appear-after-a-confirmed-successful-submission-i-e-after-the-mutation-returns-success-and-a-valid-booking-id-verify-that-the-booking-id-from-the-backend-response-is-correctly-interpolated-into-both-links",
+      "title": "After a successful booking submission, ensure the post-submission confirmation screen in BookingForm.tsx reliably displays: (1) a prominent 'Notify Admin via WhatsApp' button linking to 'https://wa.me/918689838590?text=<urlencoded message>' where the message includes the booking ID, customer name, phone, service type, booking category, preferred date, preferred time, and optional message, prefixed with 'New Booking from Website'; and (2) a 'Notify Admin via Email' button opening a mailto link to ptripathy1989@gmail.com with subject 'New Booking – Omm Vedic Numerloggy' and body containing all booking details. Both buttons must only appear after a confirmed successful submission (i.e., after the mutation returns success and a valid booking ID). Verify that the booking ID from the backend response is correctly interpolated into both links.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-audit-the-usecreatebooking-hook-in-frontend-src-hooks-usequeries-ts-to-confirm-it-correctly-calls-the-backend-actor-s-createbooking-method-awaits-the-result-and-surfaces-both-the-returned-booking-record-and-any-error-variant-to-the-calling-component-if-the-backend-returns-a-variant-result-type-e-g-ok-booking-err-message-ensure-the-hook-unwraps-the-variant-and-throws-an-error-for-the-err-case-so-react-query-s-onerror-iserror-state-is-triggered-correctly-in-bookingform-tsx",
+      "title": "Audit the useCreateBooking hook in frontend/src/hooks/useQueries.ts to confirm it correctly calls the backend actor's createBooking method, awaits the result, and surfaces both the returned booking record and any error variant to the calling component. If the backend returns a variant result type (e.g., #ok(booking) / #err(message)), ensure the hook unwraps the variant and throws an error for the #err case so React Query's onError/isError state is triggered correctly in BookingForm.tsx.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -260,6 +368,36 @@
     {
       "id": "AR-16",
       "summary": "Fix WhatsApp contact integration — ensure the WhatsApp deep link with number 8689838590 is working correctly on the site",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Make the WhatsApp contact button more eye-catching and prominent on the website using number 8689838590, and fix the booking/consultation submission error",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Change the website display name to 'Omm Vedic Numerloggy' (user's requested spelling) — update only the name, do not change anything else",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Add 'time' field to the booking form so customers can select a preferred time (in addition to date) for their consultation",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Send booking notification to admin's Gmail (ptripathy1989@gmail.com) and/or WhatsApp (918689838590) when a new booking is submitted — include all booking details (customer name, service, date, time, phone number, booking number/ID)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Add a 'Delete all bookings' function accessible from the admin panel so the owner can clear all bookings",
       "reqIds": [],
       "status": "pending"
     }

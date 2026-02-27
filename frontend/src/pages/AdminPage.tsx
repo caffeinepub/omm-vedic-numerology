@@ -1,8 +1,10 @@
+import { useState } from 'react';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
-import { useIsCallerAdmin, useGetAllBookings } from '../hooks/useAdminQueries';
+import { useIsCallerAdmin, useGetAllBookings, useDeleteAllBookings } from '../hooks/useAdminQueries';
 import { useQueryClient } from '@tanstack/react-query';
-import { Star, LogIn, LogOut, ShieldAlert, Loader2, RefreshCw, Bell, MessageCircle } from 'lucide-react';
+import { Star, LogIn, LogOut, ShieldAlert, Loader2, RefreshCw, Bell, MessageCircle, Trash2 } from 'lucide-react';
 import BookingsTable from '../components/admin/BookingsTable';
+import FloatingWhatsAppButton from '../components/layout/FloatingWhatsAppButton';
 import { Link } from '@tanstack/react-router';
 import { BookingStatus } from '../backend';
 
@@ -10,13 +12,14 @@ import { BookingStatus } from '../backend';
 const ADMIN_WHATSAPP_NUMBER = '918689838590';
 
 function buildPendingWhatsAppLink(pendingCount: number) {
-  const text = `🔔 *Omm Vedic Numerology — Pending Bookings Alert*\n\nYou have *${pendingCount} pending booking${pendingCount !== 1 ? 's' : ''}* awaiting your review.\n\nPlease log in to the admin dashboard to confirm them.`;
+  const text = `🔔 *Omm Vedic Numerloggy — Pending Bookings Alert*\n\nYou have *${pendingCount} pending booking${pendingCount !== 1 ? 's' : ''}* awaiting your review.\n\nPlease log in to the admin dashboard to confirm them.`;
   return `https://wa.me/${ADMIN_WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
 }
 
 export default function AdminPage() {
   const { login, clear, loginStatus, identity, isInitializing } = useInternetIdentity();
   const queryClient = useQueryClient();
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
 
   const isAuthenticated = !!identity;
   const isLoggingIn = loginStatus === 'logging-in';
@@ -33,6 +36,8 @@ export default function AdminPage() {
     isRefetching,
   } = useGetAllBookings(!!isAdmin);
 
+  const deleteAllBookings = useDeleteAllBookings();
+
   const handleLogin = async () => {
     try {
       await login();
@@ -47,6 +52,23 @@ export default function AdminPage() {
   const handleLogout = async () => {
     await clear();
     queryClient.clear();
+  };
+
+  const handleDeleteAll = async () => {
+    const confirmed = window.confirm(
+      'Are you sure you want to delete ALL bookings? This cannot be undone.'
+    );
+    if (!confirmed) return;
+
+    try {
+      setDeleteSuccess(false);
+      await deleteAllBookings.mutateAsync();
+      setDeleteSuccess(true);
+      // Auto-hide success message after 5 seconds
+      setTimeout(() => setDeleteSuccess(false), 5000);
+    } catch (err) {
+      // Error is handled via deleteAllBookings.isError
+    }
   };
 
   const pendingBookings = bookings?.filter(b => b.status === BookingStatus.pending) ?? [];
@@ -172,18 +194,54 @@ export default function AdminPage() {
               </div>
             )}
 
-            <div className="flex items-center justify-between mb-6">
+            {/* Delete Success Message */}
+            {deleteSuccess && (
+              <div className="mb-6 bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-5 py-3 flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0" />
+                <p className="font-inter text-sm text-emerald-400/90">
+                  All bookings have been deleted.
+                </p>
+              </div>
+            )}
+
+            {/* Delete Error Message */}
+            {deleteAllBookings.isError && (
+              <div className="mb-6 bg-destructive/10 border border-destructive/30 rounded-xl px-5 py-3 flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-destructive flex-shrink-0" />
+                <p className="font-inter text-sm text-destructive/90">
+                  Failed to delete bookings. Please try again.
+                </p>
+              </div>
+            )}
+
+            <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
               <p className="font-cormorant text-lg text-foreground/60 italic">
                 {bookings?.length ?? 0} booking{bookings?.length !== 1 ? 's' : ''} found
               </p>
-              <button
-                onClick={() => refetchBookings()}
-                disabled={isRefetching}
-                className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-gold border border-gold/30 hover:border-gold/60 rounded transition-all disabled:opacity-50"
-              >
-                <RefreshCw className={`w-3.5 h-3.5 ${isRefetching ? 'animate-spin' : ''}`} />
-                Refresh
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={() => refetchBookings()}
+                  disabled={isRefetching}
+                  className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-gold border border-gold/30 hover:border-gold/60 rounded transition-all disabled:opacity-50"
+                >
+                  <RefreshCw className={`w-3.5 h-3.5 ${isRefetching ? 'animate-spin' : ''}`} />
+                  Refresh
+                </button>
+                {bookings && bookings.length > 0 && (
+                  <button
+                    onClick={handleDeleteAll}
+                    disabled={deleteAllBookings.isPending}
+                    className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-destructive border border-destructive/30 hover:border-destructive/60 hover:bg-destructive/10 rounded transition-all disabled:opacity-50"
+                  >
+                    {deleteAllBookings.isPending ? (
+                      <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                    ) : (
+                      <Trash2 className="w-3.5 h-3.5" />
+                    )}
+                    {deleteAllBookings.isPending ? 'Deleting…' : 'Delete All Bookings'}
+                  </button>
+                )}
+              </div>
             </div>
             <BookingsTable bookings={bookings ?? []} />
           </div>
@@ -194,7 +252,7 @@ export default function AdminPage() {
       <footer className="border-t border-gold/15 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="font-inter text-xs text-foreground/30">
-            © {new Date().getFullYear()} Omm Vedic Numerology. All rights reserved.
+            © {new Date().getFullYear()} Omm Vedic Numerloggy. All rights reserved.
           </p>
           <p className="font-inter text-xs text-foreground/30 flex items-center gap-1">
             Built with{' '}
@@ -211,6 +269,9 @@ export default function AdminPage() {
           </p>
         </div>
       </footer>
+
+      {/* Floating WhatsApp Button */}
+      <FloatingWhatsAppButton />
     </div>
   );
 }
@@ -264,9 +325,15 @@ function AccessDeniedState() {
         <h2 className="font-cinzel text-xl font-bold text-foreground mb-3 tracking-wide">
           Access Denied
         </h2>
-        <p className="font-cormorant text-base text-foreground/60 italic">
-          You do not have admin privileges to access this dashboard.
+        <p className="font-cormorant text-base text-foreground/60 italic mb-6">
+          Your identity does not have admin privileges.
         </p>
+        <Link
+          to="/"
+          className="inline-flex items-center gap-2 font-cinzel text-sm text-gold/70 hover:text-gold transition-colors"
+        >
+          ← Return to Homepage
+        </Link>
       </div>
     </div>
   );

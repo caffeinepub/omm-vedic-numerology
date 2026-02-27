@@ -60,7 +60,7 @@ export default function HeroSection({ onBookNow, onExploreServices }: HeroSectio
         <h1 className="font-cinzel font-black text-4xl sm:text-5xl md:text-7xl tracking-wider mb-4 leading-tight">
           <span className="gold-text-gradient">Omm Vedic</span>
           <br />
-          <span className="text-foreground/90">Numerology</span>
+          <span className="text-foreground/90">Numerloggy</span>
         </h1>
 
         {/* Tagline */}
