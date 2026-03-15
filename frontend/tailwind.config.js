@@ -1,19 +1,8 @@
-import typography from '@tailwindcss/typography';
-import containerQueries from '@tailwindcss/container-queries';
-import animate from 'tailwindcss-animate';
-
 /** @type {import('tailwindcss').Config} */
 export default {
   darkMode: ['class'],
-  content: ['index.html', 'src/**/*.{js,ts,jsx,tsx,html,css}'],
+  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    container: {
-      center: true,
-      padding: '2rem',
-      screens: {
-        '2xl': '1400px'
-      }
-    },
     extend: {
       fontFamily: {
         cinzel: ['Cinzel', 'serif'],
@@ -21,106 +10,116 @@ export default {
         inter: ['Inter', 'sans-serif'],
       },
       colors: {
+        cosmic: {
+          50: 'oklch(0.97 0.01 280)',
+          100: 'oklch(0.93 0.02 280)',
+          200: 'oklch(0.85 0.04 280)',
+          300: 'oklch(0.72 0.06 280)',
+          400: 'oklch(0.58 0.08 280)',
+          500: 'oklch(0.45 0.08 280)',
+          600: 'oklch(0.35 0.07 280)',
+          700: 'oklch(0.27 0.06 280)',
+          800: 'oklch(0.20 0.05 280)',
+          900: 'oklch(0.14 0.04 280)',
+          950: 'oklch(0.09 0.03 280)',
+        },
+        gold: {
+          50: 'oklch(0.98 0.02 85)',
+          100: 'oklch(0.95 0.05 85)',
+          200: 'oklch(0.90 0.10 85)',
+          300: 'oklch(0.84 0.15 85)',
+          400: 'oklch(0.78 0.18 85)',
+          500: 'oklch(0.70 0.18 75)',
+          600: 'oklch(0.60 0.17 70)',
+          700: 'oklch(0.50 0.15 68)',
+          800: 'oklch(0.40 0.12 65)',
+          900: 'oklch(0.30 0.09 65)',
+          950: 'oklch(0.20 0.06 65)',
+        },
         border: 'oklch(var(--border))',
         input: 'oklch(var(--input))',
-        ring: 'oklch(var(--ring) / <alpha-value>)',
+        ring: 'oklch(var(--ring))',
         background: 'oklch(var(--background))',
         foreground: 'oklch(var(--foreground))',
         primary: {
-          DEFAULT: 'oklch(var(--primary) / <alpha-value>)',
-          foreground: 'oklch(var(--primary-foreground))'
+          DEFAULT: 'oklch(var(--primary))',
+          foreground: 'oklch(var(--primary-foreground))',
         },
         secondary: {
-          DEFAULT: 'oklch(var(--secondary) / <alpha-value>)',
-          foreground: 'oklch(var(--secondary-foreground))'
+          DEFAULT: 'oklch(var(--secondary))',
+          foreground: 'oklch(var(--secondary-foreground))',
         },
         destructive: {
-          DEFAULT: 'oklch(var(--destructive) / <alpha-value>)',
-          foreground: 'oklch(var(--destructive-foreground))'
+          DEFAULT: 'oklch(var(--destructive))',
+          foreground: 'oklch(var(--destructive-foreground))',
         },
         muted: {
-          DEFAULT: 'oklch(var(--muted) / <alpha-value>)',
-          foreground: 'oklch(var(--muted-foreground) / <alpha-value>)'
+          DEFAULT: 'oklch(var(--muted))',
+          foreground: 'oklch(var(--muted-foreground))',
         },
         accent: {
-          DEFAULT: 'oklch(var(--accent) / <alpha-value>)',
-          foreground: 'oklch(var(--accent-foreground))'
+          DEFAULT: 'oklch(var(--accent))',
+          foreground: 'oklch(var(--accent-foreground))',
         },
         popover: {
           DEFAULT: 'oklch(var(--popover))',
-          foreground: 'oklch(var(--popover-foreground))'
+          foreground: 'oklch(var(--popover-foreground))',
         },
         card: {
           DEFAULT: 'oklch(var(--card))',
-          foreground: 'oklch(var(--card-foreground))'
+          foreground: 'oklch(var(--card-foreground))',
         },
-        chart: {
-          1: 'oklch(var(--chart-1))',
-          2: 'oklch(var(--chart-2))',
-          3: 'oklch(var(--chart-3))',
-          4: 'oklch(var(--chart-4))',
-          5: 'oklch(var(--chart-5))'
+      },
+      boxShadow: {
+        gold: '0 0 20px oklch(0.70 0.18 75 / 0.3), 0 4px 12px oklch(0.70 0.18 75 / 0.2)',
+        'gold-lg': '0 0 40px oklch(0.70 0.18 75 / 0.4), 0 8px 24px oklch(0.70 0.18 75 / 0.3)',
+        'gold-sm': '0 0 10px oklch(0.70 0.18 75 / 0.2)',
+      },
+      keyframes: {
+        twinkle: {
+          '0%, 100%': { opacity: '0.2', transform: 'scale(0.8)' },
+          '50%': { opacity: '1', transform: 'scale(1.2)' },
         },
-        sidebar: {
-          DEFAULT: 'oklch(var(--sidebar))',
-          foreground: 'oklch(var(--sidebar-foreground))',
-          primary: 'oklch(var(--sidebar-primary))',
-          'primary-foreground': 'oklch(var(--sidebar-primary-foreground))',
-          accent: 'oklch(var(--sidebar-accent))',
-          'accent-foreground': 'oklch(var(--sidebar-accent-foreground))',
-          border: 'oklch(var(--sidebar-border))',
-          ring: 'oklch(var(--sidebar-ring))'
+        float: {
+          '0%, 100%': { transform: 'translateY(0px)' },
+          '50%': { transform: 'translateY(-10px)' },
         },
-        gold: {
-          DEFAULT: 'oklch(0.78 0.14 75)',
-          light: 'oklch(0.88 0.12 80)',
-          dark: 'oklch(0.62 0.12 65)',
-          dim: 'oklch(0.78 0.14 75 / 0.3)',
+        'pulse-slow': {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0.6' },
         },
-        cosmic: {
-          deep: 'oklch(0.1 0.02 285)',
-          mid: 'oklch(0.16 0.025 285)',
-          light: 'oklch(0.22 0.03 285)',
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
-        amber: {
-          glow: 'oklch(0.72 0.16 55)',
-        }
+        'whatsapp-pulse': {
+          '0%': { transform: 'scale(1)', opacity: '1' },
+          '100%': { transform: 'scale(2)', opacity: '0' },
+        },
+        'whatsapp-ring': {
+          '0%, 100%': { transform: 'rotate(0deg)' },
+          '10%, 30%, 50%, 70%, 90%': { transform: 'rotate(-10deg)' },
+          '20%, 40%, 60%, 80%': { transform: 'rotate(10deg)' },
+        },
+      },
+      animation: {
+        twinkle: 'twinkle 3s ease-in-out infinite',
+        float: 'float 6s ease-in-out infinite',
+        'pulse-slow': 'pulse-slow 3s ease-in-out infinite',
+        marquee: 'marquee 25s linear infinite',
+        'whatsapp-pulse': 'whatsapp-pulse 2s ease-out infinite',
+        'whatsapp-ring': 'whatsapp-ring 1s ease-in-out',
       },
       borderRadius: {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
-        sm: 'calc(var(--radius) - 4px)'
+        sm: 'calc(var(--radius) - 4px)',
       },
-      boxShadow: {
-        xs: '0 1px 2px 0 rgba(0,0,0,0.05)',
-        gold: '0 0 20px oklch(0.78 0.14 75 / 0.4), 0 0 40px oklch(0.78 0.14 75 / 0.2)',
-        cosmic: '0 8px 32px oklch(0.78 0.14 75 / 0.15)',
-      },
-      keyframes: {
-        'accordion-down': {
-          from: { height: '0' },
-          to: { height: 'var(--radix-accordion-content-height)' }
-        },
-        'accordion-up': {
-          from: { height: 'var(--radix-accordion-content-height)' },
-          to: { height: '0' }
-        },
-        twinkle: {
-          '0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
-          '50%': { opacity: '1', transform: 'scale(1.2)' }
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' }
-        }
-      },
-      animation: {
-        'accordion-down': 'accordion-down 0.2s ease-out',
-        'accordion-up': 'accordion-up 0.2s ease-out',
-        twinkle: 'twinkle 3s ease-in-out infinite',
-        float: 'float 6s ease-in-out infinite',
-      }
-    }
+    },
   },
-  plugins: [typography, containerQueries, animate]
+  plugins: [
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+    require('@tailwindcss/container-queries'),
+  ],
 };

@@ -1,83 +1,232 @@
 {
   "kind": "build_request",
-  "title": "Fix booking submission and admin notification flow end-to-end",
+  "title": "Advanced feature enhancements: animated UI, testimonials, live booking counter, service quiz, and parallax hero",
   "projectName": "Omm Vedic Numerloggy",
-  "priority": "high",
+  "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-32",
-      "text": "Perform a full end-to-end audit and fix of the booking form submission pipeline in BookingForm.tsx and the backend createBooking function in backend/main.mo. Verify that the Motoko createBooking function accepts all required fields (serviceType, bookingCategory, name, phone, preferredDate, preferredTime, optional message) as the correct Motoko variant/text types, and that the frontend serialises each field into exactly the shape the backend expects before calling the actor. If any field type mismatch or missing argument is found, fix both the backend function signature and the frontend call site. On success, the mutation must return the new booking record (including the assigned booking ID). On failure, display 'Booking failed. Please check your details and try again.'",
+      "id": "REQ-41",
+      "text": "Add an animated particle/star-field canvas layer behind the hero section in HeroSection.tsx that renders floating golden orbs, twinkling stars, and slow-drifting mandala outlines. The animation must be CSS/canvas-based, run continuously, and not affect page performance or accessibility.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "Make it more advance beyond the imagination"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Hero section displays animated golden particles and star-field in the background",
+        "Mandala outline shapes drift slowly across the hero area",
+        "Animation runs smoothly without janking or causing layout shift",
+        "Existing hero text, CTAs, and branding remain fully readable above the animation"
+      ]
+    },
+    {
+      "id": "REQ-42",
+      "text": "Add an interactive 'Spiritual Profile Quiz' section to HomePage.tsx. The quiz presents 3–5 short multiple-choice questions (e.g., 'Which area of your life needs the most guidance?', 'What is your birth month range?') and, based on the answers, recommends one of the four services (Tarot, Numerology, Vastu, or Pronology) with a personalised recommendation card that includes a 'Book This Service' CTA linking to the booking form with the recommended service pre-selected.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "any think suggest to me"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Quiz section is visible on the homepage with at least 3 questions",
+        "Each question has clickable answer options styled with the cosmic/gold theme",
+        "After completing all questions, a recommendation card is shown with the matched service name, description, and a 'Book This Service' button",
+        "Clicking 'Book This Service' scrolls to the booking form and pre-selects the recommended service",
+        "Quiz can be retaken by clicking a 'Try Again' button"
+      ]
+    },
+    {
+      "id": "REQ-43",
+      "text": "Add a live 'Bookings Counter' badge to the hero section in HeroSection.tsx that displays the total number of bookings submitted so far (fetched from the backend via a new public query `getTotalBookingCount(): async Nat` in backend/main.mo). Display it as a glowing gold stat, e.g., '✨ 42 Happy Clients Served'. Refresh every 60 seconds using React Query's refetchInterval.",
       "target": "both",
       "source": {
         "messageIds": [
-          "msg-recent-user-1"
+          "msg-7"
         ],
         "quotes": [
-          "No booking available or notification coming fix it"
+          "Make it more advance beyond the imagination"
         ]
       },
       "acceptanceCriteria": [
-        "Filling out all booking form fields and clicking Submit successfully stores a new booking in the backend without throwing an error.",
-        "The backend createBooking function accepts all current fields including preferredTime.",
-        "The frontend useCreateBooking mutation correctly maps form state to the backend call arguments.",
-        "A successful submission returns a booking ID and displays the confirmation message with the booking ID.",
-        "A failed submission displays the user-friendly error message."
+        "backend/main.mo exposes a public query `getTotalBookingCount` returning the total number of bookings as Nat",
+        "HeroSection.tsx fetches and displays the total booking count with a gold-styled stat badge",
+        "The count auto-refreshes every 60 seconds",
+        "If the count is 0, display 'Be the first to book!' instead"
       ]
     },
     {
-      "id": "REQ-33",
-      "text": "After a successful booking submission, ensure the post-submission confirmation screen in BookingForm.tsx reliably displays: (1) a prominent 'Notify Admin via WhatsApp' button linking to 'https://wa.me/918689838590?text=<urlencoded message>' where the message includes the booking ID, customer name, phone, service type, booking category, preferred date, preferred time, and optional message, prefixed with 'New Booking from Website'; and (2) a 'Notify Admin via Email' button opening a mailto link to ptripathy1989@gmail.com with subject 'New Booking – Omm Vedic Numerloggy' and body containing all booking details. Both buttons must only appear after a confirmed successful submission (i.e., after the mutation returns success and a valid booking ID). Verify that the booking ID from the backend response is correctly interpolated into both links.",
+      "id": "REQ-44",
+      "text": "Add a 'Client Testimonials' carousel section to HomePage.tsx between the Services section and the About section. Include at least 5 hardcoded testimonials with a client name, city, service used, star rating (5 stars), and quote. The carousel must auto-advance every 5 seconds and support manual prev/next navigation. Style it with the cosmic/gold theme, using a card layout with a subtle glow border.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent-user-1"
+          "msg-7"
         ],
         "quotes": [
-          "No booking available or notification coming fix it"
+          "Make it more advance beyond the imagination"
         ]
       },
       "acceptanceCriteria": [
-        "After a successful form submission, the WhatsApp notification button is visible and links to 'https://wa.me/918689838590?text=...' with all booking details URL-encoded.",
-        "After a successful form submission, the email notification button is visible and opens a pre-filled mailto link to ptripathy1989@gmail.com with correct subject and body.",
-        "Both buttons are hidden or absent before submission or on submission failure.",
-        "The booking ID returned from the backend is present in both the WhatsApp message text and the email body.",
-        "The WhatsApp message text starts with 'New Booking from Website'."
+        "Testimonials section is visible on the homepage with at least 5 testimonial cards",
+        "Each card shows client name, city, service used, 5-star rating, and a quote",
+        "Carousel auto-advances every 5 seconds",
+        "Manual prev/next arrow buttons allow user navigation",
+        "Active card is visually highlighted; inactive cards are dimmed",
+        "Section is styled consistently with the cosmic/gold theme"
       ]
     },
     {
-      "id": "REQ-34",
-      "text": "Audit the useCreateBooking hook in frontend/src/hooks/useQueries.ts to confirm it correctly calls the backend actor's createBooking method, awaits the result, and surfaces both the returned booking record and any error variant to the calling component. If the backend returns a variant result type (e.g., #ok(booking) / #err(message)), ensure the hook unwraps the variant and throws an error for the #err case so React Query's onError/isError state is triggered correctly in BookingForm.tsx.",
+      "id": "REQ-45",
+      "text": "Add a parallax scroll effect to the hero section background image in HeroSection.tsx so that as the user scrolls down, the background image moves at a slower rate than the foreground content, creating a depth effect. Implement using CSS `background-attachment: fixed` or a JS-based parallax listener. Ensure it degrades gracefully on mobile (disable parallax on small screens to avoid performance issues).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-recent-user-1"
+          "msg-7"
         ],
         "quotes": [
-          "No booking available or notification coming fix it"
+          "Make it more advance beyond the imagination"
         ]
       },
       "acceptanceCriteria": [
-        "The useCreateBooking hook returns the created booking record (with ID) in the mutation's data on success.",
-        "The useCreateBooking hook throws or rejects with an error message when the backend returns an #err variant.",
-        "BookingForm.tsx correctly reads the booking ID from the mutation result to display in the confirmation screen.",
-        "BookingForm.tsx correctly detects mutation failure and shows the error message."
+        "Hero background image exhibits a parallax scroll effect on desktop",
+        "Foreground content (heading, CTAs) scrolls at normal speed",
+        "Parallax is disabled on viewport widths below 768px",
+        "No layout shift or flicker when scrolling"
+      ]
+    },
+    {
+      "id": "REQ-46",
+      "text": "Add an animated 'Services Highlight' ticker/marquee banner between the header and the hero section in HomePage.tsx. The ticker should continuously scroll text such as '✨ Tarot Card Reading · 🔢 Numerology · 🏠 Vastu Shastra · 🔤 Pronology · 📍 Bhubaneswar, Odisha · ₹400 per session · Book Now'. Style it with a gold gradient background and dark text, using a CSS marquee/keyframe animation.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "Make it more advance beyond the imagination"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A continuously scrolling marquee ticker is visible between the header and hero section",
+        "Ticker text includes all four services, location, and price",
+        "Animation is smooth and loops seamlessly",
+        "Styled with gold gradient background consistent with the cosmic theme"
+      ]
+    },
+    {
+      "id": "REQ-47",
+      "text": "Add an 'Admin Analytics' summary panel to AdminPage.tsx that displays: (1) total booking count, (2) count of bookings by service type as a simple bar chart using CSS bar elements (no external chart library), (3) count of bookings by status (pending vs confirmed), and (4) most recent booking date. This panel should appear above the bookings table and be visible only when the admin is logged in.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "Make it more advance beyond the imagination"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Analytics panel appears above the bookings table on the admin dashboard",
+        "Shows total booking count, per-service breakdown, status counts, and most recent booking date",
+        "Per-service breakdown is rendered as a CSS-based bar chart",
+        "Panel is only visible when the admin principal is authenticated",
+        "Data is derived from the already-fetched bookings list (no additional backend calls required)"
+      ]
+    },
+    {
+      "id": "REQ-48",
+      "text": "Add a 'Book via WhatsApp' quick-action floating button to the homepage that, when clicked, opens a pre-filled WhatsApp message to +918689838590 with the text 'Hi, I would like to book a consultation with Omm Vedic Numerloggy. Please let me know the available slots.' This button should be distinct from the existing floating chat button — position it at the bottom-left corner, styled with a gold/cosmic gradient, and labelled 'Book via WhatsApp'.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "Make it more advance beyond the imagination"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A floating 'Book via WhatsApp' button is fixed to the bottom-left of the screen",
+        "Button opens a WhatsApp deep link with the pre-filled booking inquiry message",
+        "Button is styled with a gold/cosmic gradient, distinct from the existing green floating WhatsApp button on the bottom-right",
+        "Button includes a WhatsApp icon and 'Book via WhatsApp' label",
+        "Link opens in a new tab"
+      ]
+    },
+    {
+      "id": "REQ-49",
+      "text": "Add a 'Daily Cosmic Insight' section to the homepage in HomePage.tsx that displays a rotating daily spiritual/numerology tip. Implement a hardcoded array of at least 14 tips (one per day of a two-week cycle, selected by `dayOfYear % 14`). Display the tip inside a decorative card with a mandala border, a gold title 'Today's Cosmic Insight ✨', and the tip text. This section should appear between the Testimonials and the WhyChooseUs section.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "any think suggest to me"
+        ]
+      },
+      "acceptanceCriteria": [
+        "A 'Today's Cosmic Insight' card is visible on the homepage",
+        "The displayed tip rotates based on the current day of the year (dayOfYear % 14)",
+        "At least 14 unique tips are hardcoded covering numerology, tarot, vastu, and pronology themes",
+        "Card is styled with a mandala/celestial border and gold typography consistent with the cosmic theme",
+        "Section is placed between the Testimonials carousel and the WhyChooseUs section"
+      ]
+    },
+    {
+      "id": "REQ-50",
+      "text": "Enhance the booking form in BookingForm.tsx with a multi-step wizard UI. Split the form into 3 steps: Step 1 — Service & Category selection (service type + booking category); Step 2 — Personal Details (name, phone); Step 3 — Schedule & Message (preferred date, preferred time, optional message, price confirmation). Show a step progress indicator at the top with step numbers and labels. Include 'Next' and 'Back' buttons for navigation. Only submit to the backend on the final step.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-7"
+        ],
+        "quotes": [
+          "Make it more advance beyond the imagination"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Booking form is split into exactly 3 steps with a visible step progress indicator",
+        "Step 1 shows service type and booking category fields",
+        "Step 2 shows name and phone fields",
+        "Step 3 shows preferred date, preferred time, optional message, and the ₹400 price confirmation",
+        "'Next' button validates the current step's fields before advancing",
+        "'Back' button returns to the previous step without losing entered data",
+        "Backend submission only occurs on final step confirmation",
+        "Styled consistently with the existing cosmic/gold theme"
       ]
     }
   ],
   "constraints": [
-    "Do not remove or alter any existing SEO meta tags, JSON-LD structured data, or visual styling.",
-    "Do not change any frontend routes or navigation structure.",
-    "The admin principal and access control logic in backend/main.mo must remain unchanged.",
-    "WhatsApp number must remain exactly 918689838590 with no spaces."
+    "Do not modify files listed in frontend.immutablePaths",
+    "All backend logic must remain in the single-actor backend/main.mo file",
+    "Do not use any external chart libraries — use CSS-only bar charts for analytics",
+    "Do not use any external carousel/slider libraries — implement with React state and CSS",
+    "WhatsApp number must remain 918689838590 with no spaces in all deep links",
+    "Maintain the existing cosmic/gold visual theme across all new sections"
   ],
   "nonGoals": [
-    "Adding new form fields beyond what already exists.",
-    "Changing the visual design, color theme, or layout of any page.",
-    "Auto-sending WhatsApp or email messages without user click action.",
-    "Adding real-time push notifications or server-side email sending."
+    "Video generation from images is not supported on this platform",
+    "Real-time WebSocket or push notification features",
+    "Integration with any external AI or LLM service",
+    "Google Maps embed or geolocation features",
+    "Payment gateway integration beyond the existing ₹400 price display",
+    "Email sending from the backend (mailto links only)"
   ],
   "imageRequirements": {
-    "required": [],
+    "required": [
+      "Decorative circular mandala border/frame illustration for the Daily Cosmic Insight card, deep navy background with intricate gold mandala ring pattern (mandala-insight-border.dim_600x600.png)",
+      "Horizontal celestial/cosmic banner strip with stars, constellations, and gold dust particles on dark navy background for the marquee ticker (marquee-ticker-bg.dim_1920x80.png)",
+      "Testimonial section background texture with subtle sacred geometry hexagon grid pattern in dark navy and muted gold (testimonials-bg.dim_1920x600.png)"
+    ],
     "edits": []
   }
 }

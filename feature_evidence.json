@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-perform-a-full-end-to-end-audit-and-fix-of-the-booking-form-submission-pipeline-in-bookingform-tsx-and-the-backend-createbooking-function-in-backend-main-mo-verify-that-the-motoko-createbooking-function-accepts-all-required-fields-servicetype-bookingcategory-name-phone-preferreddate-preferredtime-optional-message-as-the-correct-motoko-variant-text-types-and-that-the-frontend-serialises-each-field-into-exactly-the-shape-the-backend-expects-before-calling-the-actor-if-any-field-type-mismatch-or-missing-argument-is-found-fix-both-the-backend-function-signature-and-the-frontend-call-site-on-success-the-mutation-must-return-the-new-booking-record-including-the-assigned-booking-id-on-failure-display-booking-failed-please-check-your-details-and-try-again",
-      "featureTitle": "Perform a full end-to-end audit and fix of the booking form submission pipeline in BookingForm.tsx and the backend createBooking function in backend/main.mo. Verify that the Motoko createBooking function accepts all required fields (serviceType, bookingCategory, name, phone, preferredDate, preferredTime, optional message) as the correct Motoko variant/text types, and that the frontend serialises each field into exactly the shape the backend expects before calling the actor. If any field type mismatch or missing argument is found, fix both the backend function signature and the frontend call site. On success, the mutation must return the new booking record (including the assigned booking ID). On failure, display 'Booking failed. Please check your details and try again.'",
+      "featureId": "feature-add-an-animated-particle-star-field-canvas-layer-behind-the-hero-section-in-herosection-tsx-that-renders-floating-golden-orbs-twinkling-stars-and-slow-drifting-mandala-outlines-the-animation-must-be-css-canvas-based-run-continuously-and-not-affect-page-performance-or-accessibility",
+      "featureTitle": "Add an animated particle/star-field canvas layer behind the hero section in HeroSection.tsx that renders floating golden orbs, twinkling stars, and slow-drifting mandala outlines. The animation must be CSS/canvas-based, run continuously, and not affect page performance or accessibility.",
       "files": [
-        "frontend/src/components/booking/BookingForm.tsx"
+        "frontend/src/components/home/HeroSection.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,15 +16,17 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-32"
+        "REQ-41"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-after-a-successful-booking-submission-ensure-the-post-submission-confirmation-screen-in-bookingform-tsx-reliably-displays-1-a-prominent-notify-admin-via-whatsapp-button-linking-to-https-wa-me-918689838590-text-urlencoded-message-where-the-message-includes-the-booking-id-customer-name-phone-service-type-booking-category-preferred-date-preferred-time-and-optional-message-prefixed-with-new-booking-from-website-and-2-a-notify-admin-via-email-button-opening-a-mailto-link-to-ptripathy1989-gmail-com-with-subject-new-booking-omm-vedic-numerloggy-and-body-containing-all-booking-details-both-buttons-must-only-appear-after-a-confirmed-successful-submission-i-e-after-the-mutation-returns-success-and-a-valid-booking-id-verify-that-the-booking-id-from-the-backend-response-is-correctly-interpolated-into-both-links",
-      "featureTitle": "After a successful booking submission, ensure the post-submission confirmation screen in BookingForm.tsx reliably displays: (1) a prominent 'Notify Admin via WhatsApp' button linking to 'https://wa.me/918689838590?text=<urlencoded message>' where the message includes the booking ID, customer name, phone, service type, booking category, preferred date, preferred time, and optional message, prefixed with 'New Booking from Website'; and (2) a 'Notify Admin via Email' button opening a mailto link to ptripathy1989@gmail.com with subject 'New Booking – Omm Vedic Numerloggy' and body containing all booking details. Both buttons must only appear after a confirmed successful submission (i.e., after the mutation returns success and a valid booking ID). Verify that the booking ID from the backend response is correctly interpolated into both links.",
+      "featureId": "feature-add-an-interactive-spiritual-profile-quiz-section-to-homepage-tsx-the-quiz-presents-3-5-short-multiple-choice-questions-e-g-which-area-of-your-life-needs-the-most-guidance-what-is-your-birth-month-range-and-based-on-the-answers-recommends-one-of-the-four-services-tarot-numerology-vastu-or-pronology-with-a-personalised-recommendation-card-that-includes-a-book-this-service-cta-linking-to-the-booking-form-with-the-recommended-service-pre-selected",
+      "featureTitle": "Add an interactive 'Spiritual Profile Quiz' section to HomePage.tsx. The quiz presents 3–5 short multiple-choice questions (e.g., 'Which area of your life needs the most guidance?', 'What is your birth month range?') and, based on the answers, recommends one of the four services (Tarot, Numerology, Vastu, or Pronology) with a personalised recommendation card that includes a 'Book This Service' CTA linking to the booking form with the recommended service pre-selected.",
       "files": [
-        "frontend/src/components/booking/BookingForm.tsx"
+        "frontend/src/components/booking/BookingForm.tsx",
+        "frontend/src/components/home/SpiritualProfileQuiz.tsx",
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -35,14 +37,15 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-33"
+        "REQ-42"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-audit-the-usecreatebooking-hook-in-frontend-src-hooks-usequeries-ts-to-confirm-it-correctly-calls-the-backend-actor-s-createbooking-method-awaits-the-result-and-surfaces-both-the-returned-booking-record-and-any-error-variant-to-the-calling-component-if-the-backend-returns-a-variant-result-type-e-g-ok-booking-err-message-ensure-the-hook-unwraps-the-variant-and-throws-an-error-for-the-err-case-so-react-query-s-onerror-iserror-state-is-triggered-correctly-in-bookingform-tsx",
-      "featureTitle": "Audit the useCreateBooking hook in frontend/src/hooks/useQueries.ts to confirm it correctly calls the backend actor's createBooking method, awaits the result, and surfaces both the returned booking record and any error variant to the calling component. If the backend returns a variant result type (e.g., #ok(booking) / #err(message)), ensure the hook unwraps the variant and throws an error for the #err case so React Query's onError/isError state is triggered correctly in BookingForm.tsx.",
+      "featureId": "feature-add-a-live-bookings-counter-badge-to-the-hero-section-in-herosection-tsx-that-displays-the-total-number-of-bookings-submitted-so-far-fetched-from-the-backend-via-a-new-public-query-gettotalbookingcount-async-nat-in-backend-main-mo-display-it-as-a-glowing-gold-stat-e-g-42-happy-clients-served-refresh-every-60-seconds-using-react-query-s-refetchinterval",
+      "featureTitle": "Add a live 'Bookings Counter' badge to the hero section in HeroSection.tsx that displays the total number of bookings submitted so far (fetched from the backend via a new public query `getTotalBookingCount(): async Nat` in backend/main.mo). Display it as a glowing gold stat, e.g., '✨ 42 Happy Clients Served'. Refresh every 60 seconds using React Query's refetchInterval.",
       "files": [
+        "frontend/src/components/home/HeroSection.tsx",
         "frontend/src/hooks/useQueries.ts"
       ],
       "components": [
@@ -54,7 +57,146 @@
         "authorization@4.0.0"
       ],
       "testIds": [
-        "REQ-34"
+        "REQ-43"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-client-testimonials-carousel-section-to-homepage-tsx-between-the-services-section-and-the-about-section-include-at-least-5-hardcoded-testimonials-with-a-client-name-city-service-used-star-rating-5-stars-and-quote-the-carousel-must-auto-advance-every-5-seconds-and-support-manual-prev-next-navigation-style-it-with-the-cosmic-gold-theme-using-a-card-layout-with-a-subtle-glow-border",
+      "featureTitle": "Add a 'Client Testimonials' carousel section to HomePage.tsx between the Services section and the About section. Include at least 5 hardcoded testimonials with a client name, city, service used, star rating (5 stars), and quote. The carousel must auto-advance every 5 seconds and support manual prev/next navigation. Style it with the cosmic/gold theme, using a card layout with a subtle glow border.",
+      "files": [
+        "frontend/src/components/home/TestimonialsCarousel.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-44"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-parallax-scroll-effect-to-the-hero-section-background-image-in-herosection-tsx-so-that-as-the-user-scrolls-down-the-background-image-moves-at-a-slower-rate-than-the-foreground-content-creating-a-depth-effect-implement-using-css-background-attachment-fixed-or-a-js-based-parallax-listener-ensure-it-degrades-gracefully-on-mobile-disable-parallax-on-small-screens-to-avoid-performance-issues",
+      "featureTitle": "Add a parallax scroll effect to the hero section background image in HeroSection.tsx so that as the user scrolls down, the background image moves at a slower rate than the foreground content, creating a depth effect. Implement using CSS `background-attachment: fixed` or a JS-based parallax listener. Ensure it degrades gracefully on mobile (disable parallax on small screens to avoid performance issues).",
+      "files": [
+        "frontend/src/components/home/HeroSection.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-45"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-animated-services-highlight-ticker-marquee-banner-between-the-header-and-the-hero-section-in-homepage-tsx-the-ticker-should-continuously-scroll-text-such-as-tarot-card-reading-numerology-vastu-shastra-pronology-bhubaneswar-odisha-400-per-session-book-now-style-it-with-a-gold-gradient-background-and-dark-text-using-a-css-marquee-keyframe-animation",
+      "featureTitle": "Add an animated 'Services Highlight' ticker/marquee banner between the header and the hero section in HomePage.tsx. The ticker should continuously scroll text such as '✨ Tarot Card Reading · 🔢 Numerology · 🏠 Vastu Shastra · 🔤 Pronology · 📍 Bhubaneswar, Odisha · ₹400 per session · Book Now'. Style it with a gold gradient background and dark text, using a CSS marquee/keyframe animation.",
+      "files": [
+        "frontend/src/components/layout/MarqueeTicker.tsx",
+        "frontend/src/pages/HomePage.tsx",
+        "frontend/tailwind.config.js"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-46"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-an-admin-analytics-summary-panel-to-adminpage-tsx-that-displays-1-total-booking-count-2-count-of-bookings-by-service-type-as-a-simple-bar-chart-using-css-bar-elements-no-external-chart-library-3-count-of-bookings-by-status-pending-vs-confirmed-and-4-most-recent-booking-date-this-panel-should-appear-above-the-bookings-table-and-be-visible-only-when-the-admin-is-logged-in",
+      "featureTitle": "Add an 'Admin Analytics' summary panel to AdminPage.tsx that displays: (1) total booking count, (2) count of bookings by service type as a simple bar chart using CSS bar elements (no external chart library), (3) count of bookings by status (pending vs confirmed), and (4) most recent booking date. This panel should appear above the bookings table and be visible only when the admin is logged in.",
+      "files": [
+        "frontend/src/components/admin/AdminAnalytics.tsx",
+        "frontend/src/pages/AdminPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-47"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-book-via-whatsapp-quick-action-floating-button-to-the-homepage-that-when-clicked-opens-a-pre-filled-whatsapp-message-to-918689838590-with-the-text-hi-i-would-like-to-book-a-consultation-with-omm-vedic-numerloggy-please-let-me-know-the-available-slots-this-button-should-be-distinct-from-the-existing-floating-chat-button-position-it-at-the-bottom-left-corner-styled-with-a-gold-cosmic-gradient-and-labelled-book-via-whatsapp",
+      "featureTitle": "Add a 'Book via WhatsApp' quick-action floating button to the homepage that, when clicked, opens a pre-filled WhatsApp message to +918689838590 with the text 'Hi, I would like to book a consultation with Omm Vedic Numerloggy. Please let me know the available slots.' This button should be distinct from the existing floating chat button — position it at the bottom-left corner, styled with a gold/cosmic gradient, and labelled 'Book via WhatsApp'.",
+      "files": [
+        "frontend/src/components/layout/FloatingBookWhatsAppButton.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-48"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-daily-cosmic-insight-section-to-the-homepage-in-homepage-tsx-that-displays-a-rotating-daily-spiritual-numerology-tip-implement-a-hardcoded-array-of-at-least-14-tips-one-per-day-of-a-two-week-cycle-selected-by-dayofyear-14-display-the-tip-inside-a-decorative-card-with-a-mandala-border-a-gold-title-today-s-cosmic-insight-and-the-tip-text-this-section-should-appear-between-the-testimonials-and-the-whychooseus-section",
+      "featureTitle": "Add a 'Daily Cosmic Insight' section to the homepage in HomePage.tsx that displays a rotating daily spiritual/numerology tip. Implement a hardcoded array of at least 14 tips (one per day of a two-week cycle, selected by `dayOfYear % 14`). Display the tip inside a decorative card with a mandala border, a gold title 'Today's Cosmic Insight ✨', and the tip text. This section should appear between the Testimonials and the WhyChooseUs section.",
+      "files": [
+        "frontend/src/components/home/DailyCosmicInsight.tsx",
+        "frontend/src/pages/HomePage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-49"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-enhance-the-booking-form-in-bookingform-tsx-with-a-multi-step-wizard-ui-split-the-form-into-3-steps-step-1-service-category-selection-service-type-booking-category-step-2-personal-details-name-phone-step-3-schedule-message-preferred-date-preferred-time-optional-message-price-confirmation-show-a-step-progress-indicator-at-the-top-with-step-numbers-and-labels-include-next-and-back-buttons-for-navigation-only-submit-to-the-backend-on-the-final-step",
+      "featureTitle": "Enhance the booking form in BookingForm.tsx with a multi-step wizard UI. Split the form into 3 steps: Step 1 — Service & Category selection (service type + booking category); Step 2 — Personal Details (name, phone); Step 3 — Schedule & Message (preferred date, preferred time, optional message, price confirmation). Show a step progress indicator at the top with step numbers and labels. Include 'Next' and 'Back' buttons for navigation. Only submit to the backend on the final step.",
+      "files": [
+        "frontend/src/components/booking/BookingForm.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-50"
       ],
       "confidence": "high"
     }

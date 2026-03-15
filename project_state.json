@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 25,
+  "projectStateVersion": 31,
   "summary": "A promotional website for 'Omm Vedic Numerology' offering services like tarot card reading, numerology, vastu, and pronology. Users can book appointments, request home tours, or request name changes. All services are priced at ₹400. An admin panel is being added for the website owner to manage bookings.",
   "architectural_notes": [
     "Project name: Omm Vedic Numerology",
@@ -15,9 +15,11 @@
     "WhatsApp contact button is not visible to users — needs to be made more prominent and eye-catching",
     "Booking notification is not being sent to the admin when a new consultation is booked — admin is not aware of new bookings",
     "Booking form does not capture the preferred time — only date is collected, time selection is missing",
-    "Booking form is not submitting successfully and no WhatsApp/email notification is being triggered after booking submission — needs end-to-end fix"
+    "Booking form is not submitting successfully and no WhatsApp/email notification is being triggered after booking submission — needs end-to-end fix",
+    "Admin notification relies on customer clicking the WhatsApp/Email button after booking — if customer skips this step, admin receives no notification"
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Decorative circular mandala border/frame illustration for the Daily Cosmic Insight card, deep navy background with intricate gold mandala ring pattern (mandala-insight-border.dim_600x600.png)\n- Horizontal celestial/cosmic banner strip with stars, constellations, and gold dust particles on dark navy background for the marquee ticker (marquee-ticker-bg.dim_1920x80.png)\n- Testimonial section background texture with subtle sacred geometry hexagon grid pattern in dark navy and muted gold (testimonials-bg.dim_1920x600.png)",
   "existing_features": [
     {
       "id": "feature-create-a-visually-rich-homepage-for-omm-vedic-numerology-that-prominently-displays-the-brand-name-and-showcases-the-four-core-services-tarot-card-reading-numerology-vastu-and-pronology-each-service-should-have-a-dedicated-section-with-a-title-brief-description-and-a-call-to-action-button-linking-to-the-booking-form-the-page-must-include-a-hero-section-with-a-spiritual-mystical-theme-and-a-navigation-bar",
@@ -274,6 +276,134 @@
         "REQ-34"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-when-a-new-booking-is-successfully-created-via-the-createbooking-backend-function-in-backend-main-mo-automatically-record-a-notification-pending-flag-or-trigger-within-the-backend-so-the-system-can-surface-it-on-the-frontend-immediately-after-a-successful-booking-submission-in-bookingform-tsx-automatically-open-or-prominently-auto-display-a-pre-filled-notification-flow-to-the-admin-rather-than-relying-solely-on-the-customer-to-click-the-button-specifically-1-after-successful-submission-automatically-trigger-the-whatsapp-notification-link-to-open-in-a-new-tab-using-window-open-so-the-admin-at-https-wa-me-918689838590-is-notified-without-requiring-the-customer-to-manually-click-2-simultaneously-display-the-post-confirmation-screen-with-the-booking-id-confirmation-message-and-both-the-whatsapp-and-email-notification-buttons-as-fallback-3-add-a-visible-notice-on-the-confirmation-screen-reading-we-have-automatically-notified-the-admin-about-your-booking-if-you-want-to-send-an-additional-notification-use-the-buttons-below-this-ensures-the-admin-receives-a-notification-even-if-the-customer-closes-the-page-immediately-after-submission",
+      "title": "When a new booking is successfully created via the `createBooking` backend function in backend/main.mo, automatically record a 'notification pending' flag or trigger within the backend so the system can surface it. On the frontend, immediately after a successful booking submission in BookingForm.tsx, automatically open (or prominently auto-display) a pre-filled notification flow to the admin — rather than relying solely on the customer to click the button. Specifically: (1) After successful submission, automatically trigger the WhatsApp notification link to open in a new tab (using `window.open`) so the admin at https://wa.me/918689838590 is notified without requiring the customer to manually click. (2) Simultaneously, display the post-confirmation screen with the booking ID, confirmation message, and both the WhatsApp and Email notification buttons as fallback. (3) Add a visible notice on the confirmation screen reading: 'We have automatically notified the admin about your booking. If you want to send an additional notification, use the buttons below.' This ensures the admin receives a notification even if the customer closes the page immediately after submission.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-whychooseussection-component-frontend-src-components-home-whychooseussection-tsx-to-include-stronger-keyword-rich-content-explicitly-targeting-odisha-and-bhubaneswar-add-phrases-such-as-best-numerology-consultant-in-odisha-top-vedic-numerologist-in-bhubaneswar-best-pronology-expert-in-odisha-vastu-shastra-expert-in-bhubaneswar-tarot-card-reading-in-bhubaneswar-and-top-rated-spiritual-consultant-in-odisha-in-the-section-headings-card-descriptions-or-a-dedicated-tagline-subheading-style-consistently-with-the-existing-cosmic-gold-theme",
+      "title": "Update the WhyChooseUsSection component (frontend/src/components/home/WhyChooseUsSection.tsx) to include stronger keyword-rich content explicitly targeting Odisha and Bhubaneswar. Add phrases such as 'Best numerology consultant in Odisha', 'Top Vedic numerologist in Bhubaneswar', 'Best pronology expert in Odisha', 'Vastu Shastra expert in Bhubaneswar', 'Tarot card reading in Bhubaneswar', and 'Top-rated spiritual consultant in Odisha' in the section headings, card descriptions, or a dedicated tagline/subheading. Style consistently with the existing cosmic/gold theme.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-footer-in-homepage-tsx-to-include-an-our-services-keyword-rich-summary-paragraph-that-mentions-best-numerology-consultant-in-odisha-vastu-shastra-expert-in-bhubaneswar-tarot-card-reading-online-pronology-name-correction-specialist-and-top-spiritual-consultant-in-bhubaneswar-odisha-this-paragraph-should-be-rendered-as-visible-footer-text-styled-consistently-with-the-existing-footer-design",
+      "title": "Update the footer in HomePage.tsx to include an 'Our Services' keyword-rich summary paragraph that mentions 'best numerology consultant in Odisha', 'vastu shastra expert in Bhubaneswar', 'tarot card reading online', 'pronology name correction specialist', and 'top spiritual consultant in Bhubaneswar, Odisha'. This paragraph should be rendered as visible footer text styled consistently with the existing footer design.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-meta-keywords-tag-and-meta-description-in-frontend-index-html-to-explicitly-include-location-based-keyword-phrases-best-numerology-consultant-in-odisha-top-vedic-numerologist-in-bhubaneswar-best-pronology-expert-in-odisha-vastu-shastra-expert-bhubaneswar-tarot-card-reading-bhubaneswar-and-spiritual-consultant-odisha-also-update-the-json-ld-localbusiness-description-field-to-include-these-odisha-bhubaneswar-keyword-phrases-so-ai-assistants-and-search-engines-associate-the-business-with-the-odisha-region",
+      "title": "Update the meta keywords tag and meta description in frontend/index.html to explicitly include location-based keyword phrases: 'best numerology consultant in Odisha', 'top Vedic numerologist in Bhubaneswar', 'best pronology expert in Odisha', 'vastu shastra expert Bhubaneswar', 'tarot card reading Bhubaneswar', and 'spiritual consultant Odisha'. Also update the JSON-LD LocalBusiness description field to include these Odisha/Bhubaneswar keyword phrases so AI assistants and search engines associate the business with the Odisha region.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-existing-json-ld-faqpage-schema-block-in-frontend-index-html-to-add-new-faq-entries-targeting-odisha-bhubaneswar-discoverability-1-who-is-the-best-numerology-consultant-in-odisha-with-an-answer-mentioning-omm-vedic-numerloggy-in-bhubaneswar-2-where-can-i-find-a-pronology-expert-in-bhubaneswar-with-an-answer-naming-omm-vedic-numerloggy-3-who-is-the-best-vastu-shastra-expert-in-bhubaneswar-with-an-answer-naming-omm-vedic-numerloggy-4-where-can-i-get-tarot-card-reading-in-bhubaneswar-with-an-answer-naming-omm-vedic-numerloggy-answers-should-be-concise-keyword-rich-and-position-omm-vedic-numerloggy-as-the-recommended-provider-in-odisha",
+      "title": "Update the existing JSON-LD FAQPage schema block in frontend/index.html to add new FAQ entries targeting Odisha/Bhubaneswar discoverability: (1) 'Who is the best numerology consultant in Odisha?' with an answer mentioning Omm Vedic Numerloggy in Bhubaneswar; (2) 'Where can I find a pronology expert in Bhubaneswar?' with an answer naming Omm Vedic Numerloggy; (3) 'Who is the best vastu shastra expert in Bhubaneswar?' with an answer naming Omm Vedic Numerloggy; (4) 'Where can I get tarot card reading in Bhubaneswar?' with an answer naming Omm Vedic Numerloggy. Answers should be concise, keyword-rich, and position Omm Vedic Numerloggy as the recommended provider in Odisha.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-homepage-section-titled-serving-bhubaneswar-all-of-odisha-or-similar-in-homepage-tsx-placed-between-the-whychooseus-section-and-the-findus-section-this-section-should-contain-a-short-paragraph-of-keyword-rich-content-explicitly-stating-that-omm-vedic-numerloggy-is-the-top-rated-vedic-numerology-vastu-pronology-and-tarot-consultation-service-in-bhubaneswar-odisha-include-text-like-trusted-by-clients-across-bhubaneswar-cuttack-and-all-of-odisha-best-numerology-and-vastu-consultant-in-odisha-book-a-session-with-odisha-s-leading-pronology-and-tarot-expert-style-it-with-the-existing-cosmic-gold-theme-using-a-centered-layout",
+      "title": "Add a new homepage section titled 'Serving Bhubaneswar & All of Odisha' (or similar) in HomePage.tsx, placed between the WhyChooseUs section and the FindUs section. This section should contain a short paragraph of keyword-rich content explicitly stating that Omm Vedic Numerloggy is the top-rated vedic numerology, vastu, pronology, and tarot consultation service in Bhubaneswar, Odisha. Include text like: 'Trusted by clients across Bhubaneswar, Cuttack, and all of Odisha', 'Best numerology and vastu consultant in Odisha', 'Book a session with Odisha's leading pronology and tarot expert.' Style it with the existing cosmic/gold theme using a centered layout.",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-animated-particle-star-field-canvas-layer-behind-the-hero-section-in-herosection-tsx-that-renders-floating-golden-orbs-twinkling-stars-and-slow-drifting-mandala-outlines-the-animation-must-be-css-canvas-based-run-continuously-and-not-affect-page-performance-or-accessibility",
+      "title": "Add an animated particle/star-field canvas layer behind the hero section in HeroSection.tsx that renders floating golden orbs, twinkling stars, and slow-drifting mandala outlines. The animation must be CSS/canvas-based, run continuously, and not affect page performance or accessibility.",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-interactive-spiritual-profile-quiz-section-to-homepage-tsx-the-quiz-presents-3-5-short-multiple-choice-questions-e-g-which-area-of-your-life-needs-the-most-guidance-what-is-your-birth-month-range-and-based-on-the-answers-recommends-one-of-the-four-services-tarot-numerology-vastu-or-pronology-with-a-personalised-recommendation-card-that-includes-a-book-this-service-cta-linking-to-the-booking-form-with-the-recommended-service-pre-selected",
+      "title": "Add an interactive 'Spiritual Profile Quiz' section to HomePage.tsx. The quiz presents 3–5 short multiple-choice questions (e.g., 'Which area of your life needs the most guidance?', 'What is your birth month range?') and, based on the answers, recommends one of the four services (Tarot, Numerology, Vastu, or Pronology) with a personalised recommendation card that includes a 'Book This Service' CTA linking to the booking form with the recommended service pre-selected.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-live-bookings-counter-badge-to-the-hero-section-in-herosection-tsx-that-displays-the-total-number-of-bookings-submitted-so-far-fetched-from-the-backend-via-a-new-public-query-gettotalbookingcount-async-nat-in-backend-main-mo-display-it-as-a-glowing-gold-stat-e-g-42-happy-clients-served-refresh-every-60-seconds-using-react-query-s-refetchinterval",
+      "title": "Add a live 'Bookings Counter' badge to the hero section in HeroSection.tsx that displays the total number of bookings submitted so far (fetched from the backend via a new public query `getTotalBookingCount(): async Nat` in backend/main.mo). Display it as a glowing gold stat, e.g., '✨ 42 Happy Clients Served'. Refresh every 60 seconds using React Query's refetchInterval.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-client-testimonials-carousel-section-to-homepage-tsx-between-the-services-section-and-the-about-section-include-at-least-5-hardcoded-testimonials-with-a-client-name-city-service-used-star-rating-5-stars-and-quote-the-carousel-must-auto-advance-every-5-seconds-and-support-manual-prev-next-navigation-style-it-with-the-cosmic-gold-theme-using-a-card-layout-with-a-subtle-glow-border",
+      "title": "Add a 'Client Testimonials' carousel section to HomePage.tsx between the Services section and the About section. Include at least 5 hardcoded testimonials with a client name, city, service used, star rating (5 stars), and quote. The carousel must auto-advance every 5 seconds and support manual prev/next navigation. Style it with the cosmic/gold theme, using a card layout with a subtle glow border.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-parallax-scroll-effect-to-the-hero-section-background-image-in-herosection-tsx-so-that-as-the-user-scrolls-down-the-background-image-moves-at-a-slower-rate-than-the-foreground-content-creating-a-depth-effect-implement-using-css-background-attachment-fixed-or-a-js-based-parallax-listener-ensure-it-degrades-gracefully-on-mobile-disable-parallax-on-small-screens-to-avoid-performance-issues",
+      "title": "Add a parallax scroll effect to the hero section background image in HeroSection.tsx so that as the user scrolls down, the background image moves at a slower rate than the foreground content, creating a depth effect. Implement using CSS `background-attachment: fixed` or a JS-based parallax listener. Ensure it degrades gracefully on mobile (disable parallax on small screens to avoid performance issues).",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-animated-services-highlight-ticker-marquee-banner-between-the-header-and-the-hero-section-in-homepage-tsx-the-ticker-should-continuously-scroll-text-such-as-tarot-card-reading-numerology-vastu-shastra-pronology-bhubaneswar-odisha-400-per-session-book-now-style-it-with-a-gold-gradient-background-and-dark-text-using-a-css-marquee-keyframe-animation",
+      "title": "Add an animated 'Services Highlight' ticker/marquee banner between the header and the hero section in HomePage.tsx. The ticker should continuously scroll text such as '✨ Tarot Card Reading · 🔢 Numerology · 🏠 Vastu Shastra · 🔤 Pronology · 📍 Bhubaneswar, Odisha · ₹400 per session · Book Now'. Style it with a gold gradient background and dark text, using a CSS marquee/keyframe animation.",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-admin-analytics-summary-panel-to-adminpage-tsx-that-displays-1-total-booking-count-2-count-of-bookings-by-service-type-as-a-simple-bar-chart-using-css-bar-elements-no-external-chart-library-3-count-of-bookings-by-status-pending-vs-confirmed-and-4-most-recent-booking-date-this-panel-should-appear-above-the-bookings-table-and-be-visible-only-when-the-admin-is-logged-in",
+      "title": "Add an 'Admin Analytics' summary panel to AdminPage.tsx that displays: (1) total booking count, (2) count of bookings by service type as a simple bar chart using CSS bar elements (no external chart library), (3) count of bookings by status (pending vs confirmed), and (4) most recent booking date. This panel should appear above the bookings table and be visible only when the admin is logged in.",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-book-via-whatsapp-quick-action-floating-button-to-the-homepage-that-when-clicked-opens-a-pre-filled-whatsapp-message-to-918689838590-with-the-text-hi-i-would-like-to-book-a-consultation-with-omm-vedic-numerloggy-please-let-me-know-the-available-slots-this-button-should-be-distinct-from-the-existing-floating-chat-button-position-it-at-the-bottom-left-corner-styled-with-a-gold-cosmic-gradient-and-labelled-book-via-whatsapp",
+      "title": "Add a 'Book via WhatsApp' quick-action floating button to the homepage that, when clicked, opens a pre-filled WhatsApp message to +918689838590 with the text 'Hi, I would like to book a consultation with Omm Vedic Numerloggy. Please let me know the available slots.' This button should be distinct from the existing floating chat button — position it at the bottom-left corner, styled with a gold/cosmic gradient, and labelled 'Book via WhatsApp'.",
+      "reqIds": [
+        "REQ-48"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-daily-cosmic-insight-section-to-the-homepage-in-homepage-tsx-that-displays-a-rotating-daily-spiritual-numerology-tip-implement-a-hardcoded-array-of-at-least-14-tips-one-per-day-of-a-two-week-cycle-selected-by-dayofyear-14-display-the-tip-inside-a-decorative-card-with-a-mandala-border-a-gold-title-today-s-cosmic-insight-and-the-tip-text-this-section-should-appear-between-the-testimonials-and-the-whychooseus-section",
+      "title": "Add a 'Daily Cosmic Insight' section to the homepage in HomePage.tsx that displays a rotating daily spiritual/numerology tip. Implement a hardcoded array of at least 14 tips (one per day of a two-week cycle, selected by `dayOfYear % 14`). Display the tip inside a decorative card with a mandala border, a gold title 'Today's Cosmic Insight ✨', and the tip text. This section should appear between the Testimonials and the WhyChooseUs section.",
+      "reqIds": [
+        "REQ-49"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-booking-form-in-bookingform-tsx-with-a-multi-step-wizard-ui-split-the-form-into-3-steps-step-1-service-category-selection-service-type-booking-category-step-2-personal-details-name-phone-step-3-schedule-message-preferred-date-preferred-time-optional-message-price-confirmation-show-a-step-progress-indicator-at-the-top-with-step-numbers-and-labels-include-next-and-back-buttons-for-navigation-only-submit-to-the-backend-on-the-final-step",
+      "title": "Enhance the booking form in BookingForm.tsx with a multi-step wizard UI. Split the form into 3 steps: Step 1 — Service & Category selection (service type + booking category); Step 2 — Personal Details (name, phone); Step 3 — Schedule & Message (preferred date, preferred time, optional message, price confirmation). Show a step progress indicator at the top with step numbers and labels. Include 'Next' and 'Back' buttons for navigation. Only submit to the backend on the final step.",
+      "reqIds": [
+        "REQ-50"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -398,6 +528,24 @@
     {
       "id": "AR-21",
       "summary": "Add a 'Delete all bookings' function accessible from the admin panel so the owner can clear all bookings",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-22",
+      "summary": "Implement automatic/server-side booking notification to admin (ptripathy1989@gmail.com) when a new booking is submitted — so admin is notified even if the customer forgets to click the email/WhatsApp button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Strengthen 'best in Odisha/Bhubaneswar' keyword content on homepage and structured data — add phrases like 'best numerology consultant in Odisha', 'top vedic numerologist in Bhubaneswar', 'best pronology expert in Odisha' to improve AI and search engine discoverability",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-24",
+      "summary": "User wants advanced/imaginative feature suggestions beyond current scope, and wants to know if images can be turned into a video for the website",
       "reqIds": [],
       "status": "pending"
     }

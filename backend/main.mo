@@ -130,4 +130,8 @@ actor {
     };
     userProfiles.add(caller, profile);
   };
+
+  public query ({ caller }) func getTotalBookingCount() : async Nat {
+    bookings.size();
+  };
 };

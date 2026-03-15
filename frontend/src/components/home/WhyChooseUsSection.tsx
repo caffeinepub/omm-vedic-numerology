@@ -1,27 +1,27 @@
 const benefits = [
   {
     emoji: '🔮',
-    title: 'Best Numerology Consultant in Bhubaneswar',
+    title: 'Best Numerology Consultant in Odisha',
     description:
-      'Trusted by hundreds of clients across Odisha, our numerology readings decode your life path, destiny number, and soul urge to guide your most important decisions.',
+      'Trusted by hundreds of clients across Bhubaneswar and all of Odisha, our numerology readings decode your life path, destiny number, and soul urge to guide your most important decisions. Widely regarded as the top Vedic numerologist in Bhubaneswar.',
   },
   {
     emoji: '🏠',
-    title: 'Expert Vastu Shastra Guidance',
+    title: 'Vastu Shastra Expert in Bhubaneswar',
     description:
-      'Our vastu shastra expert brings decades of Vedic knowledge to harmonize your home and office spaces for prosperity, health, and positive energy flow.',
+      'Our vastu shastra expert in Bhubaneswar brings decades of Vedic knowledge to harmonize your home and office spaces for prosperity, health, and positive energy flow. Serving clients across Odisha with authentic Vedic guidance.',
   },
   {
     emoji: '🃏',
-    title: 'Tarot Card Reading Online & In-Person',
+    title: 'Tarot Card Reading in Bhubaneswar',
     description:
-      'Gain intuitive clarity on relationships, career, and life decisions through our personalized tarot card reading sessions — available both online and at our Bhubaneswar centre.',
+      'Gain intuitive clarity on relationships, career, and life decisions through our personalized tarot card reading sessions in Bhubaneswar — available both online and in-person at our Old Town centre, serving all of Odisha.',
   },
   {
     emoji: '✍️',
-    title: 'Pronology Name Correction Specialist',
+    title: 'Best Pronology Expert in Odisha',
     description:
-      'Our pronology name correction service analyzes the sound vibrations of your name and suggests corrections to align your identity with your highest potential.',
+      "Our pronology name correction specialist in Bhubaneswar analyzes the sound vibrations of your name and suggests corrections to align your identity with your highest potential. Odisha's most trusted pronology consultation service.",
   },
 ];
 
@@ -46,7 +46,7 @@ export default function WhyChooseUsSection() {
             Why Choose <span className="gold-text-gradient">Omm Vedic</span>
           </h2>
           <p className="font-cormorant text-lg text-foreground/60 italic max-w-2xl mx-auto">
-            Rooted in ancient Vedic wisdom, trusted by modern seekers — discover why we are Bhubaneswar's most sought-after spiritual guidance centre.
+            Rooted in ancient Vedic wisdom, trusted by modern seekers — discover why we are Bhubaneswar&apos;s most sought-after spiritual guidance centre and Odisha&apos;s top-rated numerology consultant.
           </p>
           <div className="divider-gold w-48 mx-auto mt-6" />
         </div>
@@ -59,7 +59,7 @@ export default function WhyChooseUsSection() {
               className="card-cosmic rounded-xl p-6 md:p-8 border border-gold/15 hover:border-gold/40 transition-all duration-300 group"
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center flex-shrink-0 text-2xl group-hover:bg-gold/15 transition-colors">
+                <div className="w-12 h-12 rounded-full bg-gold/10 border border-gold/25 flex items-center justify-center shrink-0 text-2xl group-hover:bg-gold/15 transition-colors">
                   {benefit.emoji}
                 </div>
                 <div>

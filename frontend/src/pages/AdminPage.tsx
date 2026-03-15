@@ -1,14 +1,14 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import { useIsCallerAdmin, useGetAllBookings, useDeleteAllBookings } from '../hooks/useAdminQueries';
 import { useQueryClient } from '@tanstack/react-query';
 import { Star, LogIn, LogOut, ShieldAlert, Loader2, RefreshCw, Bell, MessageCircle, Trash2 } from 'lucide-react';
 import BookingsTable from '../components/admin/BookingsTable';
+import AdminAnalytics from '../components/admin/AdminAnalytics';
 import FloatingWhatsAppButton from '../components/layout/FloatingWhatsAppButton';
 import { Link } from '@tanstack/react-router';
 import { BookingStatus } from '../backend';
 
-// Admin WhatsApp number in international format (country code + number, no + or spaces)
 const ADMIN_WHATSAPP_NUMBER = '918689838590';
 
 function buildPendingWhatsAppLink(pendingCount: number) {
@@ -64,33 +64,32 @@ export default function AdminPage() {
       setDeleteSuccess(false);
       await deleteAllBookings.mutateAsync();
       setDeleteSuccess(true);
-      // Auto-hide success message after 5 seconds
       setTimeout(() => setDeleteSuccess(false), 5000);
-    } catch (err) {
-      // Error is handled via deleteAllBookings.isError
+    } catch {
+      // Error handled via deleteAllBookings.isError
     }
   };
 
-  const pendingBookings = bookings?.filter(b => b.status === BookingStatus.pending) ?? [];
+  const pendingBookings = bookings?.filter(b => (b.status as unknown as string) === BookingStatus.pending) ?? [];
   const pendingCount = pendingBookings.length;
 
   return (
-    <div className="min-h-screen bg-cosmic-deep flex flex-col">
+    <div className="min-h-screen bg-cosmic-950 flex flex-col">
       {/* Header */}
-      <header className="bg-cosmic-deep/90 backdrop-blur-md border-b border-gold/20 sticky top-0 z-50">
+      <header className="bg-cosmic-950/90 backdrop-blur-md border-b border-gold-400/20 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 md:h-20">
             <Link to="/" className="flex items-center gap-2 group">
               <div className="flex items-center gap-1">
-                <Star className="w-4 h-4 text-gold animate-twinkle" fill="currentColor" />
-                <Star className="w-5 h-5 text-gold animate-twinkle [animation-delay:0.5s]" fill="currentColor" />
-                <Star className="w-4 h-4 text-gold animate-twinkle [animation-delay:1s]" fill="currentColor" />
+                <Star className="w-4 h-4 text-gold-400 animate-twinkle" fill="currentColor" />
+                <Star className="w-5 h-5 text-gold-400 animate-twinkle" fill="currentColor" style={{ animationDelay: '0.5s' }} />
+                <Star className="w-4 h-4 text-gold-400 animate-twinkle" fill="currentColor" style={{ animationDelay: '1s' }} />
               </div>
               <div className="ml-1">
-                <span className="font-cinzel text-sm md:text-base font-bold text-gold-light tracking-widest uppercase leading-none block">
+                <span className="font-cinzel text-sm md:text-base font-bold text-gold-300 tracking-widest uppercase leading-none block">
                   Omm Vedic
                 </span>
-                <span className="font-cinzel text-xs md:text-sm font-medium text-gold/80 tracking-[0.2em] uppercase leading-none block">
+                <span className="font-cinzel text-xs md:text-sm font-medium text-gold-500 tracking-[0.2em] uppercase leading-none block">
                   Admin Panel
                 </span>
               </div>
@@ -98,14 +97,14 @@ export default function AdminPage() {
 
             <div className="flex items-center gap-3">
               {isAuthenticated && (
-                <span className="hidden sm:block font-inter text-xs text-foreground/40 truncate max-w-[160px]">
+                <span className="hidden sm:block font-inter text-xs text-cosmic-400 truncate max-w-[160px]">
                   {identity?.getPrincipal().toString().slice(0, 12)}…
                 </span>
               )}
               {isAuthenticated ? (
                 <button
                   onClick={handleLogout}
-                  className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-foreground/70 hover:text-gold border border-gold/20 hover:border-gold/50 rounded transition-all"
+                  className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-cosmic-300 hover:text-gold-400 border border-gold-400/20 hover:border-gold-400/50 rounded transition-all"
                 >
                   <LogOut className="w-3.5 h-3.5" />
                   Logout
@@ -114,7 +113,7 @@ export default function AdminPage() {
                 <button
                   onClick={handleLogin}
                   disabled={isLoggingIn || isInitializing}
-                  className="flex items-center gap-2 btn-gold px-4 py-2 text-xs rounded disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2 text-xs rounded disabled:opacity-50 bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-950 font-cinzel font-bold"
                 >
                   {isLoggingIn ? (
                     <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -133,13 +132,13 @@ export default function AdminPage() {
       <main className="flex-1 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-12">
         {/* Page Title */}
         <div className="text-center mb-10">
-          <p className="font-cinzel text-xs tracking-[0.4em] text-gold/60 uppercase mb-3">
+          <p className="font-cinzel text-xs tracking-[0.4em] text-gold-500 uppercase mb-3">
             ✦ Sacred Administration ✦
           </p>
-          <h1 className="font-cinzel font-black text-3xl md:text-4xl text-foreground tracking-wide">
-            Booking <span className="gold-text-gradient">Dashboard</span>
+          <h1 className="font-cinzel font-black text-3xl md:text-4xl text-white tracking-wide">
+            Booking <span className="text-gold-400">Dashboard</span>
           </h1>
-          <div className="divider-gold w-40 mx-auto mt-5" />
+          <div className="w-40 h-px bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-5" />
         </div>
 
         {/* States */}
@@ -155,18 +154,21 @@ export default function AdminPage() {
           <LoadingState message="Loading bookings…" />
         ) : (
           <div>
+            {/* Analytics Panel */}
+            <AdminAnalytics bookings={bookings ?? []} />
+
             {/* Pending Bookings Banner */}
             {pendingCount > 0 && (
-              <div className="mb-6 bg-gold/10 border border-gold/40 rounded-xl px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <div className="mb-6 bg-gold-400/10 border border-gold-400/40 rounded-xl px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-gold/15 border border-gold/40 flex items-center justify-center flex-shrink-0">
-                    <Bell className="w-5 h-5 text-gold" />
+                  <div className="w-10 h-10 rounded-full bg-gold-400/15 border border-gold-400/40 flex items-center justify-center shrink-0">
+                    <Bell className="w-5 h-5 text-gold-400" />
                   </div>
                   <div>
-                    <p className="font-cinzel text-sm font-bold text-gold tracking-wide">
+                    <p className="font-cinzel text-sm font-bold text-gold-400 tracking-wide">
                       {pendingCount} Pending Booking{pendingCount !== 1 ? 's' : ''} Awaiting Review
                     </p>
-                    <p className="font-inter text-xs text-foreground/55 mt-0.5">
+                    <p className="font-inter text-xs text-cosmic-400 mt-0.5">
                       {pendingCount === 1
                         ? 'A new booking is waiting for your confirmation.'
                         : `${pendingCount} new bookings are waiting for your confirmation.`}
@@ -177,7 +179,7 @@ export default function AdminPage() {
                   href={buildPendingWhatsAppLink(pendingCount)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-gold border border-gold/40 hover:border-gold hover:bg-gold/10 rounded transition-all whitespace-nowrap"
+                  className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-gold-400 border border-gold-400/40 hover:border-gold-400 hover:bg-gold-400/10 rounded transition-all whitespace-nowrap"
                 >
                   <MessageCircle className="w-3.5 h-3.5" />
                   Send WhatsApp Reminder
@@ -187,7 +189,7 @@ export default function AdminPage() {
 
             {pendingCount === 0 && bookings && bookings.length > 0 && (
               <div className="mb-6 bg-green-500/10 border border-green-500/30 rounded-xl px-5 py-3 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-green-400 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-green-400 shrink-0" />
                 <p className="font-inter text-sm text-green-400/90">
                   All bookings have been confirmed. No pending items.
                 </p>
@@ -197,7 +199,7 @@ export default function AdminPage() {
             {/* Delete Success Message */}
             {deleteSuccess && (
               <div className="mb-6 bg-emerald-500/10 border border-emerald-500/30 rounded-xl px-5 py-3 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-emerald-400 flex-shrink-0" />
+                <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
                 <p className="font-inter text-sm text-emerald-400/90">
                   All bookings have been deleted.
                 </p>
@@ -206,23 +208,23 @@ export default function AdminPage() {
 
             {/* Delete Error Message */}
             {deleteAllBookings.isError && (
-              <div className="mb-6 bg-destructive/10 border border-destructive/30 rounded-xl px-5 py-3 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-destructive flex-shrink-0" />
-                <p className="font-inter text-sm text-destructive/90">
+              <div className="mb-6 bg-red-500/10 border border-red-500/30 rounded-xl px-5 py-3 flex items-center gap-3">
+                <div className="w-2 h-2 rounded-full bg-red-400 shrink-0" />
+                <p className="font-inter text-sm text-red-400/90">
                   Failed to delete bookings. Please try again.
                 </p>
               </div>
             )}
 
             <div className="flex items-center justify-between mb-6 gap-3 flex-wrap">
-              <p className="font-cormorant text-lg text-foreground/60 italic">
+              <p className="font-cormorant text-lg text-cosmic-300 italic">
                 {bookings?.length ?? 0} booking{bookings?.length !== 1 ? 's' : ''} found
               </p>
               <div className="flex items-center gap-3">
                 <button
                   onClick={() => refetchBookings()}
                   disabled={isRefetching}
-                  className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-gold border border-gold/30 hover:border-gold/60 rounded transition-all disabled:opacity-50"
+                  className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-gold-400 border border-gold-400/30 hover:border-gold-400/60 rounded transition-all disabled:opacity-50"
                 >
                   <RefreshCw className={`w-3.5 h-3.5 ${isRefetching ? 'animate-spin' : ''}`} />
                   Refresh
@@ -231,7 +233,7 @@ export default function AdminPage() {
                   <button
                     onClick={handleDeleteAll}
                     disabled={deleteAllBookings.isPending}
-                    className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-destructive border border-destructive/30 hover:border-destructive/60 hover:bg-destructive/10 rounded transition-all disabled:opacity-50"
+                    className="flex items-center gap-2 px-4 py-2 font-cinzel text-xs tracking-wider text-red-400 border border-red-400/30 hover:border-red-400/60 hover:bg-red-400/10 rounded transition-all disabled:opacity-50"
                   >
                     {deleteAllBookings.isPending ? (
                       <Loader2 className="w-3.5 h-3.5 animate-spin" />
@@ -243,26 +245,27 @@ export default function AdminPage() {
                 )}
               </div>
             </div>
+
             <BookingsTable bookings={bookings ?? []} />
           </div>
         )}
       </main>
 
       {/* Footer */}
-      <footer className="border-t border-gold/15 py-6">
+      <footer className="border-t border-gold-400/10 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
-          <p className="font-inter text-xs text-foreground/30">
+          <p className="font-inter text-xs text-cosmic-600">
             © {new Date().getFullYear()} Omm Vedic Numerloggy. All rights reserved.
           </p>
-          <p className="font-inter text-xs text-foreground/30 flex items-center gap-1">
+          <p className="font-inter text-xs text-cosmic-600 flex items-center gap-1">
             Built with{' '}
-            <Star className="w-3 h-3 text-gold inline" fill="currentColor" />{' '}
+            <span className="text-gold-600">♥</span>{' '}
             using{' '}
             <a
               href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(typeof window !== 'undefined' ? window.location.hostname : 'omm-vedic-numerology')}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-gold/60 hover:text-gold transition-colors"
+              className="text-gold-500 hover:text-gold-400 transition-colors"
             >
               caffeine.ai
             </a>
@@ -270,7 +273,6 @@ export default function AdminPage() {
         </div>
       </footer>
 
-      {/* Floating WhatsApp Button */}
       <FloatingWhatsAppButton />
     </div>
   );
@@ -279,8 +281,8 @@ export default function AdminPage() {
 function LoadingState({ message }: { message: string }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 gap-4">
-      <Loader2 className="w-8 h-8 text-gold animate-spin" />
-      <p className="font-cormorant text-lg text-foreground/50 italic">{message}</p>
+      <Loader2 className="w-8 h-8 text-gold-400 animate-spin" />
+      <p className="font-cormorant text-lg text-cosmic-400 italic">{message}</p>
     </div>
   );
 }
@@ -288,20 +290,20 @@ function LoadingState({ message }: { message: string }) {
 function NotAuthenticatedState({ onLogin, isLoggingIn }: { onLogin: () => void; isLoggingIn: boolean }) {
   return (
     <div className="flex flex-col items-center justify-center py-24 gap-6">
-      <div className="card-cosmic rounded-xl p-10 max-w-md w-full text-center cosmic-glow">
-        <div className="w-16 h-16 rounded-full border border-gold/30 flex items-center justify-center mx-auto mb-6 bg-gold/5">
-          <LogIn className="w-7 h-7 text-gold" />
+      <div className="rounded-xl p-10 max-w-md w-full text-center border border-gold-400/20 bg-cosmic-900/60 shadow-gold">
+        <div className="w-16 h-16 rounded-full border border-gold-400/30 flex items-center justify-center mx-auto mb-6 bg-gold-400/5">
+          <LogIn className="w-7 h-7 text-gold-400" />
         </div>
-        <h2 className="font-cinzel text-xl font-bold text-foreground mb-3 tracking-wide">
+        <h2 className="font-cinzel text-xl font-bold text-white mb-3 tracking-wide">
           Admin Access Required
         </h2>
-        <p className="font-cormorant text-base text-foreground/60 italic mb-8">
+        <p className="font-cormorant text-base text-cosmic-300 italic mb-8">
           Please login with your identity to access the admin dashboard.
         </p>
         <button
           onClick={onLogin}
           disabled={isLoggingIn}
-          className="btn-gold w-full py-3 rounded font-cinzel text-sm tracking-wider disabled:opacity-50 flex items-center justify-center gap-2"
+          className="w-full py-3 rounded font-cinzel text-sm tracking-wider disabled:opacity-50 flex items-center justify-center gap-2 bg-gradient-to-r from-gold-500 to-gold-600 text-cosmic-950 font-bold"
         >
           {isLoggingIn ? (
             <Loader2 className="w-4 h-4 animate-spin" />
@@ -318,19 +320,19 @@ function NotAuthenticatedState({ onLogin, isLoggingIn }: { onLogin: () => void; 
 function AccessDeniedState() {
   return (
     <div className="flex flex-col items-center justify-center py-24 gap-6">
-      <div className="card-cosmic rounded-xl p-10 max-w-md w-full text-center">
-        <div className="w-16 h-16 rounded-full border border-destructive/30 flex items-center justify-center mx-auto mb-6 bg-destructive/5">
-          <ShieldAlert className="w-7 h-7 text-destructive" />
+      <div className="rounded-xl p-10 max-w-md w-full text-center border border-cosmic-700/30 bg-cosmic-900/60">
+        <div className="w-16 h-16 rounded-full border border-red-400/30 flex items-center justify-center mx-auto mb-6 bg-red-400/5">
+          <ShieldAlert className="w-7 h-7 text-red-400" />
         </div>
-        <h2 className="font-cinzel text-xl font-bold text-foreground mb-3 tracking-wide">
+        <h2 className="font-cinzel text-xl font-bold text-white mb-3 tracking-wide">
           Access Denied
         </h2>
-        <p className="font-cormorant text-base text-foreground/60 italic mb-6">
+        <p className="font-cormorant text-base text-cosmic-300 italic mb-6">
           Your identity does not have admin privileges.
         </p>
         <Link
           to="/"
-          className="inline-flex items-center gap-2 font-cinzel text-sm text-gold/70 hover:text-gold transition-colors"
+          className="inline-flex items-center gap-2 font-cinzel text-sm text-gold-500 hover:text-gold-400 transition-colors"
         >
           ← Return to Homepage
         </Link>
