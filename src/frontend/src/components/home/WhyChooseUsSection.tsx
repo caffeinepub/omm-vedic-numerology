@@ -1,27 +1,27 @@
 const benefits = [
   {
-    emoji: "🔮",
-    title: "Best Numerology Consultant in Odisha",
-    description:
-      "Trusted by hundreds of clients across Bhubaneswar and all of Odisha, our numerology readings decode your life path, destiny number, and soul urge to guide your most important decisions. Widely regarded as the top Vedic numerologist in Bhubaneswar.",
-  },
-  {
-    emoji: "🏠",
-    title: "Vastu Shastra Expert in Bhubaneswar",
-    description:
-      "Our vastu shastra expert in Bhubaneswar brings decades of Vedic knowledge to harmonize your home and office spaces for prosperity, health, and positive energy flow. Serving clients across Odisha with authentic Vedic guidance.",
-  },
-  {
     emoji: "🃏",
-    title: "Tarot Card Reading in Bhubaneswar",
+    title: "Best Tarot Card Reader in Bhubaneswar & Odisha",
     description:
-      "Gain intuitive clarity on relationships, career, and life decisions through our personalized tarot card reading sessions in Bhubaneswar — available both online and in-person at our Old Town centre, serving all of Odisha.",
+      "Omm Vedic Numerloggy is the best tarot card reader in Bhubaneswar and the most trusted tarot card reader in Odisha. Our expert tarot card reader provides accurate, intuitive sessions revealing deep insights into your relationships, career, and life decisions — available at just ₹400 for all of Odisha.",
   },
   {
     emoji: "✍️",
-    title: "Best Pronology Expert in Odisha",
+    title: "Top Pronologist in Bhubaneswar & Odisha",
     description:
-      "Our pronology name correction specialist in Bhubaneswar analyzes the sound vibrations of your name and suggests corrections to align your identity with your highest potential. Odisha's most trusted pronology consultation service.",
+      "As Odisha's top pronologist, our expert pronologist analyzes the precise sound vibrations in your name and recommends powerful name corrections to align your identity with your highest destiny. Trusted as the best pronologist in Bhubaneswar for name correction and sound vibration guidance.",
+  },
+  {
+    emoji: "⌚",
+    title: "Expert Watch Analyst in Bhubaneswar",
+    description:
+      "Our expert watch analyst in Bhubaneswar applies advanced Vedic numerology to analyze the numbers on your watch — identifying your most auspicious watch numbers for luck, success, and positive energy. The best watch analyst in Odisha for watch number analysis and lucky timepiece guidance.",
+  },
+  {
+    emoji: "🔮",
+    title: "Best Numerologist & Vastu Expert in Odisha",
+    description:
+      "Trusted by hundreds across Bhubaneswar and all of Odisha, our numerology readings decode your life path, destiny number, and soul urge. Our vastu shastra expert harmonizes your home and office for prosperity and positive energy. Widely regarded as the top Vedic numerologist in Bhubaneswar.",
   },
 ];
 
@@ -49,9 +49,9 @@ export default function WhyChooseUsSection() {
             Why Choose <span className="gold-text-gradient">Omm Vedic</span>
           </h2>
           <p className="font-cormorant text-lg text-foreground/60 italic max-w-2xl mx-auto">
-            Rooted in ancient Vedic wisdom, trusted by modern seekers — discover
-            why we are Bhubaneswar&apos;s most sought-after spiritual guidance
-            centre and Odisha&apos;s top-rated numerology consultant.
+            Bhubaneswar&apos;s best tarot card reader, top pronologist, expert
+            watch analyst, and most trusted numerology consultant — all under
+            one roof in Odisha.
           </p>
           <div className="divider-gold w-48 mx-auto mt-6" />
         </div>

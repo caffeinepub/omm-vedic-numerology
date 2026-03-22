@@ -251,8 +251,25 @@ export default function HeroSection() {
 
         <p className="text-cosmic-200 text-lg md:text-xl max-w-2xl mx-auto mb-4 font-cormorant leading-relaxed">
           Unlock the secrets of the universe through ancient Vedic wisdom.
-          Expert guidance in Tarot, Numerology, Vastu Shastra &amp; Pronology.
+          Expert guidance in Tarot Card Reading, Numerology, Vastu Shastra,
+          Pronology &amp; Watch Analysis.
         </p>
+
+        <div className="flex flex-wrap justify-center gap-2 mb-4">
+          {[
+            { icon: "🃏", label: "Best Tarot Card Reader" },
+            { icon: "✍️", label: "Top Pronologist" },
+            { icon: "⌚", label: "Expert Watch Analyst" },
+            { icon: "🔮", label: "Vedic Numerologist" },
+          ].map((badge) => (
+            <span
+              key={badge.label}
+              className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-gold-400/30 bg-black/30 text-gold-300 text-xs font-cinzel tracking-wide"
+            >
+              {badge.icon} {badge.label}
+            </span>
+          ))}
+        </div>
 
         <p className="text-gold-400/80 text-sm mb-10 tracking-wide">
           📍 Bhubaneswar, Odisha · Serving all of India
