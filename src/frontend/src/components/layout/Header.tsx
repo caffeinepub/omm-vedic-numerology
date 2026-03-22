@@ -70,6 +70,13 @@ export default function Header({ onNavigate }: HeaderProps) {
                 {link.label}
               </button>
             ))}
+            <a
+              href="/blog"
+              data-ocid="header.blog.link"
+              className="px-4 py-2 font-cinzel text-sm tracking-wider text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 rounded-sm"
+            >
+              Blog
+            </a>
             <Link
               to="/admin"
               className="ml-2 p-2 text-foreground/20 hover:text-gold/50 transition-colors rounded"
@@ -112,6 +119,14 @@ export default function Header({ onNavigate }: HeaderProps) {
                 {link.label}
               </button>
             ))}
+            <a
+              href="/blog"
+              data-ocid="header.mobile.blog.link"
+              onClick={() => setMobileOpen(false)}
+              className="px-4 py-3 font-cinzel text-sm tracking-wider text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 rounded"
+            >
+              Blog
+            </a>
             <Link
               to="/admin"
               onClick={() => setMobileOpen(false)}

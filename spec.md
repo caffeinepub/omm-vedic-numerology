@@ -1,19 +1,43 @@
-# Specification
+# Omm Vedic Numerology
 
-## Summary
-**Goal:** Add a suite of advanced UI features and enhancements to the Omm Vedic Numerloggy homepage, hero section, booking form, and admin dashboard to create a more immersive, interactive experience.
+## Current State
+Full website with Hero, Services, Testimonials, About, Booking, JustDial, FindUs, Contact, and Footer sections. Router has home `/` and admin `/admin` routes.
 
-**Planned changes:**
-- Add an animated particle/star-field canvas layer (golden orbs, twinkling stars, drifting mandala outlines) behind the hero section
-- Add a parallax scroll effect to the hero section background image, disabled on mobile viewports below 768px
-- Add a continuously scrolling marquee ticker banner between the header and hero section with all four services, location, and price info styled with a gold gradient
-- Add a live bookings counter badge in the hero section fetching total booking count from a new `getTotalBookingCount` backend query, auto-refreshing every 60 seconds
-- Add a Client Testimonials carousel section (between Services and About) with at least 5 hardcoded cards showing name, city, service, 5-star rating, and quote; auto-advances every 5 seconds with manual prev/next navigation
-- Add a Daily Cosmic Insight section (between Testimonials and WhyChooseUs) displaying a daily rotating tip from a hardcoded array of 14 tips selected by `dayOfYear % 14`, inside a mandala-bordered card
-- Add an interactive Spiritual Profile Quiz section on the homepage with 3–5 multiple-choice questions that recommends one of the four services and provides a "Book This Service" CTA that pre-selects the service in the booking form
-- Convert the booking form into a 3-step wizard (Step 1: Service & Category; Step 2: Personal Details; Step 3: Schedule & Message) with a step progress indicator, Next/Back navigation, and backend submission only on the final step
-- Add a floating "Book via WhatsApp" button fixed to the bottom-left with a gold/cosmic gradient that opens a pre-filled WhatsApp deep link to +918689838590
-- Add an Admin Analytics panel above the bookings table on AdminPage showing total bookings, per-service CSS bar chart, status counts, and most recent booking date
-- Add `getTotalBookingCount` public query to `backend/main.mo` returning total bookings as Nat
+## Requested Changes (Diff)
 
-**User-visible outcome:** Visitors experience a visually immersive homepage with animated hero, scrolling ticker, testimonials carousel, daily spiritual tips, and a guided quiz that recommends and pre-selects a service in an improved multi-step booking form. A WhatsApp booking shortcut floats at the bottom-left. Admins see a new analytics summary panel on the dashboard.
+### Add
+- `/blog` route listing all 10 blog posts in a grid
+- `/blog/:slug` route for individual blog post detail page
+- `BlogPage` component (list view)
+- `BlogPostPage` component (detail view)
+- `BlogSection` component on HomePage showing a preview of 3 latest blog posts with a "Read All Articles" button
+- 10 static blog posts covering all services:
+  1. "The Power of Vedic Numerology: How Numbers Shape Your Destiny" (numerology)
+  2. "Tarot Card Reading Explained: What the Cards Reveal About Your Life" (tarot)
+  3. "Vastu Shastra for Modern Homes: Harmonize Your Living Space" (vastu)
+  4. "Pronology: The Science of Sound Vibrations in Your Name" (pronology)
+  5. "Expert Watch Analysis: How Your Watch Reflects Your Energy" (watch analysis)
+  6. "Life Path Numbers: Find Your True Purpose Through Numerology" (numerology)
+  7. "The Major Arcana: 22 Cards That Map Your Spiritual Journey" (tarot)
+  8. "Vastu for Your Office: Attract Prosperity and Career Growth" (vastu)
+  9. "Name Correction Through Numerology: Transform Your Luck" (numerology + pronology)
+  10. "Five Ancient Vedic Sciences That Can Change Your Life" (all services)
+- Navigation header link to Blog
+- Blog posts are rich, long-form with intro, sections, tips, and a call-to-action to book at ₹400
+
+### Modify
+- `App.tsx`: Add blog routes
+- `HomePage.tsx`: Add BlogSection before footer
+- `Header` component: Add Blog nav link
+
+### Remove
+- Nothing removed
+
+## Implementation Plan
+1. Create `src/frontend/src/data/blogPosts.ts` with 10 rich blog post objects (slug, title, excerpt, content, category, readTime, date, coverEmoji)
+2. Create `src/frontend/src/pages/BlogPage.tsx` - grid of all posts
+3. Create `src/frontend/src/pages/BlogPostPage.tsx` - full post detail
+4. Create `src/frontend/src/components/home/BlogSection.tsx` - homepage preview of latest 3 posts
+5. Update `App.tsx` to add `/blog` and `/blog/$slug` routes
+6. Update `HomePage.tsx` to include `<BlogSection />` before footer
+7. Update Header to include Blog link in navigation

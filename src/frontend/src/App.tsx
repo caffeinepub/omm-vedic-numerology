@@ -6,6 +6,8 @@ import {
   createRouter,
 } from "@tanstack/react-router";
 import AdminPage from "./pages/AdminPage";
+import BlogPage from "./pages/BlogPage";
+import BlogPostPage from "./pages/BlogPostPage";
 import HomePage from "./pages/HomePage";
 
 const rootRoute = createRootRoute({
@@ -24,7 +26,24 @@ const adminRoute = createRoute({
   component: AdminPage,
 });
 
-const routeTree = rootRoute.addChildren([homeRoute, adminRoute]);
+const blogRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/blog",
+  component: BlogPage,
+});
+
+const blogPostRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/blog/$slug",
+  component: BlogPostPage,
+});
+
+const routeTree = rootRoute.addChildren([
+  homeRoute,
+  adminRoute,
+  blogRoute,
+  blogPostRoute,
+]);
 
 const router = createRouter({ routeTree });
 

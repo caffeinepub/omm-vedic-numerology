@@ -3,6 +3,7 @@ import { useRef, useState } from "react";
 import { ServiceType } from "../backend";
 import BookingForm from "../components/booking/BookingForm";
 import AboutSection from "../components/home/AboutSection";
+import BlogSection from "../components/home/BlogSection";
 import ContactUsSection from "../components/home/ContactUsSection";
 import DailyCosmicInsight from "../components/home/DailyCosmicInsight";
 import FindUsSection from "../components/home/FindUsSection";
@@ -130,6 +131,9 @@ export default function HomePage() {
 
       {/* Contact */}
       <ContactUsSection />
+
+      {/* Blog Section */}
+      <BlogSection />
 
       {/* Serving Odisha Section */}
       <section className="py-12 px-4 bg-cosmic-900/50 border-t border-gold-400/10">
