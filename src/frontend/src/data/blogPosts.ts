@@ -16,6 +16,50 @@ export interface BlogPost {
 
 export const blogPosts: BlogPost[] = [
   {
+    slug: "tarot-success-story-rupa-mishra",
+    title: "How Tarot Revealed My True Path: Rupa's Transformation Story",
+    excerpt:
+      "Rupa Mishra from Cuttack came to us broken and confused after a painful divorce. One tarot reading session changed everything. This is her story of healing, clarity, and new beginnings.",
+    category: "Success Story",
+    readTime: "6 min read",
+    date: "March 20, 2026",
+    coverEmoji: "✨",
+    content: [
+      {
+        heading: "Arriving at the Doorstep of Destiny",
+        body: "Rupa Mishra, a 34-year-old school teacher from Cuttack, walked into Omm Vedic Numerology on a grey February morning. Her eyes carried the weight of two years of confusion and heartbreak — a painful divorce that had upended not just her home, but her entire sense of self. She had tried everything: counselling, family support, a month at her parents' home in Puri. Nothing had quieted the storm inside her. A colleague had quietly slipped her the number of Omm Vedic Numerology with the words: 'Just go. You have nothing to lose.' She came skeptical. She left transformed.",
+      },
+      {
+        heading: "The Reading Begins: The Tower Card",
+        body: "As Pandit Tripathy laid the cards on the sacred cloth, Rupa drew her first card with trembling hands: The Tower. In most people's imagination, The Tower is a card of disaster — lightning striking a tall spire, figures falling. Rupa's face fell. But Pandit Tripathy smiled gently. 'The Tower does not destroy you,' he said. 'It destroys only what was built on a false foundation. Your marriage — it was built on someone else's expectations of who you should be, not on your own truth.' Rupa felt something crack open in her chest. In one sentence, he had named something she had never been able to articulate in two years of grief.",
+      },
+      {
+        heading: "The Star: Light After the Storm",
+        body: "The second card was The Star — a luminous figure pouring water beneath a sky ablaze with stars. 'After every Tower moment in life, The Star appears,' he explained. 'This is your card right now. You are in the exact middle of this passage — the destruction is behind you, the renewal is ahead of you.' He pointed to the central star in the card. 'See this star? In Vedic astrology, this corresponds to your birth nakshatra. You were always meant to shine independently. The divorce was not a failure. It was your soul refusing to dim itself any further.' Rupa pressed her hands together, tears quietly falling.",
+      },
+      {
+        heading: "The High Priestess: Her Hidden Strength",
+        body: "The third card was The High Priestess — serene, veiled, seated between two great pillars. 'This is you,' he said simply. 'You have deep intuitive gifts you have never trusted. You sense things about people — you know when someone is lying, when a situation is wrong — but you were taught to dismiss this knowing as foolishness or emotion.' He looked at her directly. 'Your name carries a 7 vibration — the number of the mystic, the spiritual seeker. You were not meant for an ordinary domestic life. You were meant to teach, to heal, and to guide.' Rupa stared at the card for a long time. Somewhere deep in her body, something settled into place.",
+      },
+      {
+        heading: "Guidance on Career and the Path Forward",
+        body: "The reading then turned practical. Pandit Tripathy analyzed Rupa's numerological chart alongside the tarot spread. Her Life Path number was 5 — the freedom seeker, the communicator. Her current period was a 9-year cycle — the year of endings and completion. 'Do not rush into a new relationship,' he advised. 'This is your year to complete, to release, to harvest the lessons of the last decade. Next year, a new 1 cycle begins — and with it, a completely new chapter in your career.' He suggested she consider expanding her teaching into something more creative — perhaps art therapy or spiritual education. 'Your real gift is not just teaching facts. It is helping young souls find their own inner compass.'",
+      },
+      {
+        heading: "Six Months Later: A New Rupa",
+        body: "Six months after that single ₹400 session at Omm Vedic Numerology, Rupa Mishra is almost unrecognizable — not physically, but in the way she carries herself. She has started a weekend workshop for women going through difficult life transitions, combining storytelling with mindfulness. It began with 4 women in her living room; within three months, it had grown to 30 regular participants. She has stopped apologizing for her decisions. She sleeps soundly. She laughs more easily. 'I walked in thinking I needed someone to tell me my future,' she told us when she returned for a follow-up session. 'What I got was someone who helped me remember who I already was.'",
+      },
+      {
+        heading: "What Tarot Reading Actually Does",
+        body: "Rupa's story is not unique — we hear versions of it every week at Omm Vedic Numerology. Tarot does not predict a fixed fate. It holds up a mirror to your soul's current situation — the hidden fears, the unconscious patterns, the unacknowledged strengths. When a skilled reader combines tarot with Vedic numerology, they can map not just your current moment but your entire life trajectory: where you came from, where you are, and the choices available to you right now. For Rupa, one session provided more clarity than two years of conventional support. That is the ancient power of these sacred sciences, brought into modern life.",
+      },
+      {
+        heading: "Begin Your Own Transformation",
+        body: "If Rupa's story resonates with you — if you feel lost at a crossroads, unsure of your path, burdened by decisions you cannot see clearly — come to Omm Vedic Numerology in Bhubaneswar. For just ₹400, one session with Pandit Tripathy can illuminate what two years of confusion cannot. Call 8689838590 to book your session, or visit us in Old Town, Bhubaneswar. Your Star card is waiting.",
+      },
+    ],
+  },
+  {
     slug: "power-of-vedic-numerology",
     title: "The Power of Vedic Numerology: How Numbers Shape Your Destiny",
     excerpt:

@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Menu, ShieldCheck, Star, X } from "lucide-react";
+import { BookOpen, Menu, ShieldCheck, Star, X } from "lucide-react";
 import { useState } from "react";
 
 interface HeaderProps {
@@ -73,8 +73,9 @@ export default function Header({ onNavigate }: HeaderProps) {
             <a
               href="/blog"
               data-ocid="header.blog.link"
-              className="px-4 py-2 font-cinzel text-sm tracking-wider text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 rounded-sm"
+              className="px-4 py-2 font-cinzel text-sm tracking-wider text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 rounded-sm flex items-center gap-1.5"
             >
+              <BookOpen className="w-3.5 h-3.5" />
               Blog
             </a>
             <Link
@@ -123,8 +124,9 @@ export default function Header({ onNavigate }: HeaderProps) {
               href="/blog"
               data-ocid="header.mobile.blog.link"
               onClick={() => setMobileOpen(false)}
-              className="px-4 py-3 font-cinzel text-sm tracking-wider text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 rounded"
+              className="px-4 py-3 font-cinzel text-sm tracking-wider text-foreground/70 hover:text-gold hover:bg-gold/5 transition-all duration-200 rounded flex items-center gap-2"
             >
+              <BookOpen className="w-4 h-4" />
               Blog
             </a>
             <Link

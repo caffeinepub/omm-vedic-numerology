@@ -1,6 +1,290 @@
 import React, { useEffect, useRef } from "react";
 import { useGetTotalBookingCount } from "../../hooks/useQueries";
 
+type Star = {
+  id: string;
+  top: string;
+  left: string;
+  size: number;
+  delay: string;
+  dur: string;
+  gold: boolean;
+};
+
+// Hardcoded star field — 30 twinkling stars with fixed positions
+const STARS: Star[] = [
+  {
+    id: "s1",
+    top: "5%",
+    left: "8%",
+    size: 2,
+    delay: "0s",
+    dur: "3.2s",
+    gold: true,
+  },
+  {
+    id: "s2",
+    top: "12%",
+    left: "22%",
+    size: 1,
+    delay: "0.5s",
+    dur: "2.8s",
+    gold: false,
+  },
+  {
+    id: "s3",
+    top: "8%",
+    left: "45%",
+    size: 2,
+    delay: "1.1s",
+    dur: "4.0s",
+    gold: false,
+  },
+  {
+    id: "s4",
+    top: "3%",
+    left: "70%",
+    size: 1,
+    delay: "0.2s",
+    dur: "3.5s",
+    gold: false,
+  },
+  {
+    id: "s5",
+    top: "15%",
+    left: "88%",
+    size: 2,
+    delay: "1.8s",
+    dur: "2.6s",
+    gold: true,
+  },
+  {
+    id: "s6",
+    top: "22%",
+    left: "5%",
+    size: 1,
+    delay: "0.7s",
+    dur: "3.8s",
+    gold: false,
+  },
+  {
+    id: "s7",
+    top: "18%",
+    left: "35%",
+    size: 2,
+    delay: "2.1s",
+    dur: "3.0s",
+    gold: false,
+  },
+  {
+    id: "s8",
+    top: "25%",
+    left: "60%",
+    size: 1,
+    delay: "0.4s",
+    dur: "4.2s",
+    gold: false,
+  },
+  {
+    id: "s9",
+    top: "30%",
+    left: "80%",
+    size: 2,
+    delay: "1.5s",
+    dur: "2.9s",
+    gold: false,
+  },
+  {
+    id: "s10",
+    top: "35%",
+    left: "15%",
+    size: 1,
+    delay: "0.9s",
+    dur: "3.6s",
+    gold: true,
+  },
+  {
+    id: "s11",
+    top: "40%",
+    left: "92%",
+    size: 2,
+    delay: "2.3s",
+    dur: "3.1s",
+    gold: false,
+  },
+  {
+    id: "s12",
+    top: "42%",
+    left: "50%",
+    size: 1,
+    delay: "1.2s",
+    dur: "2.7s",
+    gold: false,
+  },
+  {
+    id: "s13",
+    top: "50%",
+    left: "3%",
+    size: 2,
+    delay: "0.3s",
+    dur: "4.1s",
+    gold: false,
+  },
+  {
+    id: "s14",
+    top: "55%",
+    left: "28%",
+    size: 1,
+    delay: "1.7s",
+    dur: "3.3s",
+    gold: false,
+  },
+  {
+    id: "s15",
+    top: "60%",
+    left: "72%",
+    size: 2,
+    delay: "0.6s",
+    dur: "2.5s",
+    gold: true,
+  },
+  {
+    id: "s16",
+    top: "65%",
+    left: "90%",
+    size: 1,
+    delay: "2.0s",
+    dur: "3.9s",
+    gold: false,
+  },
+  {
+    id: "s17",
+    top: "70%",
+    left: "10%",
+    size: 2,
+    delay: "1.4s",
+    dur: "3.4s",
+    gold: false,
+  },
+  {
+    id: "s18",
+    top: "72%",
+    left: "42%",
+    size: 1,
+    delay: "0.8s",
+    dur: "2.4s",
+    gold: false,
+  },
+  {
+    id: "s19",
+    top: "78%",
+    left: "65%",
+    size: 2,
+    delay: "1.9s",
+    dur: "4.3s",
+    gold: false,
+  },
+  {
+    id: "s20",
+    top: "82%",
+    left: "20%",
+    size: 1,
+    delay: "2.5s",
+    dur: "3.7s",
+    gold: true,
+  },
+  {
+    id: "s21",
+    top: "88%",
+    left: "78%",
+    size: 2,
+    delay: "0.1s",
+    dur: "2.8s",
+    gold: false,
+  },
+  {
+    id: "s22",
+    top: "92%",
+    left: "55%",
+    size: 1,
+    delay: "1.6s",
+    dur: "3.2s",
+    gold: false,
+  },
+  {
+    id: "s23",
+    top: "7%",
+    left: "55%",
+    size: 2,
+    delay: "2.2s",
+    dur: "2.6s",
+    gold: false,
+  },
+  {
+    id: "s24",
+    top: "33%",
+    left: "40%",
+    size: 1,
+    delay: "0.3s",
+    dur: "4.0s",
+    gold: false,
+  },
+  {
+    id: "s25",
+    top: "47%",
+    left: "18%",
+    size: 2,
+    delay: "1.0s",
+    dur: "3.5s",
+    gold: true,
+  },
+  {
+    id: "s26",
+    top: "58%",
+    left: "48%",
+    size: 1,
+    delay: "2.4s",
+    dur: "2.9s",
+    gold: false,
+  },
+  {
+    id: "s27",
+    top: "75%",
+    left: "30%",
+    size: 2,
+    delay: "0.5s",
+    dur: "3.8s",
+    gold: false,
+  },
+  {
+    id: "s28",
+    top: "85%",
+    left: "95%",
+    size: 1,
+    delay: "1.3s",
+    dur: "3.1s",
+    gold: false,
+  },
+  {
+    id: "s29",
+    top: "95%",
+    left: "8%",
+    size: 2,
+    delay: "2.7s",
+    dur: "4.4s",
+    gold: false,
+  },
+  {
+    id: "s30",
+    top: "20%",
+    left: "75%",
+    size: 1,
+    delay: "0.6s",
+    dur: "2.7s",
+    gold: true,
+  },
+];
+
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
@@ -222,11 +506,37 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-b from-cosmic-950/80 via-cosmic-900/70 to-cosmic-950/90" />
       </div>
 
+      {/* CSS Star field — subtle twinkling dots */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ zIndex: 1 }}
+        aria-hidden="true"
+      >
+        {STARS.map((star) => (
+          <span
+            key={star.id}
+            className="absolute rounded-full"
+            style={{
+              top: star.top,
+              left: star.left,
+              width: star.size,
+              height: star.size,
+              background: star.gold ? "#d4af37" : "#ffffff",
+              animation: `twinkle ${star.dur} ${star.delay} ease-in-out infinite`,
+              boxShadow:
+                star.size >= 2
+                  ? `0 0 ${star.size * 2}px ${star.gold ? "rgba(212,175,55,0.6)" : "rgba(255,255,255,0.5)"}`
+                  : "none",
+            }}
+          />
+        ))}
+      </div>
+
       {/* Particle canvas */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ zIndex: 1 }}
+        style={{ zIndex: 2 }}
       />
 
       {/* Content */}

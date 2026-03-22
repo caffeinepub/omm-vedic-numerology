@@ -9,10 +9,14 @@ import DailyCosmicInsight from "../components/home/DailyCosmicInsight";
 import FindUsSection from "../components/home/FindUsSection";
 import HeroSection from "../components/home/HeroSection";
 import JustDialSection from "../components/home/JustDialSection";
+import NumerologyCalculator from "../components/home/NumerologyCalculator";
+import ServiceDailyFacts from "../components/home/ServiceDailyFacts";
 import ServicesSection from "../components/home/ServicesSection";
 import SpiritualProfileQuiz from "../components/home/SpiritualProfileQuiz";
+import StatsSection from "../components/home/StatsSection";
 import TestimonialsCarousel from "../components/home/TestimonialsCarousel";
 import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
+import ZodiacSection from "../components/home/ZodiacSection";
 import FloatingBookWhatsAppButton from "../components/layout/FloatingBookWhatsAppButton";
 import FloatingWhatsAppButton from "../components/layout/FloatingWhatsAppButton";
 import Header from "../components/layout/Header";
@@ -76,10 +80,22 @@ export default function HomePage() {
         <HeroSection />
       </div>
 
+      {/* Numerology Calculator */}
+      <NumerologyCalculator />
+
+      {/* Zodiac Section */}
+      <ZodiacSection />
+
+      {/* Stats Section */}
+      <StatsSection />
+
       {/* Services */}
       <div ref={servicesRef}>
         <ServicesSection onBookNow={handleBookNow} />
       </div>
+
+      {/* Daily Service Facts */}
+      <ServiceDailyFacts />
 
       {/* Spiritual Profile Quiz */}
       <SpiritualProfileQuiz onRecommendService={handleRecommendService} />
