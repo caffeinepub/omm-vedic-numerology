@@ -385,4 +385,10 @@
       display: none;
     }
   }
+
+  /* Performance: off-screen rendering optimization for heavy sections */
+  .content-visibility-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 500px;
+  }
 }

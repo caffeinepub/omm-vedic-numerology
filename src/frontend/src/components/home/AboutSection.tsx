@@ -45,6 +45,9 @@ export default function AboutSection() {
                   src="/assets/uploads/Screenshot_20260318_225730-1.jpg"
                   alt="Omm Vedic Numerology Logo"
                   className="relative w-28 h-28 rounded-full object-cover border-4 border-gold-400 shadow-[0_0_30px_rgba(212,175,55,0.4)]"
+                  loading="lazy"
+                  width="112"
+                  height="112"
                 />
               </div>
             </div>
@@ -69,25 +72,25 @@ export default function AboutSection() {
               journey with clarity and confidence.
             </p>
             <p className="font-inter text-sm text-foreground/55 leading-relaxed">
-              Whether you seek guidance on relationships, career, home energy,
-              or the power of your name — we offer personalized sessions that
-              illuminate your path forward.
+              Located in the heart of Old Town, Bhubaneswar — exactly in front
+              of Jagluck Office — we serve clients from across Odisha, both
+              in-person and online.
             </p>
           </div>
 
-          {/* Right: Features Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {features.map((feature) => (
+          {/* Right: Feature Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {features.map((f) => (
               <div
-                key={feature.title}
-                className="card-cosmic rounded-lg p-5 transition-all duration-300 hover:-translate-y-0.5"
+                key={f.title}
+                className="card-cosmic rounded-xl p-6 border border-gold/10 hover:border-gold/25 transition-colors duration-300"
               >
-                <div className="text-3xl mb-3">{feature.icon}</div>
-                <h3 className="font-cinzel font-semibold text-sm text-gold-light mb-2 tracking-wide">
-                  {feature.title}
+                <div className="text-3xl mb-3">{f.icon}</div>
+                <h3 className="font-cinzel font-bold text-sm text-gold-light mb-2 tracking-wide">
+                  {f.title}
                 </h3>
                 <p className="font-inter text-xs text-foreground/50 leading-relaxed">
-                  {feature.description}
+                  {f.description}
                 </p>
               </div>
             ))}

@@ -305,11 +305,22 @@ function getDayOfYear(): number {
   return Math.floor(diff / 86400000);
 }
 
+function getDailyLuckyNumber(signIndex: number): number {
+  const now = new Date();
+  const dayOfYear = Math.floor(
+    (now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / 86400000,
+  );
+  const seed = (dayOfYear * 7 + signIndex * 13 + now.getFullYear() * 3) % 9;
+  return seed === 0 ? 9 : seed;
+}
+
 export default function ZodiacSection() {
   const [selected, setSelected] = useState<ZodiacSign | null>(null);
+  const [selectedIndex, setSelectedIndex] = useState<number>(0);
 
   const dayOfYear = getDayOfYear();
   const todaySign = zodiacSigns[dayOfYear % 12];
+  const todaySignIndex = dayOfYear % 12;
 
   const today = new Date().toLocaleDateString("en-IN", {
     weekday: "long",
@@ -320,7 +331,7 @@ export default function ZodiacSection() {
 
   return (
     <section
-      className="py-20 px-4 relative overflow-hidden"
+      className="py-20 px-4 relative overflow-hidden content-visibility-auto"
       data-ocid="zodiac.section"
     >
       {/* Deep cosmic gradient background */}
@@ -360,6 +371,111 @@ export default function ZodiacSection() {
             Discover the cosmic forces written in your stars.
           </p>
           <div className="w-24 h-0.5 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-5" />
+        </motion.div>
+
+        {/* ✦ TODAY'S DAILY LUCKY NUMBERS BANNER ✦ */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="mb-14"
+          data-ocid="zodiac.lucky.panel"
+        >
+          {/* Banner container with animated gradient border */}
+          <div
+            className="relative rounded-2xl p-[1.5px] overflow-hidden"
+            style={{
+              background:
+                "linear-gradient(135deg, rgba(212,175,55,0.8) 0%, rgba(212,175,55,0.1) 40%, rgba(212,175,55,0.6) 70%, rgba(212,175,55,0.9) 100%)",
+            }}
+          >
+            <div
+              className="rounded-2xl px-5 py-6 md:px-8 md:py-7"
+              style={{
+                background:
+                  "linear-gradient(135deg, oklch(0.1 0.03 270) 0%, oklch(0.07 0.025 260) 100%)",
+              }}
+            >
+              {/* Title */}
+              <div className="flex items-center justify-center gap-3 mb-5">
+                <div className="h-px flex-1 max-w-16 bg-gradient-to-r from-transparent to-gold-400/40" />
+                <h3 className="font-cinzel text-base md:text-lg font-bold text-gold-400 tracking-[0.2em] uppercase text-center">
+                  🔢 Today&apos;s Daily Lucky Numbers
+                </h3>
+                <div className="h-px flex-1 max-w-16 bg-gradient-to-l from-transparent to-gold-400/40" />
+              </div>
+              <p className="text-center font-cinzel text-xs text-cosmic-400 tracking-wider mb-5">
+                {today}
+              </p>
+
+              {/* Horizontal scrollable row of all 12 signs */}
+              <div className="overflow-x-auto pb-2">
+                <div className="flex gap-3 min-w-max mx-auto px-1">
+                  {zodiacSigns.map((sign, i) => {
+                    const dailyNum = getDailyLuckyNumber(i);
+                    const isToday = i === todaySignIndex;
+                    return (
+                      <motion.div
+                        key={sign.name}
+                        initial={{ opacity: 0, scale: 0.85 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.4, delay: i * 0.04 }}
+                        whileHover={{ y: -3, scale: 1.05 }}
+                        className={`flex flex-col items-center gap-1.5 px-3 py-3 rounded-xl border cursor-pointer transition-all duration-200 ${
+                          isToday
+                            ? "border-gold-400/70 bg-gold-400/10"
+                            : "border-cosmic-700/50 bg-cosmic-900/40 hover:border-gold-400/40 hover:bg-cosmic-800/50"
+                        }`}
+                        style={{
+                          minWidth: "72px",
+                          boxShadow: isToday
+                            ? "0 0 20px rgba(212,175,55,0.25), 0 0 40px rgba(212,175,55,0.1)"
+                            : undefined,
+                        }}
+                        onClick={() => {
+                          setSelected(sign);
+                          setSelectedIndex(i);
+                        }}
+                      >
+                        <span className="text-2xl leading-none">
+                          {sign.symbol}
+                        </span>
+                        <span
+                          className={`font-cinzel text-[10px] font-semibold tracking-wide ${
+                            isToday ? "text-gold-300" : "text-cosmic-300"
+                          }`}
+                        >
+                          {sign.name}
+                        </span>
+                        {/* Glowing lucky number */}
+                        <div
+                          className="flex items-center justify-center w-9 h-9 rounded-full font-cinzel text-lg font-bold text-gold-400"
+                          style={{
+                            background:
+                              "radial-gradient(circle, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0.04) 100%)",
+                            border: "1px solid rgba(212,175,55,0.35)",
+                            textShadow:
+                              "0 0 12px rgba(212,175,55,0.9), 0 0 24px rgba(212,175,55,0.5)",
+                            boxShadow:
+                              "0 0 10px rgba(212,175,55,0.2), inset 0 0 8px rgba(212,175,55,0.05)",
+                          }}
+                        >
+                          {dailyNum}
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Footer note */}
+              <p className="text-center font-cinzel text-[10px] text-cosmic-500 tracking-widest uppercase mt-4">
+                ✦ Numbers refresh every day at midnight ✦
+              </p>
+            </div>
+          </div>
         </motion.div>
 
         {/* ✦ TODAY'S FEATURED SIGN ✦ */}
@@ -434,8 +550,8 @@ export default function ZodiacSection() {
                     </span>
                   </div>
 
-                  {/* Stats grid */}
-                  <div className="grid grid-cols-3 gap-3 mb-5">
+                  {/* Stats grid — 4 columns now including Daily Lucky No. */}
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-5">
                     <div className="bg-cosmic-900/60 rounded-xl p-3 text-center">
                       <p className="font-cinzel text-xs text-gold-400/60 uppercase tracking-wider mb-1">
                         Element
@@ -454,12 +570,35 @@ export default function ZodiacSection() {
                     </div>
                     <div className="bg-cosmic-900/60 rounded-xl p-3 text-center">
                       <p className="font-cinzel text-xs text-gold-400/60 uppercase tracking-wider mb-1">
-                        Lucky No.
+                        Numerology No.
                       </p>
                       <p
                         className={`font-cinzel text-xl font-bold ${todaySign.color}`}
                       >
                         {todaySign.luckyNumber}
+                      </p>
+                    </div>
+                    {/* Daily Lucky Number — highlighted */}
+                    <div
+                      className="rounded-xl p-3 text-center border border-gold-400/40"
+                      style={{
+                        background:
+                          "radial-gradient(circle at 50% 0%, rgba(212,175,55,0.12) 0%, rgba(212,175,55,0.03) 100%)",
+                        boxShadow:
+                          "0 0 20px rgba(212,175,55,0.15), inset 0 0 15px rgba(212,175,55,0.04)",
+                      }}
+                    >
+                      <p className="font-cinzel text-xs text-gold-400 uppercase tracking-wider mb-1">
+                        Daily Lucky No.
+                      </p>
+                      <p
+                        className="font-cinzel text-2xl font-bold text-gold-400"
+                        style={{
+                          textShadow:
+                            "0 0 12px rgba(212,175,55,0.9), 0 0 30px rgba(212,175,55,0.5)",
+                        }}
+                      >
+                        {getDailyLuckyNumber(todaySignIndex)}
                       </p>
                     </div>
                   </div>
@@ -522,6 +661,7 @@ export default function ZodiacSection() {
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
           {zodiacSigns.map((sign, i) => {
             const isToday = sign.name === todaySign.name;
+            const dailyLucky = getDailyLuckyNumber(i);
             return (
               <motion.button
                 key={sign.name}
@@ -531,7 +671,10 @@ export default function ZodiacSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.05 }}
                 whileHover={{ y: -4, scale: 1.02 }}
-                onClick={() => setSelected(sign)}
+                onClick={() => {
+                  setSelected(sign);
+                  setSelectedIndex(i);
+                }}
                 data-ocid={`zodiac.item.${i + 1}`}
                 className={`group relative rounded-xl border ${
                   isToday
@@ -574,6 +717,22 @@ export default function ZodiacSection() {
                 <div className="mt-2 text-xs font-cormorant text-cosmic-400">
                   {sign.element} {sign.elementEmoji}
                 </div>
+                {/* Daily Lucky Number badge */}
+                <div className="mt-3 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-gold-400/35 bg-gold-400/8">
+                  <span className="text-[11px]">🍀</span>
+                  <span className="font-cinzel text-[11px] text-cosmic-400">
+                    Lucky:
+                  </span>
+                  <span
+                    className="font-cinzel text-sm font-bold text-gold-400"
+                    style={{
+                      textShadow:
+                        "0 0 8px rgba(212,175,55,0.8), 0 0 16px rgba(212,175,55,0.4)",
+                    }}
+                  >
+                    {dailyLucky}
+                  </span>
+                </div>
               </motion.button>
             );
           })}
@@ -597,7 +756,7 @@ export default function ZodiacSection() {
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ duration: 0.4 }}
               onClick={(e) => e.stopPropagation()}
-              className={`relative max-w-md w-full rounded-2xl border ${selected.borderColor} bg-gradient-to-br from-cosmic-900 to-cosmic-950 p-8`}
+              className={`relative max-w-md w-full rounded-2xl border ${selected.borderColor} bg-gradient-to-br from-cosmic-900 to-cosmic-950 p-8 overflow-y-auto max-h-[90vh]`}
               style={{
                 boxShadow: `0 0 60px ${selected.glowColor}, 0 0 100px ${selected.glowColor}`,
               }}
@@ -626,6 +785,33 @@ export default function ZodiacSection() {
                 </p>
               </div>
 
+              {/* Daily Lucky Number — prominent in modal */}
+              <div
+                className="rounded-xl p-4 mb-5 border border-gold-400/50 text-center"
+                style={{
+                  background:
+                    "radial-gradient(ellipse at 50% 0%, rgba(212,175,55,0.15) 0%, rgba(212,175,55,0.03) 100%)",
+                  boxShadow:
+                    "0 0 30px rgba(212,175,55,0.12), inset 0 0 20px rgba(212,175,55,0.04)",
+                }}
+              >
+                <p className="font-cinzel text-xs text-gold-400 uppercase tracking-[0.3em] mb-2">
+                  🍀 Today&apos;s Lucky Number
+                </p>
+                <p
+                  className="font-cinzel text-5xl font-bold text-gold-400"
+                  style={{
+                    textShadow:
+                      "0 0 20px rgba(212,175,55,1), 0 0 40px rgba(212,175,55,0.6), 0 0 60px rgba(212,175,55,0.3)",
+                  }}
+                >
+                  {getDailyLuckyNumber(selectedIndex)}
+                </p>
+                <p className="font-cinzel text-[10px] text-cosmic-500 tracking-wider mt-2 uppercase">
+                  Refreshes daily at midnight
+                </p>
+              </div>
+
               <div className="grid grid-cols-2 gap-3 mb-5">
                 <div className="bg-cosmic-900/60 rounded-lg p-3 text-center">
                   <p className="font-cinzel text-xs text-gold-400/60 uppercase tracking-wider mb-1">
@@ -645,7 +831,7 @@ export default function ZodiacSection() {
                 </div>
                 <div className="bg-cosmic-900/60 rounded-lg p-3 text-center">
                   <p className="font-cinzel text-xs text-gold-400/60 uppercase tracking-wider mb-1">
-                    Lucky Number
+                    Numerology No.
                   </p>
                   <p
                     className={`font-cinzel text-xl font-bold ${selected.color}`}

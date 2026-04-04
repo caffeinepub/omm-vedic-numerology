@@ -45,6 +45,9 @@ export default function DailyCosmicInsight() {
               alt=""
               aria-hidden="true"
               className="w-full h-full object-cover"
+              loading="lazy"
+              width="600"
+              height="600"
             />
           </div>
 

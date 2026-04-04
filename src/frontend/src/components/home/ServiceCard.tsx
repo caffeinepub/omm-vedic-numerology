@@ -14,6 +14,9 @@ export default function ServiceCard({ service, onBookNow }: ServiceCardProps) {
             src={service.iconPath}
             alt={service.name}
             className="w-14 h-14 md:w-16 md:h-16 object-contain"
+            loading="lazy"
+            width="64"
+            height="64"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = "none";

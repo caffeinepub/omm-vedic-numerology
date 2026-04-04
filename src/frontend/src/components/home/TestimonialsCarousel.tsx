@@ -131,7 +131,7 @@ export default function TestimonialsCarousel() {
 
   return (
     <section
-      className="relative py-20 overflow-hidden"
+      className="relative py-20 overflow-hidden content-visibility-auto"
       style={{
         backgroundImage:
           "url(/assets/generated/testimonials-bg.dim_1920x600.png)",

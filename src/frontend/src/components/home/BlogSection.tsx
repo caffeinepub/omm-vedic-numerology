@@ -15,7 +15,7 @@ export default function BlogSection() {
   const featured = blogPosts.slice(0, 3);
 
   return (
-    <section className="py-20 px-4 bg-cosmic-900/30 border-t border-gold-400/10">
+    <section className="py-20 px-4 bg-cosmic-900/30 border-t border-gold-400/10 content-visibility-auto">
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
