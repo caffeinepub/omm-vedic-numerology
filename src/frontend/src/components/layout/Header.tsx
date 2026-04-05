@@ -23,7 +23,7 @@ export default function Header({ onNavigate }: HeaderProps) {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
-      {/* Top number strip — 566 and 41 flanking center */}
+      {/* Top number strip — 520 and 41 flanking center */}
       <div
         className="w-full flex items-center justify-center bg-cosmic-deep border-b border-gold/10"
         style={{ height: "22px" }}
@@ -33,7 +33,7 @@ export default function Header({ onNavigate }: HeaderProps) {
             className="font-cinzel font-bold text-gold/90 tracking-widest"
             style={{ fontSize: "11px" }}
           >
-            566
+            520
           </span>
           <span className="w-1 h-1 rounded-full bg-gold/40" />
           <span
